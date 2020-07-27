@@ -1,8 +1,11 @@
 The IOT Platform SDK consists of Owner Companion Service (OCS) that can be implemented to integrate any other device management solution.
 
-Both the OPS and To0Scheduler are bound to the OCS by a set of pre-defined REST contracts, as specified in the module `libocs`, that can be implemented to perform certain pre-defined tasks. Each REST API must carry out only the corresponding task, and must accept/return only the corresponding Message Type object.
+Both the OPS and To0Scheduler are bound to the OCS by a set of pre-defined contracts, as specified in the module `libocs`, that can be implemented to perform certain pre-defined tasks. The contract is backed by a set of REST APIs/interfaces, where each individual REST API/interface is tied to exactly one method from the pre-defined contract. Each REST API/interface carries out only the corresponding task, and accepts/returns only the corresponding Message Type object.
 
 The implementation of these REST contracts in an OCS can be done in any programming language. A sample java-based reference implementation of OCS is provided by the module `ocsfs` that uses file-system as database. As such, both OPS and To0Scheduler will work out-of-the-box with any implementation of OCS that supports the pre-defined REST contracts.
+
+!!! Note
+    The implementation of the pre-defined contracts can be backed by non-REST interfaces as well. However, this would invlove updates to both OPS and To0Scheduler to facilitate communication with the newly defined interface at OCS. Such a change would involve, but is not limited to, updates to existing class `RestClient.java` at both OPS and To0Scheduler.
 
 ## Rest Contracts between OCS (server) and OPS/To0Scheduler (client)
 
@@ -30,7 +33,7 @@ Following are the pre-defined REST API specifications for all the resource paths
 | `GET` /v1/devices/{deviceId}/sessioninfo  | Get the TO2 session info corresponding to the `deviceId`.  | Path: `deviceId`: Device identifier      |                | To2DeviceSessionInfo |
 | `POST` /v1/devices/{deviceId}/sessioninfo  | Update the TO2 session info corresponding to the `deviceId`. | Path: `deviceId`: Device identifier   | To2DeviceSessionInfo |               |
 | `DELETE` /v1/devices/{deviceId}/sessioninfo  | Delete the TO2 session info corresponding to the `deviceId`.   | Path: `deviceId`: Device identifier |               |               |
-
+| `GET` /devices/{deviceId}/resale  | Get the `resale` flag indicating owner's support for resale of the corresponding `deviceId`.   | Path: `deviceId`: Device identifier |               |    Boolean    |
 
 ## Rest Contracts between To0Scheduler (server) and OCS (client)
 
