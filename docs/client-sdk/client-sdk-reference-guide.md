@@ -278,8 +278,8 @@ To use **sdo_sys** device module, follow these steps:
 
 ```
 $ cd client-sdk/
-$ make pristine
-$ make MODULES=true
+$ cmake -DMODULES=true .
+$ make -j(nproc)
 ```
 
 The binary would be created either in build/linux/debug or build/linux/release folder. Copy them to the root folder before proceeding with the next steps.
