@@ -5,7 +5,7 @@ This document can be used as a quick start guide to setup the Dev environment. P
 [1. System Requirements](#system-requirements)
 [2. Docker Installation](#docker-installation)
 [3. Docker-compose Installation](#docker-compose-installation)
-[4.  Other Development Tools](#other-development-tools)
+[4. Other Development Tools](#other-development-tools)
 [5. References](#references)
 
 ## System Requirements
@@ -41,7 +41,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```
 4 . Use the following command to set up the **stable** repository.
 ```
- sudo add-apt-repository \ "deb [arch=amd64] https://download.docker.com/linux/ubuntu \ $(lsb_release -cs) \ stable"
+sudo add-apt-repository \ "deb [arch=amd64] https://download.docker.com/linux/ubuntu \ $(lsb_release -cs) \ stable"
 ```
 5 . Update the `apt` package index and install the docker engine 18.09
 ```
