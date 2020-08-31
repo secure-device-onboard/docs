@@ -9,7 +9,7 @@ The implementation of these REST contracts in an OCS can be done in any programm
 
 ## Rest Contracts between OCS (server) and OPS/To0Scheduler (client)
 
-Following are the pre-defined REST API specifications for all the resource paths that must be implemented and exposed by an OCS implementation. Both, OPS and To0Scheduler makes requests to the OCS implementation, as clients, using this format.
+Following are the pre-defined REST API specifications for all the resource paths that must be implemented and exposed by an OCS implementation. Both, OPS and To0Scheduler make requests to the OCS implementation, as clients, using this format.
 
 | Operation                               | Description                                                  | Path/Query Parameters                    | Request Body  | Response Body |
 | ---------------------------------------:|:------------------------------------------------------------:|:----------------------------------------:|:-------------:|--------------:|
@@ -37,7 +37,7 @@ Following are the pre-defined REST API specifications for all the resource paths
 
 ## Rest Contracts between To0Scheduler (server) and OCS (client)
 
-An OCS implementation must, also, acta as a client to trigger TO0 for set of devices, by making the following request to To0Scheduler. To0Scheduler accepts the request from OCS to initiate TO0 for the list of devices.
+An OCS implementation must, also, act as a client to trigger TO0 for set of devices, by making the following request to To0Scheduler. To0Scheduler accepts the request from OCS to initiate TO0 for the list of devices.
 
 | Operation                               | Description                                                  | Path/Query Parameters                    | Request Body  | Response Body |
 | ---------------------------------------:|:------------------------------------------------------------:|:----------------------------------------:|:-------------:|--------------:|
@@ -80,7 +80,7 @@ This JSON* structure represents the device's error information that occurred dur
 
 
 ### *ModuleMessage*
-This JSON* structure contains the key-value pairs for a particular module name. It is used to store, both, the device's serviceinfo, and the owner's pre-serviceinfo.
+This JSON* structure contains the key-value pairs for a particular module name. It is used to store both the device's serviceinfo and the owner's pre-serviceinfo.
 
 *Message Body:*
 ```
@@ -196,7 +196,7 @@ This JSON* structure represents the information from Secure Device Onboard proto
 
 
 ### *Message47Store*
-This JSON* structure contains the new ownership voucher information, temporarily, until till the end of TO2 protocol, created during response generation of [TO2.SetupDevice, Type 47](../protocol-specification/detailed-protocol-description.md#to2setupdevice-type-47). This information is stored as a part of TO2 session information per device.
+This JSON* structure contains the new ownership voucher information, temporarily, until the end of TO2 protocol, created during response generation of [TO2.SetupDevice, Type 47](../protocol-specification/detailed-protocol-description.md#to2setupdevice-type-47). This information is stored as a part of TO2 session information per device.
 
 *Message Body:*
 ```

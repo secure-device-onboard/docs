@@ -605,6 +605,9 @@ o.s.i.t.t.To0ServiceApplication.logStarting - Starting To0ServiceApplication
 o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8049 (https) with context path ''
 o.s.i.t.t.To0ServiceApplication.logStarted - Started To0ServiceApplication in 9.159 seconds (JVM running for 10.693)
 ```
+!!! NOTE
+    By default, To0Scheduler is configured to verify Rendezvous's incoming server certificate during TLS handshake for all outgoing HTTPS requests to Rendezvous, made during TO0. To disable this certificate verification for demo purposes, set the application property 'org.sdo.to0.tls.test-mode' (ORG_SDO_TO0_TLS_TEST_MODE in \<sdo-iot-platform-sdk-root>/demo/to0scheduler/to0scheduler.env) to 'false'.
+
 ## Starting the Owner Protocol Service with HTTP(S) for TO2 Process
 
 The Owner Protocol server starts a HTTP server by default to listen to incoming messages from the device for TO2, by using the configuration provided in the ops.env file. To start the service using HTTPS, refer to [Enabling Transport Layer Security (TLS) during TO2](#enabling-transport-layer-security-tls-during-to2).
@@ -653,7 +656,7 @@ To run TO2 in TLS mode, follow the steps listed below.
 
 `<sdo-iot-platform-sdk-root>/demo/ops/ops.env`
 ```
-SECURITY_RESQUIRE_SSL=true
+SECURITY_REQUIRE_SSL=true
 SERVER_SSL_KEY_STORE_TYPE=PKCS12
 SERVER_SSL_KEY_STORE=ops-keystore.p12
 SERVER_SSL_KEY_STORE_PASSWORD=<password>
@@ -663,7 +666,7 @@ SERVER_SSL_ENABLED_PROTOCOLS=TLSv1.3
 Then, reference the properties in `<sdo-iot-platform-sdk-root>/demo/ops/config/run-ops`
 
 ```
-SERVER_TLS_PROPERTIES="-Dsecurity.require-ssl=${SECURITY_RESQUIRE_SSL}"
+SERVER_TLS_PROPERTIES="-Dsecurity.require-ssl=${SECURITY_REQUIRE_SSL}"
 SERVER_TLS_PROPERTIES+=" -Dserver.ssl.key-store-type=${SERVER_SSL_KEY_STORE_TYPE}"
 SERVER_TLS_PROPERTIES+=" -Dserver.ssl.key-store=${SERVER_SSL_KEY_STORE}"
 SERVER_TLS_PROPERTIES+=" -Dserver.ssl.key-store-password=${SERVER_SSL_KEY_STORE_PASSWORD}"
