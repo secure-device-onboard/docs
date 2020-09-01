@@ -3,7 +3,7 @@ Welcome to the Secure Device Onboard community!
 
 ## Join the Discussion
 
-Report issues using each component's respective github repository.
+Report issues using each component's respective Github repository.
 
 ## Contribute
 
@@ -59,14 +59,14 @@ Your commit email address must match your GitHub email address. For more informa
 
 ### Important GitHub Requirements
 
-A pull request cannot merged until it has passed these status checks:
+A pull request cannot be merged until it has passed these status checks:
 
 - The build must pass on Jenkins
 - The pull request must be approved by at least two reviewers without any outstanding requests for changes
 
 ## Reporting Issues
 
-Report issues using each component's respective github repository.
+Report issues using each component's respective Github repository.
 
 ## Code of Conduct
 
