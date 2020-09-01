@@ -108,7 +108,7 @@ Table 4.	Windows* OS-based Manufacturer Toolkit
 ### Step 3: Deploy Database and Manufacturer Toolkit
 Install the SDO database and toolkit, see [Database and Toolkit Installation](#database-and-toolkit-installation). Be sure to use the secure key fob option for the key storage. 
 ### Step 4: Validate with Test Device
-Set up an SDO-capable device to run the SDO DI protocol (see [Device DI Setup](#device-di-setup)). Run DI on the device against the manufacturer toolkit web service. Use the database view to query the device state and verify the completion of DI.
+Set up an SDO-capable device to run the SDO DI protocol (see [Testing with an SDO Device](#testing-with-an-SDO-Device). Run DI on the device against the manufacturer toolkit web service. Use the database view to query the device state and verify the completion of DI.
 
 ## Database and Toolkit Installation
 You can either use the Docker* script provided or deploy manually.
@@ -140,7 +140,7 @@ For the remaining setup, follow the instructions in the readme file in the SDO D
 9.	Create a key store containing the manufacturer keys. See [Supply Chain Tools Key Store Setup Guide](../keystore-guide.md) for details. 
 10.	Set up and deploy the toolkit web service. If this is an evaluation deployment, you have an option to run the web service directly from the command line. If you choose to do this, instructions are provided in the readme file included with the toolkit software. Follow those instructions. You can verify that the toolkit starts up correctly by looking at the output in the window where you ran the toolkit. Installation is then complete, and you can skip the following steps. For example, if running directly:  
 	```
-	java -Dspring.datasource.url="jdbc:mariadb://localhost:3306/sdo" -Dspring.datasource.username=sdo_admin -Dspring.datasource.password=sdo -Dsdo.keystore="file:///sdo.p12" -Dsdo.keystore.password=123456 -jar ./manufacturer-webapp-1.8.war
+	java -Dspring.datasource.url="jdbc:mariadb://localhost:3306/sdo" -Dspring.datasource.username=sdo_admin -Dspring.datasource.password=sdo -Dsdo.keystore="file:///sdo.p12" -Dsdo.keystore.password=123456 -jar ./manufacturer-webapp-1.9.war
 	```
 11.	Install the Apache Tomcat* software from <http://tomcat.apache.org/> or equivalent.
 12.	Update the listener port. Most likely this will be 8039 as the default for SDO Clients but this may vary because of your specific network environment. For example, with Apache Tomcat\* version 8 on the Linux\* machine, this setting can be found in var/lib/tomcat8/config/server.xml. Refer to the documentation specific to your Apache Tomcat* version and operating system.
@@ -193,7 +193,8 @@ mysql -u <username> -p -h <SDO database server hostname or ip> -e “use sdo; se
 ### Import Customer Public Key
 Import the customer public key by calling the **rt_add_customer_public_key** stored procedure. In a production environment, the import would likely be invoked programmatically. For test, development, or evaluation purposes, run from the command line as follows:
 ```
-mysql -u <username> -p -h <SDO database server hostname or ip> -e “use sdo; call rt_add_customer_public_key('CUST_DIST_12345', '-----BEGIN PUBLIC KEY-----
+mysql -u <username> -p -h <SDO database server hostname or ip> -e “use sdo; call rt_add_customer_public_key('CUST_DIST_12345', 'rsa_2048:
+-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0
 FPqri0cb2JZfXJ/DgYSF6vUpwmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/
 3j+skZ6UtW+5u09lHNsj6tQ51s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQAB

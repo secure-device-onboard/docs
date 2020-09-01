@@ -146,7 +146,7 @@ For the remaining setup, follow the instructions in the readme file in the SDO D
 8.	Setup and deploy the toolkit web service. If this is an evaluation deployment, you have an option to run the web service directly from the command line. If you choose to do this, instructions are provided in the readme file included with the toolkit software. Follow those instructions. You can verify that the toolkit starts up correctly by looking at the output in the window where you ran the toolkit. Installation is then complete, and you can skip the following steps.
 An example if running directly:  
 	```
-	java -Dspring.datasource.url="jdbc:mariadb://localhost:3307/sdo" -Dspring.datasource.username=sdo_admin -Dspring.datasource.password=sdo -Dsdo.keystore="file:///sdo.p12" -Dsdo.keystore.password=123456 -jar ./reseller-webapp-1.8.war
+	java -Dspring.datasource.url="jdbc:mariadb://localhost:3307/sdo" -Dspring.datasource.username=sdo_admin -Dspring.datasource.password=sdo -Dsdo.keystore="file:///sdo.p12" -Dsdo.keystore.password=123456 -jar ./reseller-webapp-1.9.war
 	```
 9.	Install the Apache Tomcat* software from http://tomcat.apache.org/ or equivalent.
 10.	Copy the reseller toolkit war file into the Apache Tomcat\* webapps directory (on a Linux* machine this would typically be /var/lib/tomcat8/webapps). Rename the war file to ROOT.war.
@@ -185,7 +185,8 @@ The user and password should be the same as those defined in rt_config.sql. You 
 ### Import Customer Public Key
 Import the customer public key by calling the **rt_add_customer_public_key** stored procedure. In a production environment, the import would likely be invoked programmatically. For test, development, or evaluation purposes, run from the command line as follows:
 ```
-mysql -u <username> -p -h <SDO database server hostname or ip> -P <server port> -e “use sdo; call rt_add_customer_public key('CUST_DIST_12345', '-----BEGIN PUBLIC KEY-----
+mysql -u <username> -p -h <SDO database server hostname or ip> -P <server port> -e “use sdo; call rt_add_customer_public key('CUST_DIST_12345', 'rsa_2048:
+-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0
 FPqri0cb2JZfXJ/DgYSF6vUpwmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/
 3j+skZ6UtW+5u09lHNsj6tQ51s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQAB
