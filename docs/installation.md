@@ -1,6 +1,6 @@
 
 # Installation Guide
-This document can be used as a quick start guide to setup the Dev environment. Please review the system requirements listed below before moving forward with the SDO installation and deployment.
+This document can be used as a quick start guide to setup the Dev Environment. Please review the system requirements listed below before moving forward with the SDO installation and deployment.
 ## Table of Contents
 [1. System Requirements](#system-requirements)
 [2. Docker Installation](#docker-installation)
@@ -10,9 +10,9 @@ This document can be used as a quick start guide to setup the Dev environment. P
 
 ## System Requirements
 
-| Component | Recommended  |
+| Component | Recommended |
 |------- |------|
-| Operating System | Ubuntu 18.04 / Windows 10  |
+| Operating System | Ubuntu 18.04 / Windows 10 |
 | Docker Engine | 18.09 |
 | Docker-compose | 1.21.2 |
 | maven | 3.5.4 |
@@ -64,7 +64,7 @@ sudo apt-get install docker-ce=5:18.09.9~3-0~ubuntu-bionic docker-ce-cli=5:18.09
 	[Service]
 	Environment=”HTTPS_PROXY=<Proxy IP/URL:Port>”
 	```
-4. Next, create a directory named **_.docker_** in the user home path    (**~/**) and a create a file named **_config.json_** if not present,  add the following content.
+4. Next, create a directory named **_.docker_** in the user home path (**~/**) and a create a file named **_config.json_** if not present, add the following content.
 
 	```
 	 { "proxies":
@@ -82,7 +82,7 @@ sudo apt-get install docker-ce=5:18.09.9~3-0~ubuntu-bionic docker-ce-cli=5:18.09
 	sudo systemctl daemon-reload
 	sudo systemctl restart docker
 	```
-6. To ensure that  the proxies are set  successfully, run the following command
+6. To ensure that the proxies are set successfully, run the following command
 
 	`sudo systemctl show --property Environment docker`
 
@@ -107,18 +107,20 @@ sudo chmod +x /usr/bin/docker-compose
 
 1 . To install OpenJDK
 
-   `sudo apt install openjdk-11-jdk-headless`
+  `sudo apt install openjdk-11-jdk-headless`
 
 2 . To install maven
 
-    `sudo apt install maven`
+  `sudo apt install maven`
 
 3 . To set the correct system time
 
-    ```
-    sudo date -s "$(wget -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f5-8)Z"
-    ```
-    Change google domain according to your location.
+  ```
+  sudo date -s "$(wget -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f5-8)Z"
+  ```
+  Ensure that the system time is correct, else you will receive the certificate expiration error.
+  
+  Change google domain according to your location.
 
 ## References
 
