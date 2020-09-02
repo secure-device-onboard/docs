@@ -1501,7 +1501,7 @@ Install the toolkit and an SDO Database at each location – both at the remote 
 <h3 id="step-3-deploy-database-and-manufacturer-toolkit">Step 3: Deploy Database and Manufacturer Toolkit<a class="headerlink" href="#step-3-deploy-database-and-manufacturer-toolkit" title="Permanent link">&para;</a></h3>
 <p>Install the SDO database and toolkit, see <a href="#database-and-toolkit-installation">Database and Toolkit Installation</a>. Be sure to use the secure key fob option for the key storage. </p>
 <h3 id="step-4-validate-with-test-device">Step 4: Validate with Test Device<a class="headerlink" href="#step-4-validate-with-test-device" title="Permanent link">&para;</a></h3>
-<p>Set up an SDO-capable device to run the SDO DI protocol (see <a href="#device-di-setup">Device DI Setup</a>). Run DI on the device against the manufacturer toolkit web service. Use the database view to query the device state and verify the completion of DI.</p>
+<p>Set up an SDO-capable device to run the SDO DI protocol (see <a href="#testing-with-an-SDO-Device">Testing with an SDO Device</a>. Run DI on the device against the manufacturer toolkit web service. Use the database view to query the device state and verify the completion of DI.</p>
 <h2 id="database-and-toolkit-installation">Database and Toolkit Installation<a class="headerlink" href="#database-and-toolkit-installation" title="Permanent link">&para;</a></h2>
 <p>You can either use the Docker* script provided or deploy manually.</p>
 <h3 id="setup-docker-script">Setup: Docker* Script<a class="headerlink" href="#setup-docker-script" title="Permanent link">&para;</a></h3>
@@ -1523,7 +1523,7 @@ For the remaining setup, follow the instructions in the readme file in the SDO D
 <code>mysql -u &lt;username&gt; -p &lt; mt_config.sql</code></li>
 <li>Create a key store containing the manufacturer keys. See <a href="../../keystore-guide/">Supply Chain Tools Key Store Setup Guide</a> for details. </li>
 <li>Set up and deploy the toolkit web service. If this is an evaluation deployment, you have an option to run the web service directly from the command line. If you choose to do this, instructions are provided in the readme file included with the toolkit software. Follow those instructions. You can verify that the toolkit starts up correctly by looking at the output in the window where you ran the toolkit. Installation is then complete, and you can skip the following steps. For example, if running directly:<br />
-<code>java -Dspring.datasource.url="jdbc:mariadb://localhost:3306/sdo" -Dspring.datasource.username=sdo_admin -Dspring.datasource.password=sdo -Dsdo.keystore="file:///sdo.p12" -Dsdo.keystore.password=123456 -jar ./manufacturer-webapp-1.8.war</code></li>
+<code>java -Dspring.datasource.url="jdbc:mariadb://localhost:3306/sdo" -Dspring.datasource.username=sdo_admin -Dspring.datasource.password=sdo -Dsdo.keystore="file:///sdo.p12" -Dsdo.keystore.password=123456 -jar ./manufacturer-webapp-1.9.war</code></li>
 <li>Install the Apache Tomcat* software from <a href="http://tomcat.apache.org/">http://tomcat.apache.org/</a> or equivalent.</li>
 <li>Update the listener port. Most likely this will be 8039 as the default for SDO Clients but this may vary because of your specific network environment. For example, with Apache Tomcat* version 8 on the Linux* machine, this setting can be found in var/lib/tomcat8/config/server.xml. Refer to the documentation specific to your Apache Tomcat* version and operating system.</li>
 <li>Copy the manufacturer toolkit war file into the Apache Tomcat* webapps directory (on the Linux* machine this would typically be /var/lib/tomcat8/webapps). Rename the war file to ROOT.war.</li>
@@ -1575,15 +1575,15 @@ For the remaining setup, follow the instructions in the readme file in the SDO D
 </code></pre>
 
 <h3 id="import-customer-public-key">Import Customer Public Key<a class="headerlink" href="#import-customer-public-key" title="Permanent link">&para;</a></h3>
-<p>Import the customer public key by calling the <strong>rt_add_customer_public_key</strong> stored procedure. The stored procedure allows addition of multiple PEM-formatted public keys of different key-types, against a single customer entry, in the format:</p>
-<pre><code>customer_descriptor='+[keyId:publicKey]' delimited by comma(,)
+<p>Import the customer public key by calling the <strong>rt_add_customer_public_key</strong> stored procedure. The stored procedure allows addition of multiple PEM-formatted public keys of different key-types, against a single customer entry, in the format:
+customer_descriptor='+[keyId:publicKey]' delimited by comma(,)
 where,
 customer_descriptor represents the customer identifier, and
-+[keyId:publicKey] represents one-or-more customer PEM-formatted public key entries where each entry contains 'keyId' that denotes the key-identifier (not unique) and 'publicKey' that denotes the customer public key (unique), separated by comma(,).
++[keyId:publicKey] represents one-or-more customer PEM-formatted public key entries where each entry contains 'keyId' that denotes the key-identifier (not unique) and 'publicKey' that denotes the customer public key (unique), separated by comma(,).</p>
+<pre><code>In a production environment, the import would likely be invoked programmatically. For test, development, or evaluation purposes, run from the command line as follows:
 </code></pre>
 
-<p>In a production environment, the import would likely be invoked programmatically. For test, development, or evaluation purposes, run from the command line as follows:</p>
-<pre><code>mysql -u &lt;username&gt; -p -h &lt;SDO database server hostname or ip&gt; -e “use sdo; call rt_add_customer_public_key('CUST_DIST_12345', 'ec_256:
+<p>mysql -u <username> -p -h <SDO database server hostname or ip> -e “use sdo; call rt_add_customer_public_key('CUST_DIST_12345', 'ec_256:
 -----BEGIN PUBLIC KEY-----
 MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEWVUE2G0GLy8scmAOyQyhcBiF/fSU
 d3i/Og7XDShiJb2IsbCZSRqt1ek15IbeCI5z7BHea2GZGgaK63cyD15gNA==
@@ -1605,9 +1605,7 @@ Hfwh91TjXzNtGzAzv4F/SqQ45KrSafQIIEj72yuadBrQuN+XHkagpJwFtLYr0rbt
 RZfSLcSvoGZtpwW9JfIDntC+eqoqcwOrMRWZAnyAY52GFZqK9+cjJlXuoAS4uH+q
 6KHgLC5u0rcpLiDYJgiv56s4pwd4ILSuRGSohCYsIIIk9rD+tVWqFsGZGDcZXU0z
 CQIDAQAB
------END PUBLIC KEY-----')”
-</code></pre>
-
+-----END PUBLIC KEY-----')”</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Be sure this is the public key pem and not the certificate pem. The public key can be extracted from the certificate with OpenSSL*:<br />
