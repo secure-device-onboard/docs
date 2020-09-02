@@ -113,6 +113,13 @@ sudo chmod +x /usr/bin/docker-compose
 
     `sudo apt install maven`
 
+3 . To set the correct system time
+
+    ```
+    sudo date -s "$(wget -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f5-8)Z"
+    ```
+    Change google domain according to your location.
+
 ## References
 
 [https://docs.docker.com/engine/install/ubuntu/#installation-methods](https://docs.docker.com/engine/install/ubuntu/#installation-methods)
