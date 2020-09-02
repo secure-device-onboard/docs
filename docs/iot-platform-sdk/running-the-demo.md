@@ -76,7 +76,7 @@ $ docker-compose up
 This brings up the OCS, OPS, and To0Scheduler instances inside an Ubuntu-based Docker container. During this operation, everything under the Docker directory, including the configurations and binaries are copied into the built Docker containers. Only the directory 'ocs/config/db' and the file 'to0scheduler/config/redirect.properties', are configurable once the Docker container starts, to externalize the device information and values, and the TO1 OPS (owner) redirect information. If any changes are made to any of the files, other than the directory 'ocs/config/db' and the file 'to0scheduler/config/redirect.properties', both, the container and its image needs to be deleted and re-created again.
 
 !!! Note
-    When running the demo in a single machine, the ownership voucher must be created such that the IP address of the Rendezvous service is present, instead of 'localhost' in the Rendezvous information.
+    When running the demo in multiple machines, the ownership voucher must be created such that the IP address of the Rendezvous service is present, instead of 'localhost' in the Rendezvous information.
 
 ## Start the Device Simulation
 
@@ -297,7 +297,7 @@ For Device Simulation:
 
 ## Configuring the Properties
 
-Each docker service of Iot-Platform-SDK has its own configuration file with extension '.env'. When each service starts, the properties stored in the '.env' files will be set as environment variables within the container. The runnable scripts, namely, run-ops, run-ocs and run-to0scheduler, that are responsible for starting the individual services within the docker container, explicitely maps the set the environment variables to the respective property of the application and passes them as Java* system variables. The properties for the PRI components are configurable using the respective 'application.properties' file. For this simulation and during development, the '.env' files  and the 'application.properties' files are writable. However, in a production environment, change the permissions of the these files to read-only for added security.
+Each docker service of IOT Platform SDK has its own configuration file with extension '.env'. When each service starts, the properties stored in the '.env' files will be set as environment variables within the container. The runnable scripts, namely, run-ops, run-ocs and run-to0scheduler, that are responsible for starting the individual services within the docker container, explicitly maps the set the environment variables to the respective property of the application and passes them as Java* system variables. The properties for the PRI components are configurable using the respective 'application.properties' file. For this simulation and during development, the '.env' files  and the 'application.properties' files are writable. However, in a production environment, change the permissions of the these files to read-only for added security.
 
 The description for the configuration settings can be found in the
 properties associated with each service.
@@ -335,7 +335,7 @@ For information on all the properties for PRI components, refer to the comments 
 For information on all the properties for IOT Platform SDK components, refer to the comments in the specific .env files.
 
 !!! Note
-    In rest of the guide, the original name of the properties specified in the runnable scripts: run-ocs, run-ops and run-to0scheduler, will be referenced, instead of the names present in the .env files. The said mapping, that is specified explicitely, generally looks like: 'PROPERTY_NAME' at .env maps to 'property.name' at the application. For example, the property reference in the guide would be 'property.name=property-value', which means that 'PROPERTY_NAME=property-value' from .env is explicitely mapped to 'property.name=${PROPERTY_NAME}' at runnable script.
+    In rest of the guide, the original name of the properties specified in the runnable scripts: run-ocs, run-ops and run-to0scheduler, will be referenced, instead of the names present in the .env files. The said mapping, that is specified explicitly, generally looks like: 'PROPERTY_NAME' at .env maps to 'property.name' at the application. For example, the property reference in the guide would be 'property.name=property-value', which means that 'PROPERTY_NAME=property-value' from .env is explicitly mapped to 'property.name=${PROPERTY_NAME}' at runnable script.
 
 ## Setting up Resources for OCS
 
@@ -606,7 +606,7 @@ o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8049 (https)
 o.s.i.t.t.To0ServiceApplication.logStarted - Started To0ServiceApplication in 9.159 seconds (JVM running for 10.693)
 ```
 !!! NOTE
-    By default, To0Scheduler is configured to verify Rendezvous's incoming server certificate during TLS handshake for all outgoing HTTPS requests to Rendezvous, made during TO0. To disable this certificate verification for demo purposes, set the application property 'org.sdo.to0.tls.test-mode' (ORG_SDO_TO0_TLS_TEST_MODE in \<sdo-iot-platform-sdk-root>/demo/to0scheduler/to0scheduler.env) to 'false'.
+    By default, To0Scheduler is configured to verify Rendezvous service's incoming server certificate during TLS handshake for all outgoing HTTPS requests to Rendezvous service. To disable this certificate verification for demo purposes, set the application property 'org.sdo.to0.tls.test-mode' (ORG_SDO_TO0_TLS_TEST_MODE in \<sdo-iot-platform-sdk-root>/demo/to0scheduler/to0scheduler.env) to 'false'.
 
 ## Starting the Owner Protocol Service with HTTP(S) for TO2 Process
 
