@@ -3,7 +3,7 @@ Welcome to the Secure Device Onboard community!
 
 ## Join the Discussion
 
-Report issues using each component's respective Github repository.
+Report issues using each component's respective GitHub repository.
 
 ## Contribute
 
@@ -66,7 +66,7 @@ A pull request cannot be merged until it has passed these status checks:
 
 ## Reporting Issues
 
-Report issues using each component's respective Github repository.
+Report issues using each component's respective GitHub repository.
 
 ## Code of Conduct
 
