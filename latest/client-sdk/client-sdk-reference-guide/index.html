@@ -567,8 +567,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#get-the-device-private-key-epid-or-ecdsa-p-256-based" class="md-nav__link">
-    Get the Device Private Key (EPID or ECDSA P-256 based)
+  <a href="#get-the-device-private-key-ecdsa-p-256-based" class="md-nav__link">
+    Get the Device Private Key (ECDSA P-256 based)
   </a>
   
 </li>
@@ -1208,8 +1208,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#get-the-device-private-key-epid-or-ecdsa-p-256-based" class="md-nav__link">
-    Get the Device Private Key (EPID or ECDSA P-256 based)
+  <a href="#get-the-device-private-key-ecdsa-p-256-based" class="md-nav__link">
+    Get the Device Private Key (ECDSA P-256 based)
   </a>
   
 </li>
@@ -1302,8 +1302,7 @@
 <p><img alt="SDO Client Block Diagram" src="../img/1-Intel%20SDO%20Client%20Block%20Diagram.JPG" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>EPID is an acronym for Enhanced Privacy ID.<br />
-SDO is an acronym for Secure Device Onboard.  </p>
+<p>SDO is an acronym for Secure Device Onboard.  </p>
 </div>
 <p>Before initiating the Secure Device Onboard functionality, the Application must first initialize the SDK. After initializing the SDK, the Application can initiate the onboarding by calling the <code>sdo_sdk_run()</code>API.
 The SDK maintains persistent data such as configuration and state information that are used to track the onboarding state and store credentials, among others. This information is stored in the <strong>SDK Configuration</strong> file that persists across reboots.</p>
@@ -1425,10 +1424,6 @@ The module is expected to process the key-value pair and return a result indicat
 <td>·      Linux* Ubuntu* 16.04 / Ubuntu* 18.04 using   OpenSSL* 1.1.1f <br/>·      JDK11  <br/> ·      SDO release binaries package (for running test servers) <br/>     o The root directory of extracted binary package is referred to as <sdo_sdk_binaries> in subsequent sections. <br/>   ·      SDO Client SDK alpha-release binary package <br/>   o The root directory of extracted binary package is referred to as &lt; SDOClientSDK&gt; in subsequent sections. <br/>  ·      SDO Client SDK alpha-release sources package <br/>  o The root directory of extracted source code is referred to as &lt; SDOClientSDK&gt; in subsequent sections. <br/>  ·      Apache Maven* (for building sample Java* based test owner   service)   <br/>    Additional Ubuntu* 16.04/18.04  prerequisites can be found in the   <releases source>/SDOClientSDK/README.md</td>
 </tr>
 <tr>
-<td>Enhanced Privacy ID (EPID)</td>
-<td>EPID SDK v6.0.1   <br/>·      Download EPID SDK v6.0.1:   https://github.com/Intel-EPID-SDK/epid-sdk/releases  <br/>  ·      Extract the tar.gz and open doc/index.html in a browser <br/>  ·      Follow the instructions in the “Building from Source” topic  <br/>  ·      Recommend using scons for build</td>
-</tr>
-<tr>
 <td>Safestring   library</td>
 <td>Safestring library v1.0.0  <br/> ·          Download safestringlib from  https://github.com/intel/safestringlib  <br/> ·          <code>cd safestringlib</code> <br/>   ·          <code>mkdir obj</code> <br/>  ·          <code>make</code> <br/>  ·          The   library file libsafestring.a will be created after make.</td>
 </tr>
@@ -1440,11 +1435,8 @@ The module is expected to process the key-value pair and return a result indicat
 </table>
 <h3 id="run-the-binary-package">Run the Binary Package<a class="headerlink" href="#run-the-binary-package" title="Permanent link">&para;</a></h3>
 <p>The following subsections provide the steps to run the binary package.</p>
-<h4 id="get-the-device-private-key-epid-or-ecdsa-p-256-based">Get the Device Private Key (EPID or ECDSA P-256 based)<a class="headerlink" href="#get-the-device-private-key-epid-or-ecdsa-p-256-based" title="Permanent link">&para;</a></h4>
-<p>The SDK requires a device Private Key as input for device attestation process (to prove itself to Rendezvous or Owner Server during TO1 or TO2 protocol). The key could be based on EPID or ECDSA (on curve P-256/P-384) based on the device attestation method being used on the field. This key must be stored in a specific file and is read by the SDK on startup. </p>
-<p><em><strong>For EPID based device-attestation method:</strong></em>   </p>
-<p>In case of EPID, place the EPID private Key with the name epidprivkey.dat in the following location:
-<code>data/epidprivkey.dat</code></p>
+<h4 id="get-the-device-private-key-ecdsa-p-256-based">Get the Device Private Key (ECDSA P-256 based)<a class="headerlink" href="#get-the-device-private-key-ecdsa-p-256-based" title="Permanent link">&para;</a></h4>
+<p>The SDK requires a device Private Key as input for device attestation process (to prove itself to Rendezvous or Owner Server during TO1 or TO2 protocol). The key could be based on ECDSA (on curve P-256/P-384) based on the device attestation method being used on the field. This key must be stored in a specific file and is read by the SDK on startup. </p>
 <p><em><strong>For ECDSA (P-256) based device-attestation method:</strong></em>  </p>
 <p>In case of ECDSA, place the ECDSA P-256 private Key with the name ecdsa256privkey.dat in the following location:
 <code>data/ecdsa256privkey.dat</code></p>
@@ -1508,8 +1500,8 @@ $ ./linux-client`
 <li>Build Client SDK either in release or debug mode using MODULES=true flag.</li>
 </ol>
 <pre><code>$ cd client-sdk/
-$ make pristine
-$ make MODULES=true
+$ cmake -DMODULES=true .
+$ make -j(nproc)
 </code></pre>
 
 <p>The binary would be created either in build/linux/debug or build/linux/release folder. Copy them to the root folder before proceeding with the next steps.</p>
@@ -1536,8 +1528,7 @@ $ make MODULES=true
 <p>•   The HAL implementation provided in this release is for reference only and not intended for production. It does not provide the level of security required by industry standards for a fully secure production environment.
 •   ‘sdo_sys’ module source within 'device_modules' folder is an example code demonstrating SDO device module implementation for reference purpose only. This code is not written following secure production level coding and checks. This sample code must not to be used as it is.</p>
 <p>The following are the known limitations:  </p>
-<p>•   EPID based device-attestation (DA) method is not supported with STM32F429ZI MCU due to memory constraints in the underlying development board NUCLEO-F429ZI.<br />
-•   Network discovery and CSR feature is not supported for ARM Cortex M4, M7, and A7 devices.</p>
+<p>•   Network discovery and CSR feature is not supported for ARM Cortex M4, M7, and A7 devices.</p>
                 
               
               
