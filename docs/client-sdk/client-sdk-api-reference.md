@@ -17,8 +17,8 @@ typedef enum {
 	SDO_RESALE_NOT_SUPPORTED,  
 	SDO_RESALE_NOT_READY,  
 	SDO_WARNING,
-	SDO_ERROR
-SDO_ABORT
+	SDO_ERROR,
+       SDO_ABORT
 } sdoSdkStatus;
 ```
 _**Members**_  
@@ -103,10 +103,10 @@ typedef enum {
 	SDO_SI_START,  
 	SDO_SI_GET_DSI_COUNT,  
 	SDO_SI_SET_PSI,  
-    SDO_SI_GET_DSI,  
-    SDO_SI_SET_OSI,  
+       SDO_SI_GET_DSI,
+       SDO_SI_SET_OSI,
 	SDO_SI_END,  
-    SDO_SI_FAILURE
+       SDO_SI_FAILURE
 } sdoSdkSiType;
 ```
 _**Members**_  
