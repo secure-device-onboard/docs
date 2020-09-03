@@ -459,7 +459,7 @@ The ServiceInfo communication involves the transfer of files from the Owner to t
 
 These files can be a binary, an executable script or even a normal text file. The files that are to be transferred to the device is stored in the following path  `<iot-platform-sdk>/demo/ocs/config/db/v1/values`.
 
-While transferring, the files are encoded in base64 format.  The ServiceInfo configuration file  **_svi.json_** is available in the following path `<iot-platform-sdk>/demo/ocs/config/db/v1/devices/<DEVICE-GUID>`
+While transferring, the files are encoded in base64 format. The ServiceInfo configuration file  **_svi.json_** is available in the following path `<iot-platform-sdk>/demo/ocs/config/db/v1/devices/<DEVICE-GUID>`
 
 The structure of **_svi.json_** can be modified to customize the ServiceInfo transfer process. For example, the following JavaScript* Object Notation (JSON) represents that a file **'package.sh'** will be sent to the
 device and will be renamed to the value stored in the file **'package_name'**, say 'linux64.sh'. Similarly, the file **'payload.bin'** will be downloaded to the device and will be renamed to the value stored in the file **'payload_name'**, say 'payload.bin'. Finally, the value of the file **'binsh-linux64'**, **'/bin/sh linux64.sh'**, will be executed as command in the device.
@@ -569,7 +569,7 @@ Given an OwnershipVoucher file with a unique deviceId/GUID, the following needs 
 
 3. Create the psi.json and svi.json files under the same directory. A sample of both files are present at the sample device directory '1fae14fb-deca-405a-abdd-b25391b9d932'.
 
-The following is a sample Python\* script that, given an Owner voucher file as an argument, extracts the GUID and creates the previously mentioned device directory structure. This sample script operates under the assumption that both the script and voucher files are placed at `<sdo-iot-platform-sdk-root>/demo/ocs/config/db/v1/devices`, and that this is the current working directory:
+The following is a sample Python\* script that, given an Ownership voucher file as an argument, extracts the GUID and creates the previously mentioned device directory structure. This sample script operates under the assumption that both the script and voucher files are placed at `<sdo-iot-platform-sdk-root>/demo/ocs/config/db/v1/devices`, and that this is the current working directory:
 
 The svi.json and psi.json files are copied from the sample device `<sdo-iot-platform-sdk-root>/demo/ocs/config/db/v1/devices/1fae14fb-deca-405a-abdd-b25391b9d932`,  to the new device directory. The input voucher file is moved to the new device directory and is renamed as voucher.json.
 
