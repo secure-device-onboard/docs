@@ -1303,15 +1303,15 @@ A pointer to a service info key-value pair of type <code>sdoSdkSiKeyValue</code>
 <p><em><strong>Parameters</strong></em>  </p>
 <p><strong>type</strong><br />
 This value specifies the type of error that occurred. It will be one of the following values (other <code>sdoSdkStatus</code> values are not used here):<br />
-<em> <code>SDO_ERROR</code>: This indicates an unrecoverable error occurred. The SDK will continue with protocol restart for these types of errors but it is unlikely that the operation will succeed. It is advisable to abort the operation and retry at a later time.<br />
-</em> <code>SDO_WARNING</code>: This indicates that a transient error occurred. The SDK will continue with protocol restart, which might fix the problem. It is advisable that the Application allows the restart to take place.<br />
-<strong>errorCode</strong><br />
+<em> <code>SDO_ERROR</code>: This indicates an unrecoverable error occurred. The SDK will continue with protocol restart for these types of errors but it is unlikely that the operation will succeed. It is advisable to abort the operation and retry later.
+* <code>SDO_WARNING</code>: This indicates that a transient error occurred. The SDK will continue with protocol restart, which might fix the problem. It is advisable that the Application allows the restart to take place.<br />
+</em><em>errorCode</em>*<br />
 This value indicates details of the error that occurred. See description in SDO SDK Error Values.  </p>
 <p><em><strong>Return Value</strong></em>  </p>
 <p>The return value could be one of the following constants (<strong><em>Note:</em></strong> These values are constants that are defined in the SDO SDK header file):</p>
 <ul>
 <li><code>SDO_SUCCESS</code>: Indicates that the error was handled and the SDK should continue with its recovery or restart as required.  </li>
-<li><code>SDO_ABORT</code>: This causes the SDK to terminate protocol processing and return to the caller (such as, the <code>sdoSdkRun()</code> API returns). The Application can re-invoke this API at a later time to re-initiate the SDO onboarding process.  </li>
+<li><code>SDO_ABORT</code>: This causes the SDK to terminate protocol processing and return to the caller (such as, the <code>sdoSdkRun()</code> API returns). The Application can re-invoke this API later to re-initiate the SDO onboarding process.</li>
 </ul>
 <h2 id="sdk-api-functions">SDK API Functions<a class="headerlink" href="#sdk-api-functions" title="Permanent link">&para;</a></h2>
 <p>The following functions are provided by the SDK and defined in the SDK API header file.</p>
@@ -1344,7 +1344,7 @@ Service Module Information description for each available Service Information mo
 <p>This function returns a value of type sdoSdkDeviceStatus as described in SDO Device Status.</p>
 <h3 id="execute-sdo-sdk-onboarding-protocol">Execute SDO SDK Onboarding Protocol<a class="headerlink" href="#execute-sdo-sdk-onboarding-protocol" title="Permanent link">&para;</a></h3>
 <p>The Application invokes this API to begin the onboarding process that is, TO1. The onboarding process has completed successfully when this function returns <code>SDO_SUCCESS</code>. If this API returns an error, the Application may retry the onboarding process by calling this API again immediately or after a sleep/reset cycle as determined by the use case.
-The SDK will invoke the Application error callback if an error occurs in this phase. Additionally, module-specific callbacks will be invoked when Service Information is received from the Owner Server during the course of the TO2 stage. These callbacks are invoked in the context of the callers thread and the callbacks must not call any SDK APIs since the SDK is not yet re-entrant. </p>
+The SDK will invoke the Application error callback if an error occurs in this phase. Additionally, module-specific callbacks will be invoked when Service Information is received from the Owner Server during the TO2 stage. These callbacks are invoked in the context of the callers thread and the callbacks must not call any SDK APIs since the SDK is not yet re-entrant. </p>
 <p><em><strong>Syntax</strong></em><br />
 <code>sdoSdkStatus sdoSdkRun(void);</code>  </p>
 <p><em><strong>Return Value</strong></em>  </p>
