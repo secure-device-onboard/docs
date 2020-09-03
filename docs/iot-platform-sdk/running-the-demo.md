@@ -505,7 +505,7 @@ device and will be renamed to the value stored in the file **'package_name'**, s
 ```
 
 !!! Note
-     The ordering of message blocks are important for **Client-SDK** / **Client-SDK TPM** device. The `filedesc` block must always be followed by `write` block and if any executable script is transfered then the `exec` block must be immediately followed after both `filedesc` and `write` blocks. For devices except Client-SDK and Client-CSDK TPM, the above order is not mandatory, we can first define `filedesc` and `write` blocks for both scripts and then define `exec` blocks later.
+     The ordering of message blocks are important for **Client-SDK** / **Client-SDK TPM** device. The `filedesc` block must always be followed by `write` block and if any executable script is transfered then the `exec` block must be immediately followed after both `filedesc` and `write` blocks. For devices except Client-SDK and Client-SDK TPM, the above order is not mandatory, we can first define `filedesc` and `write` blocks for both scripts and then define `exec` blocks later. **Additionally, the 'filedesc' and 'write' blocks immediately preceding the 'exec' block must contain the executable script to be run.**
 
 For the scenario of transferring multiple executables to the Device, then the following order of blocks should be maintained.
 ```json
