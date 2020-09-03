@@ -92,7 +92,7 @@ sudo apt-get install docker-ce=5:18.09.9~3-0~ubuntu-bionic docker-ce-cli=5:18.09
 	 sudo docker run hello-world
 
 ## Docker-compose Installation
-To install the specific version of docker-compose (here **_1.21.2_**) follow the given steps below
+To install a specific version of docker-compose (for example **_1.21.2_**) follow these steps:
 
 1 . download the specific version **(1.21.2)** of docker-compose
 ```
