@@ -123,7 +123,6 @@ string is *((n+2)/3)\*4*, using integer arithmetic.[^5]
     2 4 ab YWI=  
     3 4 abc YWJj  
     4 8 abcd YWJjZA==  
-    5 8 abcde YWJjZGU=  
 
 
 To simplify the parser, we specify that ByteArrays always contain encoded data
