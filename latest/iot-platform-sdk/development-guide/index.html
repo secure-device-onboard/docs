@@ -1144,10 +1144,14 @@
                   <h1>Development Guide</h1>
                 
                 <p>The IOT Platform SDK consists of Owner Companion Service (OCS) that can be implemented to integrate any other device management solution.</p>
-<p>Both the OPS and To0Scheduler are bound to the OCS by a set of pre-defined REST contracts, as specified in the module <code>libocs</code>, that can be implemented to perform certain pre-defined tasks. Each REST API must carry out only the corresponding task, and must accept/return only the corresponding Message Type object.</p>
+<p>Both the OPS and To0Scheduler are bound to the OCS by a set of pre-defined contracts, as specified in the module <code>libocs</code>, that can be implemented to perform certain pre-defined tasks. The contract is backed by a set of REST APIs/interfaces, where each individual REST API/interface is tied to exactly one method from the pre-defined contract. Each REST API/interface carries out only the corresponding task, and accepts/returns only the corresponding Message Type object.</p>
 <p>The implementation of these REST contracts in an OCS can be done in any programming language. A sample java-based reference implementation of OCS is provided by the module <code>ocsfs</code> that uses file-system as database. As such, both OPS and To0Scheduler will work out-of-the-box with any implementation of OCS that supports the pre-defined REST contracts.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The implementation of the pre-defined contracts can be backed by non-REST interfaces as well. However, this would invlove updates to both OPS and To0Scheduler to facilitate communication with the newly defined interface at OCS. Such a change would involve, but is not limited to, updates to existing class <code>RestClient.java</code> at both OPS and To0Scheduler.</p>
+</div>
 <h2 id="rest-contracts-between-ocs-server-and-opsto0scheduler-client">Rest Contracts between OCS (server) and OPS/To0Scheduler (client)<a class="headerlink" href="#rest-contracts-between-ocs-server-and-opsto0scheduler-client" title="Permanent link">&para;</a></h2>
-<p>Following are the pre-defined REST API specifications for all the resource paths that must be implemented and exposed by an OCS implementation. Both, OPS and To0Scheduler makes requests to the OCS implementation, as clients, using this format.</p>
+<p>Following are the pre-defined REST API specifications for all the resource paths that must be implemented and exposed by an OCS implementation. Both, OPS and To0Scheduler make requests to the OCS implementation, as clients, using this format.</p>
 <table>
 <thead>
 <tr>
@@ -1299,10 +1303,17 @@
 <td align="center"></td>
 <td align="right"></td>
 </tr>
+<tr>
+<td align="right"><code>GET</code> /devices/{deviceId}/resale</td>
+<td align="center">Get the <code>resale</code> flag indicating owner's support for resale of the corresponding <code>deviceId</code>.</td>
+<td align="center">Path: <code>deviceId</code>: Device identifier</td>
+<td align="center"></td>
+<td align="right">Boolean</td>
+</tr>
 </tbody>
 </table>
 <h2 id="rest-contracts-between-to0scheduler-server-and-ocs-client">Rest Contracts between To0Scheduler (server) and OCS (client)<a class="headerlink" href="#rest-contracts-between-to0scheduler-server-and-ocs-client" title="Permanent link">&para;</a></h2>
-<p>An OCS implementation must, also, acta as a client to trigger TO0 for set of devices, by making the following request to To0Scheduler. To0Scheduler accepts the request from OCS to initiate TO0 for the list of devices.</p>
+<p>An OCS implementation must, also, act as a client to trigger TO0 for set of devices, by making the following request to To0Scheduler. To0Scheduler accepts the request from OCS to initiate TO0 for the list of devices.</p>
 <table>
 <thead>
 <tr>
@@ -1351,7 +1362,7 @@
 </code></pre>
 
 <h3 id="modulemessage"><em>ModuleMessage</em><a class="headerlink" href="#modulemessage" title="Permanent link">&para;</a></h3>
-<p>This JSON* structure contains the key-value pairs for a particular module name. It is used to store, both, the device's serviceinfo, and the owner's pre-serviceinfo.</p>
+<p>This JSON* structure contains the key-value pairs for a particular module name. It is used to store both the device's serviceinfo and the owner's pre-serviceinfo.</p>
 <p><em>Message Body:</em></p>
 <pre><code>{
   &quot;module&quot;: String,    # module name
@@ -1444,7 +1455,7 @@
 </code></pre>
 
 <h3 id="message47store"><em>Message47Store</em><a class="headerlink" href="#message47store" title="Permanent link">&para;</a></h3>
-<p>This JSON* structure contains the new ownership voucher information, temporarily, until till the end of TO2 protocol, created during response generation of <a href="../../protocol-specification/detailed-protocol-description/#to2setupdevice-type-47">TO2.SetupDevice, Type 47</a>. This information is stored as a part of TO2 session information per device.</p>
+<p>This JSON* structure contains the new ownership voucher information, temporarily, until the end of TO2 protocol, created during response generation of <a href="../../protocol-specification/detailed-protocol-description/#to2setupdevice-type-47">TO2.SetupDevice, Type 47</a>. This information is stored as a part of TO2 session information per device.</p>
 <p><em>Message Body:</em></p>
 <pre><code>{
   &quot;newOwnershipVoucher&quot;: String    # the new ownership voucher structure without hmac

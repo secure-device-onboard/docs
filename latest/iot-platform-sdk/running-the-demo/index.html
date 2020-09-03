@@ -517,48 +517,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#running-the-demo-manually" class="md-nav__link">
-    Running the Demo Manually
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#start-the-simulated-rendezvous-service" class="md-nav__link">
-    Start the Simulated Rendezvous Service
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#start-the-to0scheduler-service" class="md-nav__link">
-    Start the To0scheduler Service
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#start-the-ocs-service" class="md-nav__link">
-    Start the OCS Service
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#start-the-ops-service" class="md-nav__link">
-    Start the OPS Service
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#start-the-device-simulation" class="md-nav__link">
-    Start the Device Simulation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#running-the-simulation-using-docker-compose-tool" class="md-nav__link">
     Running the Simulation Using Docker* Compose Tool
   </a>
@@ -566,7 +524,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-the-simulated-rendezvous-service_1" class="md-nav__link">
+  <a href="#start-the-simulated-rendezvous-service" class="md-nav__link">
     Start the Simulated Rendezvous Service
   </a>
   
@@ -580,7 +538,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-the-device-simulation_1" class="md-nav__link">
+  <a href="#start-the-device-simulation" class="md-nav__link">
     Start the Device Simulation
   </a>
   
@@ -676,8 +634,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuring-the-properties-file" class="md-nav__link">
-    Configuring the Properties File
+  <a href="#configuring-the-properties" class="md-nav__link">
+    Configuring the Properties
   </a>
   
 </li>
@@ -1125,48 +1083,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#running-the-demo-manually" class="md-nav__link">
-    Running the Demo Manually
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#start-the-simulated-rendezvous-service" class="md-nav__link">
-    Start the Simulated Rendezvous Service
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#start-the-to0scheduler-service" class="md-nav__link">
-    Start the To0scheduler Service
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#start-the-ocs-service" class="md-nav__link">
-    Start the OCS Service
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#start-the-ops-service" class="md-nav__link">
-    Start the OPS Service
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#start-the-device-simulation" class="md-nav__link">
-    Start the Device Simulation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#running-the-simulation-using-docker-compose-tool" class="md-nav__link">
     Running the Simulation Using Docker* Compose Tool
   </a>
@@ -1174,7 +1090,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-the-simulated-rendezvous-service_1" class="md-nav__link">
+  <a href="#start-the-simulated-rendezvous-service" class="md-nav__link">
     Start the Simulated Rendezvous Service
   </a>
   
@@ -1188,7 +1104,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#start-the-device-simulation_1" class="md-nav__link">
+  <a href="#start-the-device-simulation" class="md-nav__link">
     Start the Device Simulation
   </a>
   
@@ -1284,8 +1200,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuring-the-properties-file" class="md-nav__link">
-    Configuring the Properties File
+  <a href="#configuring-the-properties" class="md-nav__link">
+    Configuring the Properties
   </a>
   
 </li>
@@ -1412,34 +1328,25 @@
 <p>The device must have already completed the DeviceInitialization (DI) protocol, and an Owner must have been assigned to it using Supply Chain Toolkit. The resulting Ownership voucher(OV) must be moved from SCT into the OCS.</p>
 </li>
 </ol>
-<h2 id="running-the-demo-manually">Running the Demo Manually<a class="headerlink" href="#running-the-demo-manually" title="Permanent link">&para;</a></h2>
-<p>The demo can be run with the default properties for both the PRI and IOT Platform SDK components. Any configurations to be done, such as configuring proxies, properties or logs, should be done before starting the services. However, resources such as the Ownership Voucher, owner certificate and private keys, and others, can be pushed into the OCS after the services are started.</p>
+<h2 id="running-the-simulation-using-docker-compose-tool">Running the Simulation Using Docker* Compose Tool<a class="headerlink" href="#running-the-simulation-using-docker-compose-tool" title="Permanent link">&para;</a></h2>
+<p>The demo can be run using the Docker* Compose tool for the IOT Platform SDK components. Any configuration, such as configuring proxies, properties or logs, should be done before starting the services.</p>
 <h2 id="start-the-simulated-rendezvous-service">Start the Simulated Rendezvous Service<a class="headerlink" href="#start-the-simulated-rendezvous-service" title="Permanent link">&para;</a></h2>
 <p>Open a new terminal window and start a virtual instance of the Rendezvous service shown as follows:</p>
 <pre><code>$ cd &lt;sdo-pri-root&gt;/demo/rendezvous
 $ sh rendezvous
 </code></pre>
 
-<p>This starts the following server to listen to incoming messages from the IOT Platform SDK and the simulated device.</p>
-<p><a href="http://localhost:8040">http://localhost:8040</a> (for To0Scheduler and Simulated Device messages).</p>
-<h2 id="start-the-to0scheduler-service">Start the To0scheduler Service<a class="headerlink" href="#start-the-to0scheduler-service" title="Permanent link">&para;</a></h2>
-<p>Open a new terminal window and follow these steps to start the To0scheduler service:</p>
-<pre><code>$ cd &lt;sdo-iot-platform-sdk-root&gt;/demo/to0scheduler/config
-$ sh run-to0scheduler
+<h2 id="start-the-iot-platform-sdk-services">Start the IOT Platform SDK Services<a class="headerlink" href="#start-the-iot-platform-sdk-services" title="Permanent link">&para;</a></h2>
+<p>Open a new terminal window and start the IOT Platform SDK services:</p>
+<pre><code>$ cd &lt;sdo-iot-platform-sdk-root&gt;/demo/
+$ docker-compose up
 </code></pre>
 
-<h2 id="start-the-ocs-service">Start the OCS Service<a class="headerlink" href="#start-the-ocs-service" title="Permanent link">&para;</a></h2>
-<p>Open a new terminal window and follow these steps to start the OCS service:</p>
-<pre><code>$ cd &lt;sdo-iot-platform-sdk-root&gt;/demo/ocs/config
-$ sh run-ocs
-</code></pre>
-
-<h2 id="start-the-ops-service">Start the OPS Service<a class="headerlink" href="#start-the-ops-service" title="Permanent link">&para;</a></h2>
-<p>Open a new terminal window and follow these steps to start the OPS service:</p>
-<pre><code>$ cd &lt;sdo-iot-platform-sdk-root&gt;/demo/ops/config
-$ sh run-ops
-</code></pre>
-
+<p>This brings up the OCS, OPS, and To0Scheduler instances inside an Ubuntu-based Docker container. During this operation, everything under the Docker directory, including the configurations and binaries are copied into the built Docker containers. Only the directory 'ocs/config/db' and the file 'to0scheduler/config/redirect.properties', are configurable once the Docker container starts, to externalize the device information and values, and the TO1 OPS (owner) redirect information. If any changes are made to any of the files, other than the directory 'ocs/config/db' and the file 'to0scheduler/config/redirect.properties', both, the container and its image needs to be deleted and re-created again.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When running the demo in multiple machines, the ownership voucher must be created such that the IP address of the Rendezvous service is present, instead of 'localhost' in the Rendezvous information.</p>
+</div>
 <h2 id="start-the-device-simulation">Start the Device Simulation<a class="headerlink" href="#start-the-device-simulation" title="Permanent link">&para;</a></h2>
 <p>Open a new terminal window and follow these steps to start the device:</p>
 <pre><code>$ cd &lt;sdo-pri-root&gt;/demo/device
@@ -1463,24 +1370,6 @@ $ rm payload.bin
 $ rm result.txt
 </code></pre>
 
-<h2 id="running-the-simulation-using-docker-compose-tool">Running the Simulation Using Docker* Compose Tool<a class="headerlink" href="#running-the-simulation-using-docker-compose-tool" title="Permanent link">&para;</a></h2>
-<p>The demo can be run using the Docker* Compose tool for the IOT Platform SDK components. Any configuration, such as configuring proxies, properties or logs, should be done before starting the services.</p>
-<h2 id="start-the-simulated-rendezvous-service_1">Start the Simulated Rendezvous Service<a class="headerlink" href="#start-the-simulated-rendezvous-service_1" title="Permanent link">&para;</a></h2>
-<p>Open a new terminal window and start a virtual instance of the Rendezvous service as per the steps described
-<a href="#start-the-simulated-rendezvous-service">here</a>:</p>
-<h2 id="start-the-iot-platform-sdk-services">Start the IOT Platform SDK Services<a class="headerlink" href="#start-the-iot-platform-sdk-services" title="Permanent link">&para;</a></h2>
-<p>Open a new terminal window and start the IOT Platform SDK services:</p>
-<pre><code>$ cd &lt;sdo-iot-platform-sdk-root&gt;/demo/
-$ sudo docker-compose up
-</code></pre>
-
-<p>This brings up the OCS, OPS, and To0Scheduler instances inside an Ubuntu-based Docker container. During this operation, everything under the Docker directory, including the configurations and binaries are copied into the built Docker containers. Only the directory 'ocs/config/db' and the file 'to0scheduler/config/redirect.properties', are configurable once the Docker container starts, to externalize the device information and values, and the TO1 OPS (owner) redirect information. If any changes are made to any of the files, other than the directory 'ocs/config/db' and the file 'to0scheduler/config/redirect.properties', both, the container and its image needs to be deleted and re-created again.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>When running the demo in a single machine, the ownership voucher must be created such that the IP address of the Rendezvous service is present, instead of 'localhost' in the Rendezvous information.</p>
-</div>
-<h2 id="start-the-device-simulation_1">Start the Device Simulation<a class="headerlink" href="#start-the-device-simulation_1" title="Permanent link">&para;</a></h2>
-<p>Open a new terminal window and start the device as per the steps described <a href="#start-the-device-simulation">here</a>. Once onboarded, the device will have the same files and behavior as mentioned above.</p>
 <h2 id="generating-ownership-vouchercredential-pair">Generating Ownership Voucher/Credential Pair<a class="headerlink" href="#generating-ownership-vouchercredential-pair" title="Permanent link">&para;</a></h2>
 <p>Refer to the <a href="../../supply-chain-tools/manufacturing/manufacturer-enablement-guide/">Supply Chain Tools Manufacturer Enablement Guide </a> on steps to create Ownership Voucher/Credential pair.</p>
 <h2 id="working-with-multiple-owner-key-pairs">Working with Multiple Owner Key-Pair(s)<a class="headerlink" href="#working-with-multiple-owner-key-pairs" title="Permanent link">&para;</a></h2>
@@ -1539,7 +1428,8 @@ owner-private-key.pem -name owner_123 -out owner_pkcs.p12</code></p>
 <h2 id="iot-platform-sdk-and-pri-component-configuration">IOT Platform SDK and PRI Component Configuration<a class="headerlink" href="#iot-platform-sdk-and-pri-component-configuration" title="Permanent link">&para;</a></h2>
 <p>When the IOT Platform SDK Demo is running, log messages are displayed on the terminal window. Some log messages may be truncated for better readability, but sufficient information is provided to compare against the logs generated during a simulation.</p>
 <h2 id="configuring-proxies">Configuring Proxies<a class="headerlink" href="#configuring-proxies" title="Permanent link">&para;</a></h2>
-<p>Update the proxy information specified by the properties mentioned below:</p>
+<p>Update the proxy information in _JAVA_OPTIONS as
+<code>_JAVA_OPTIONS=-Dhttp.proxyHost=http_proxy_host -Dhttp.proxyPort=http_proxy_port -Dhttps.proxyHost=https_proxy_host -Dhttps.proxyPort=https_proxy_port</code>, where</p>
 <ul>
 <li>
 <p>http_proxy_host: Represents the http proxy hostname. Typically, it is an IP address or domain name in the proxy URL.</p>
@@ -1563,11 +1453,7 @@ owner-private-key.pem -name owner_123 -out owner_pkcs.p12</code></p>
 <p>http_proxy_port: 900</p>
 </li>
 </ul>
-<p>If no proxy needs to be specified, leave the fields blank.</p>
-<p>These properties are present in the following script files:</p>
-<p><code>&lt;sdo-iot-platform-sdk-root&gt;/demo/ops/config/run-ops</code></p>
-<p><code>&lt;sdo-iot-platform-sdk-root&gt;/demo/ocs/config/run-ocs</code></p>
-<p><code>&lt;sdo-iot-platform-sdk-root&gt;/demo/to0scheduler/config/run-to0scheduler</code></p>
+<p>If no proxy needs to be specified, do not add these properties to your _JAVA_OPTIONS.</p>
 <h3 id="configuring-logs">Configuring Logs<a class="headerlink" href="#configuring-logs" title="Permanent link">&para;</a></h3>
 <p>Both the PRI and IOT Platform SDK utilizes Spring logback for logging. Each demo service has logback-spring.xml in its directory that configures the logging to be appended to the console by default. Log configuration is located in the following directories:</p>
 <p><code>&lt;sdo-pri-root&gt;/demo/rendezvous/logback-spring.xml</code></p>
@@ -1610,22 +1496,32 @@ owner-private-key.pem -name owner_123 -out owner_pkcs.p12</code></p>
 <p><code>o.s.i.t.t.To0ServiceApplication.logStarting - Starting To0ServiceApplication</code></p>
 <p>For Device Simulation:</p>
 <p><code>org.sdo.cri.device.DeviceApp.logStarting - Starting DeviceApp</code></p>
-<h2 id="configuring-the-properties-file">Configuring the Properties File<a class="headerlink" href="#configuring-the-properties-file" title="Permanent link">&para;</a></h2>
-<p>Each service has its own configuration file called application.properties. When each service starts, it will read the properties file in its current directory. For this simulation and during development, the properties file is writable. However, in a production environment, change the permissions of the properties file to read-only for added security.</p>
+<h2 id="configuring-the-properties">Configuring the Properties<a class="headerlink" href="#configuring-the-properties" title="Permanent link">&para;</a></h2>
+<p>Each docker service of IOT Platform SDK has its own configuration file with extension '.env'. When each service starts, the properties stored in the '.env' files will be set as environment variables within the container. The runnable scripts, namely, run-ops, run-ocs and run-to0scheduler, that are responsible for starting the individual services within the docker container, explicitly maps the set the environment variables to the respective property of the application and passes them as Java* system variables. The properties for the PRI components are configurable using the respective 'application.properties' file. For this simulation and during development, the '.env' files  and the 'application.properties' files are writable. However, in a production environment, change the permissions of the these files to read-only for added security.</p>
 <p>The description for the configuration settings can be found in the
 properties associated with each service.</p>
 <p><strong>PRI Rendezvous Service Properties:</strong></p>
 <p><code>&lt;sdo-pri-root&gt;/demo/rendezvous/application.properties</code></p>
 <p><strong>PRI Device Service Properties:</strong></p>
 <p><code>&lt;sdo-pri-root&gt;/demo/device/application.properties</code></p>
-<p><strong>to0scheduler Service Properties:</strong></p>
-<p><code>&lt;sdo-iot-platform-sdk-root&gt;/demo/to0scheduler/config/application.properties</code></p>
-<p><strong>OPS Service Properties:</strong></p>
-<p><code>&lt;sdo-iot-platform-sdk-root&gt;/demo/ops/config/application.properties</code></p>
-<p><strong>OCS Service Properties:</strong></p>
-<p><code>&lt;sdo-iot-platform-sdk-root&gt;/demo/ocs/config/application.properties</code></p>
+<p><strong>to0scheduler Docker Service Properties:</strong></p>
+<p><code>&lt;sdo-iot-platform-sdk-root&gt;/demo/to0scheduler/to0scheduler.env &lt;br&gt;
+referenced by &lt;br&gt;
+&lt;sdo-iot-platform-sdk-root&gt;/demo/to0scheduler/config/run-to0scheduler</code></p>
+<p><strong>OPS Docker Service Properties:</strong></p>
+<p><code>&lt;sdo-iot-platform-sdk-root&gt;/demo/ops/ops.env &lt;br&gt;
+referenced by &lt;br&gt;
+&lt;sdo-iot-platform-sdk-root&gt;/demo/ops/config/run-ops</code></p>
+<p><strong>OCS Docker Service Properties:</strong></p>
+<p><code>&lt;sdo-iot-platform-sdk-root&gt;/demo/ocs/ocs.env &lt;br&gt;
+referenced by &lt;br&gt;
+&lt;sdo-iot-platform-sdk-root&gt;/demo/ocs/config/run-ocs</code></p>
 <p>For information on all the properties for PRI components, refer to the comments in the specific properties files, or the README.</p>
-<p>For information on all the properties for IOT Platform SDK components, refer to the comments in the specific properties files.</p>
+<p>For information on all the properties for IOT Platform SDK components, refer to the comments in the specific .env files.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In rest of the guide, the original name of the properties specified in the runnable scripts: run-ocs, run-ops and run-to0scheduler, will be referenced, instead of the names present in the .env files. The said mapping, that is specified explicitly, generally looks like: 'PROPERTY_NAME' at .env maps to 'property.name' at the application. For example, the property reference in the guide would be 'property.name=property-value', which means that 'PROPERTY_NAME=property-value' from .env is explicitly mapped to 'property.name=${PROPERTY_NAME}' at runnable script.</p>
+</div>
 <h2 id="setting-up-resources-for-ocs">Setting up Resources for OCS<a class="headerlink" href="#setting-up-resources-for-ocs" title="Permanent link">&para;</a></h2>
 <p>The resources used in the OCS implementation can be found in:</p>
 <p><code>&lt;sdo-iot-platform-sdk-root&gt;/demo/ocs/config/db/v1</code></p>
@@ -1847,7 +1743,7 @@ o.s.i.ocs.fsimpl.fs.FsApplication.logStarted - Started FsApplication in 7.792 se
 
 <h2 id="running-the-to0scheduler-with-https-for-t00">Running the To0Scheduler with HTTPS for T00<a class="headerlink" href="#running-the-to0scheduler-with-https-for-t00" title="Permanent link">&para;</a></h2>
 <p>The To0Scheduler service schedules the list of received device GUIDs from OCS, for TO0. During TO0 process, the To0Scheduler will provide the DNS, IP address, and port that the Secure Device Onboard-enabled devices must use for TO2. The To0Scheduler sends the Rendezvous server, the redirect URI that will be used by the device to send TO2 messages. This URI information is passed to the device during the TO1 process. When the device completes TO1, it uses the TO2 redirect URI to communicate with the Owner.</p>
-<p>The TO2 redirect information, namely, DNS, IP address, and port information of the Owner Protocol Service, is stored separately in the URI specified by the property inside application.properties:</p>
+<p>The TO2 redirect information, namely, DNS, IP address, and port information of the Owner Protocol Service, is stored separately in the URI specified by the property:</p>
 <pre><code>org.sdo.to0.ownersign.to1d.bo=./redirect.properties (Path to file containing redirect information, Configurable)
 </code></pre>
 
@@ -1864,7 +1760,7 @@ o.s.i.t.to0library.To0ClientSession.run - &lt;200,{&quot;ws&quot;:7200}
 o.s.i.t.t.To0SchedulerEventsImpl.onSuccess - TO0 done for the device having uuid 1fae14fb-deca-405a-abdd-b25391b9d932
 </code></pre>
 
-<p>The To0Scheduler communicates with the OCS at the URL defined by the property rest.api.server, defined in application.properties.</p>
+<p>The To0Scheduler communicates with the OCS at the URL defined by the property rest.api.server.</p>
 <p>Similar to OCS, the server is started using HTTPS, by default. The keystore and truststore information can be configured, but the Mutual TLS authentication settings must be left untouched. The properties are the same as that of OCS.</p>
 <p>When starting the to0scheduler service, you can see the port(s) that the HTTPS server is listening to in the logs.</p>
 <pre><code>o.s.i.t.t.To0ServiceApplication.logStarting - Starting To0ServiceApplication
@@ -1872,9 +1768,13 @@ o.s.b.w.e.tomcat.TomcatWebServer.start - Tomcat started on port(s): 8049 (https)
 o.s.i.t.t.To0ServiceApplication.logStarted - Started To0ServiceApplication in 9.159 seconds (JVM running for 10.693)
 </code></pre>
 
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, To0Scheduler is configured to verify Rendezvous service's incoming server certificate during TLS handshake for all outgoing HTTPS requests to Rendezvous service. To disable this certificate verification for demo purposes, set the application property 'org.sdo.to0.tls.test-mode' (ORG_SDO_TO0_TLS_TEST_MODE in \<sdo-iot-platform-sdk-root>/demo/to0scheduler/to0scheduler.env) to 'false'.</p>
+</div>
 <h2 id="starting-the-owner-protocol-service-with-https-for-to2-process">Starting the Owner Protocol Service with HTTP(S) for TO2 Process<a class="headerlink" href="#starting-the-owner-protocol-service-with-https-for-to2-process" title="Permanent link">&para;</a></h2>
-<p>The Owner Protocol server starts a HTTP server by default to listen to incoming messages from the device for TO2, by using the configuration provided in the application.properties file. To start the service using HTTPS, refer to <a href="#enabling-transport-layer-security-tls-during-to2">Enabling Transport Layer Security (TLS) during TO2</a>.</p>
-<p>It communicates with the OCS at the URL defined by the rest.api.server property, using the keystore, and trustore as specified in application.properties.</p>
+<p>The Owner Protocol server starts a HTTP server by default to listen to incoming messages from the device for TO2, by using the configuration provided in the ops.env file. To start the service using HTTPS, refer to <a href="#enabling-transport-layer-security-tls-during-to2">Enabling Transport Layer Security (TLS) during TO2</a>.</p>
+<p>It communicates with the OCS at the URL defined by the rest.api.server property, using the keystore, and trustore as specified.</p>
 <pre><code>client.ssl.key-store-type=PKCS12 (Key-store type, Configurable)
 client.ssl.trust-store-type=PKCS12 (Trust-store type, Configurable)
 client.ssl.key-store=keystore.p12 (Path to keystore file, Configurable, Must be replaced for production deployment)
@@ -1903,16 +1803,28 @@ o.s.i.o.opsimpl.OpsOwnerEventHandler.call - TO2 complete for device with guid
 <h2 id="enabling-transport-layer-security-tls-during-to2">Enabling Transport Layer Security (TLS) during TO2<a class="headerlink" href="#enabling-transport-layer-security-tls-during-to2" title="Permanent link">&para;</a></h2>
 <p>To run TO2 in TLS mode, follow the steps listed below.</p>
 <p><strong>Step 1:</strong> Add the following properties to</p>
-<p><code>&lt;sdo-iot-platform-sdk-root&gt;/demo/ops/config/application.properties</code></p>
-<pre><code>security.require-ssl=true
-server.ssl.key-store-type=PKCS12
-server.ssl.key-store=ops-keystore.p12
-server.ssl.key-store-password=123456
-server.ssl.ciphers=TLS_AES_256_GCM_SHA384,TLS_AES_128_GCM_SHA256
-server.ssl.enabled-protocols=TLSv1.3
+<p><code>&lt;sdo-iot-platform-sdk-root&gt;/demo/ops/ops.env</code></p>
+<pre><code>SECURITY_REQUIRE_SSL=true
+SERVER_SSL_KEY_STORE_TYPE=PKCS12
+SERVER_SSL_KEY_STORE=ops-keystore.p12
+SERVER_SSL_KEY_STORE_PASSWORD=&lt;password&gt;
+SERVER_SSL_CIPHERS=TLS_AES_256_GCM_SHA384,TLS_AES_128_GCM_SHA256
+SERVER_SSL_ENABLED_PROTOCOLS=TLSv1.3
 </code></pre>
 
-<p>The following properties pertaining to the keystore must always match with each other in the properties file.</p>
+<p>Then, reference the properties in <code>&lt;sdo-iot-platform-sdk-root&gt;/demo/ops/config/run-ops</code></p>
+<pre><code>SERVER_TLS_PROPERTIES=&quot;-Dsecurity.require-ssl=${SECURITY_REQUIRE_SSL}&quot;
+SERVER_TLS_PROPERTIES+=&quot; -Dserver.ssl.key-store-type=${SERVER_SSL_KEY_STORE_TYPE}&quot;
+SERVER_TLS_PROPERTIES+=&quot; -Dserver.ssl.key-store=${SERVER_SSL_KEY_STORE}&quot;
+SERVER_TLS_PROPERTIES+=&quot; -Dserver.ssl.key-store-password=${SERVER_SSL_KEY_STORE_PASSWORD}&quot;
+SERVER_TLS_PROPERTIES+=&quot; -Dserver.ssl.ciphers=${SERVER_SSL_CIPHERS}&quot;
+SERVER_TLS_PROPERTIES+=&quot; -Dserver.ssl.enabled-protocols=${SERVER_SSL_ENABLED_PROTOCOLS}&quot;
+
+Add ${SERVER_TLS_PROPERTIES}, keeping the other properties intact, into the exec command as:
+exec java ${SERVER_TLS_PROPERTIES} -jar -Djava.library.path=$base_dir/sdo $bin_path
+</code></pre>
+
+<p>The following properties 'server.ssl.*' pertaining to the keystore and truststore management, must always match with the corresponding 'client.ssl.*' properties specified for the application.</p>
 <pre><code>server.ssl.key-store-type matches client.ssl.key-store-type
 server.ssl.key-store matches client.ssl.key-store
 server.ssl.key-store-password matches client.ssl.key-store-password
@@ -1950,18 +1862,18 @@ server.ssl.key-store-password matches client.ssl.key-store-password
 <p>Update the following properties at each component:</p>
 </li>
 </ul>
-<p>At OCS <code>&lt;sdo-iot-platform-sdk-root&gt;/demo/ocs/config/application.properties:</code></p>
+<p>At OCS <code>&lt;sdo-iot-platform-sdk-root&gt;/demo/ocs/ocs.env</code>:</p>
 <pre><code>to0.rest.api=https://&lt;To0Scheduler-machine-IP-or-DNS&gt;:&lt;port&gt;/v1/to0/devices
 
 </code></pre>
 
 <p>At OPS
- <code>&lt;sdo-iot-platform-sdk-root&gt;/demo/ops/config/application.properties</code>:</p>
+ <code>&lt;sdo-iot-platform-sdk-root&gt;/demo/ops/ops.env</code>:</p>
 <pre><code>rest.api.server=https://&lt;OCS-machine-IP-or-DNS&gt;:&lt;port&gt;/
 </code></pre>
 
 <p>At To0Scheduler
- <code>&lt;sdo-iot-platform-sdk-root&gt;/demo/to0scheduler/config/application.properties</code>:</p>
+ <code>&lt;sdo-iot-platform-sdk-root&gt;/demo/to0scheduler/to0scheduler.env</code>:</p>
 <pre><code>rest.api.server=https://&lt;OCS-machine-IP-or-DNS&gt;:&lt;port&gt;/
 </code></pre>
 
