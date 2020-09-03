@@ -17,7 +17,7 @@ This document can be used as a quick start guide to setup the Dev Environment. P
 | Docker-compose | 1.21.2 |
 | maven | 3.5.4 |
 
-## Docker Installation
+## Docker* Installation
 1 . Removing the older versions of Docker. If these are installed, uninstall them:
 ```
 sudo apt-get remove docker docker-engine docker.io containerd runc
@@ -33,7 +33,8 @@ sudo apt-get remove docker docker-engine docker.io containerd runc
       software-properties-common
 ```
 
-**NOTE: If you are working behind a proxy, ensure to set proper proxy variables.**
+!!! NOTE 
+    If you are working behind a proxy, ensure to set proper proxy variables.
 
 3 . Add Docker’s official GPG key:
 ```
@@ -105,11 +106,11 @@ sudo chmod +x /usr/bin/docker-compose
 
 ## Other Development Tools
 
-1 . To install OpenJDK
+1 . To install OpenJDK*
 
   `sudo apt install openjdk-11-jdk-headless`
 
-2 . To install maven
+2 . To install Maven*
 
   `sudo apt install maven`
 
@@ -120,7 +121,7 @@ sudo chmod +x /usr/bin/docker-compose
   ```
   Ensure that the system time is correct, else you will receive the certificate expiration error.
   
-  Change google domain according to your location.
+  Change Google* domain according to your location.
 
 ## References
 
