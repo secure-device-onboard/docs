@@ -1475,11 +1475,11 @@ Install the toolkit and an SDO Database at each location – both at the remote 
 </tr>
 <tr>
 <td>Operating System</td>
-<td>Ubuntu* OS version 16.x or 18.x</td>
+<td>Ubuntu* OS version 18.x</td>
 </tr>
 <tr>
 <td>Software</td>
-<td>Java* Runtime Environment (JRE) software version 11 </p>    Oracle* software (<a href="http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html">http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html</a>) </p>   or  </p> OpenJDK* (<a href="http://openjdk.java.net/install/index.html">http://openjdk.java.net/install/index.html</a>) </p>  · Apache Tomcat* (<a href="http://tomcat.apache.org/">http://tomcat.apache.org/</a>)   software version 8 or later </p>   · MariaDB* (<a href="https://mariadb.org/">https://mariadb.org/</a>)  server version 10.4 or later </p></td>
+<td>Java* Runtime Environment (JRE) software version 11 </p> OpenJDK* (<a href="http://openjdk.java.net/install/index.html">http://openjdk.java.net/install/index.html</a>) </p>  · Apache Tomcat* (<a href="http://tomcat.apache.org/">http://tomcat.apache.org/</a>)   software version 8 or later </p>   · MariaDB* (<a href="https://mariadb.org/">https://mariadb.org/</a>)  server version 10.4 or later </p></td>
 </tr>
 </tbody>
 </table>
@@ -1506,7 +1506,7 @@ Install the toolkit and an SDO Database at each location – both at the remote 
 </tr>
 <tr>
 <td>Software</td>
-<td>Java<em> Runtime Environment (JRE) software version 11    Oracle* software (<a href="http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html">http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html</a>) </p>  or </p>  OpenJDK</em> (<a href="http://openjdk.java.net/install/index.html">http://openjdk.java.net/install/index.html</a>) </p>  · Apache Tomcat* (<a href="http://tomcat.apache.org/">http://tomcat.apache.org/</a>)   software version 8 or later </p>  · MariaDB* (<a href="https://mariadb.org/">https://mariadb.org/</a>)  server version 10.4 or later  </p>  · OpenSC Utilities (<a href="https://github.com/OpenSC/OpenSC/releases/download/0.17.0/OpenSC-0.17.0-win64_vs12-Release.msi">https://github.com/OpenSC/OpenSC/releases/download/0.17.0/OpenSC-0.17.0-win64_vs12-Release.msi</a>.   After the installation, you will find the following DLL file installed: C:\windows\system32\opensc-pkcs11.dll</td>
+<td>Java<em> Runtime Environment (JRE) software version 11  </p>  OpenJDK</em> (<a href="http://openjdk.java.net/install/index.html">http://openjdk.java.net/install/index.html</a>) </p>  · Apache Tomcat* (<a href="http://tomcat.apache.org/">http://tomcat.apache.org/</a>)   software version 8 or later </p>  · MariaDB* (<a href="https://mariadb.org/">https://mariadb.org/</a>)  server version 10.4 or later  </p>  · OpenSC Utilities (<a href="https://github.com/OpenSC/OpenSC/releases/download/0.17.0/OpenSC-0.17.0-win64_vs12-Release.msi">https://github.com/OpenSC/OpenSC/releases/download/0.17.0/OpenSC-0.17.0-win64_vs12-Release.msi</a>.   After the installation, you will find the following DLL file installed: C:\windows\system32\opensc-pkcs11.dll</td>
 </tr>
 </tbody>
 </table>
@@ -1526,13 +1526,13 @@ For the remaining setup, follow the instructions in the readme file in the SDO D
 <li>For each of the following commands, use the ‘root’ user you defined in step 2 where you installed the MariaDB* server and run each script on the machine where the MariaDB* server is installed. You’ll find the scripts in both the source (scripts/mysql) and binary (docker_*) files of the release.</li>
 <li>Edit rt_config.sql and mt_config.sql as directed by the comments in each file. (These files are located in the sources of the SDO release package under /SupplyChainTools/scripts/mysql or /SupplyChainTools/scripts/sqlserver).    </li>
 <li>Run the rt_create.sql script:<br />
-<code>mysql -u &lt;username&gt; -p &lt; rt_create.sql</code></li>
+<code>mysql -u &lt;username&gt; -p &lt;rt_create.sql&gt;</code></li>
 <li>Run the mt_create.sql script:<br />
-<code>mysql -u &lt;username&gt; -p &lt; mt_create.sql</code></li>
+<code>mysql -u &lt;username&gt; -p &lt;mt_create.sql&gt;</code></li>
 <li>Run the rt_config.sql script:<br />
-<code>mysql -u &lt;username&gt; -p &lt; rt_config.sql</code></li>
+<code>mysql -u &lt;username&gt; -p &lt;rt_config.sql&gt;</code></li>
 <li>Run the mt_config.sql script:<br />
-<code>mysql -u &lt;username&gt; -p &lt; mt_config.sql</code></li>
+<code>mysql -u &lt;username&gt; -p &lt;mt_config.sql&gt;</code></li>
 <li>Create a key store containing the manufacturer keys. See <a href="../../keystore-guide/">Supply Chain Tools Key Store Setup Guide</a> for details. </li>
 <li>Set up and deploy the toolkit web service. If this is an evaluation deployment, you have an option to run the web service directly from the command line. If you choose to do this, instructions are provided in the readme file included with the toolkit software. Follow those instructions. You can verify that the toolkit starts up correctly by looking at the output in the window where you ran the toolkit. Installation is then complete, and you can skip the following steps. For example, if running directly:<br />
 <code>java -Dspring.datasource.url="jdbc:mariadb://localhost:3306/sdo" -Dspring.datasource.username=sdo_admin -Dspring.datasource.password=sdo -Dsdo.keystore="file:///sdo.p12" -Dsdo.keystore.password=123456 -jar ./manufacturer-webapp-1.9.war</code></li>
