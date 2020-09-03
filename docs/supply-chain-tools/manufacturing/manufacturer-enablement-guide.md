@@ -108,7 +108,7 @@ Table 4.	Windows* OS-based Manufacturer Toolkit
 ### Step 3: Deploy Database and Manufacturer Toolkit
 Install the SDO database and toolkit, see [Database and Toolkit Installation](#database-and-toolkit-installation). Be sure to use the secure key fob option for the key storage. 
 ### Step 4: Validate with Test Device
-Set up an SDO-capable device to run the SDO DI protocol (see [Device DI Setup](#device-di-setup)). Run DI on the device against the manufacturer toolkit web service. Use the database view to query the device state and verify the completion of DI.
+Set up an SDO-capable device to run the SDO DI protocol (see [Testing with an SDO Device](#testing-with-an-SDO-Device). Run DI on the device against the manufacturer toolkit web service. Use the database view to query the device state and verify the completion of DI.
 
 ## Database and Toolkit Installation
 You can either use the Docker* script provided or deploy manually.
@@ -140,7 +140,7 @@ For the remaining setup, follow the instructions in the readme file in the SDO D
 9.	Create a key store containing the manufacturer keys. See [Supply Chain Tools Key Store Setup Guide](../keystore-guide.md) for details. 
 10.	Set up and deploy the toolkit web service. If this is an evaluation deployment, you have an option to run the web service directly from the command line. If you choose to do this, instructions are provided in the readme file included with the toolkit software. Follow those instructions. You can verify that the toolkit starts up correctly by looking at the output in the window where you ran the toolkit. Installation is then complete, and you can skip the following steps. For example, if running directly:  
 	```
-	java -Dspring.datasource.url="jdbc:mariadb://localhost:3306/sdo" -Dspring.datasource.username=sdo_admin -Dspring.datasource.password=sdo -Dsdo.keystore="file:///sdo.p12" -Dsdo.keystore.password=123456 -jar ./manufacturer-webapp-1.8.war
+	java -Dspring.datasource.url="jdbc:mariadb://localhost:3306/sdo" -Dspring.datasource.username=sdo_admin -Dspring.datasource.password=sdo -Dsdo.keystore="file:///sdo.p12" -Dsdo.keystore.password=123456 -jar ./manufacturer-webapp-1.9.war
 	```
 11.	Install the Apache Tomcat* software from <http://tomcat.apache.org/> or equivalent.
 12.	Update the listener port. Most likely this will be 8039 as the default for SDO Clients but this may vary because of your specific network environment. For example, with Apache Tomcat\* version 8 on the Linux\* machine, this setting can be found in var/lib/tomcat8/config/server.xml. Refer to the documentation specific to your Apache Tomcat* version and operating system.
@@ -191,14 +191,38 @@ To determine the state of a device or devices, the database view, v_mt_device_st
 mysql -u <username> -p -h <SDO database server hostname or ip> -e “use sdo; select * from v_mt_device_state”
 ```
 ### Import Customer Public Key
-Import the customer public key by calling the **rt_add_customer_public_key** stored procedure. In a production environment, the import would likely be invoked programmatically. For test, development, or evaluation purposes, run from the command line as follows:
+Import the customer public key by calling the **rt_add_customer_public_key** stored procedure. The stored procedure allows addition of multiple PEM-formatted public keys of different key-types, against a single customer entry, in the format:
+customer_descriptor='+[keyId:publicKey]' delimited by comma(,)
+where,
+customer_descriptor represents the customer identifier, and
++[keyId:publicKey] represents one-or-more customer PEM-formatted public key entries where each entry contains 'keyId' that denotes the key-identifier (not unique) and 'publicKey' that denotes the customer public key (unique), separated by comma(,).
 ```
-mysql -u <username> -p -h <SDO database server hostname or ip> -e “use sdo; call rt_add_customer_public_key('CUST_DIST_12345', '-----BEGIN PUBLIC KEY-----
-MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCqGKukO1De7zhZj6+H0qtjTkVxwTCpvKe4eCZ0
-FPqri0cb2JZfXJ/DgYSF6vUpwmJG8wVQZKjeGcjDOL5UlsuusFncCzWBQ7RKNUSesmQRMSGkVb1/
-3j+skZ6UtW+5u09lHNsj6tQ51s1SPrCBkedbNf0Tp0GbMJDyR4e9T04ZZwIDAQAB
------END PUBLIC KEY-----’)”
+In a production environment, the import would likely be invoked programmatically. For test, development, or evaluation purposes, run from the command line as follows:
 ```
+mysql -u <username> -p -h <SDO database server hostname or ip> -e “use sdo; call rt_add_customer_public_key('CUST_DIST_12345', 'ec_256:
+-----BEGIN PUBLIC KEY-----
+MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEWVUE2G0GLy8scmAOyQyhcBiF/fSU
+d3i/Og7XDShiJb2IsbCZSRqt1ek15IbeCI5z7BHea2GZGgaK63cyD15gNA==
+-----END PUBLIC KEY-----
+,
+ec_384:
+-----BEGIN PUBLIC KEY-----
+MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAE4RFfGVQdojLIODXnUT6NqB6KpmmPV2Rl
+aVWXzdDef83f/JT+/XLPcpAZVoS++pwZpDoCkRU+E2FqKFdKDDD4g7obfqWd87z1
+EtjdVaI1qiagqaSlkul2oQPBAujpIaHZ
+-----END PUBLIC KEY-----
+,
+rsa_2048:
+-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtE58Wx9S4BWTNdrTmj3+
+kJXNKuOAk3sgQwvF0Y8uXo3/ECeS/hj5SDmxG5fSnBlmGVKJwGV1bTVERDZ4uh4a
+W1fWMmoUd4xcxun4N4B9+WDSQlX/+Rd3wBLEkKQfNr7lU9ZitfaGkBKxs23Y0GCY
+Hfwh91TjXzNtGzAzv4F/SqQ45KrSafQIIEj72yuadBrQuN+XHkagpJwFtLYr0rbt
+RZfSLcSvoGZtpwW9JfIDntC+eqoqcwOrMRWZAnyAY52GFZqK9+cjJlXuoAS4uH+q
+6KHgLC5u0rcpLiDYJgiv56s4pwd4ILSuRGSohCYsIIIk9rD+tVWqFsGZGDcZXU0z
+CQIDAQAB
+-----END PUBLIC KEY-----')”
+
 
 !!! note
 	Be sure this is the public key pem and not the certificate pem. The public key can be extracted from the certificate with OpenSSL*:  
