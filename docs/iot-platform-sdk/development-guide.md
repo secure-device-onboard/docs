@@ -46,7 +46,7 @@ An OCS implementation must, also, act as a client to trigger TO0 for set of devi
 
 ## Message Types
 
-Following is a list of message types that are sent in the message body of each request/response. Each message type follows the standard JSON* schema. Statements after '#' inside the JavaScript* Object Notation (JSON), represents the purpose of the field.
+Following is a list of message types that are sent in the message body of each request/response. Each message type follows the standard JSON\* schema. Statements after '#' inside the JavaScript* Object Notation (JSON), represents the purpose of the field.
 
 ### DeviceState
 This JSON* structure represents the state information of the device.
