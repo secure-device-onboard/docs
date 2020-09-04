@@ -10,15 +10,15 @@ This type is returned by all APIs and indicates whether the API call succeeded o
 _**Syntax**_  
 ```
 typedef enum {
-	SDO_SUCCESS = 0,  
-	SDO_INVALID_PATH,  
-	SDO_CONFIG_NOT_FOUND,  
-	SDO_INVALID_STATE,  
-	SDO_RESALE_NOT_SUPPORTED,  
-	SDO_RESALE_NOT_READY,  
-	SDO_WARNING,
-	SDO_ERROR
-SDO_ABORT
+    SDO_SUCCESS = 0,
+    SDO_INVALID_PATH,
+    SDO_CONFIG_NOT_FOUND,
+    SDO_INVALID_STATE,
+    SDO_RESALE_NOT_SUPPORTED,
+    SDO_RESALE_NOT_READY,
+    SDO_WARNING,
+    SDO_ERROR,
+    SDO_ABORT
 } sdoSdkStatus;
 ```
 _**Members**_  
@@ -48,11 +48,11 @@ This type indicates the current SDO protocol status of the device.
 _**Syntax**_    
 ```
 typedef enum {
-	SDO_STATE_PRE_DI = 2,  
-	SDO_STATE_PRE_TO1,  
-	SDO_STATE_IDLE,  
-	SDO_STATE_RESALE,  
-	SDO_STATE_ERROR
+    SDO_STATE_PRE_DI = 2,
+    SDO_STATE_PRE_TO1,
+    SDO_STATE_IDLE,
+    SDO_STATE_RESALE,
+    SDO_STATE_ERROR
 } sdoSdkDeviceStatus;
 ```
 _**Members**_  
@@ -74,11 +74,11 @@ This type is passed from the SDK to the Application when an error occurs and ind
 _**Syntax**_  
 ```
 typedef enum {
-	SDO_RV_TIMEOUT = 1,  
-	SDO_CONN_TIMEOUT,  
-	SDO_DI_ERROR,  
-	SDO_TO1_ERROR,  
-	SDO_TO2_ERROR
+    SDO_RV_TIMEOUT = 1,
+    SDO_CONN_TIMEOUT,
+    SDO_DI_ERROR,
+    SDO_TO1_ERROR,
+    SDO_TO2_ERROR
 } sdoSdkError;
 ```
 _**Members**_  
@@ -100,12 +100,12 @@ This type value indicates the type of function the module callback must perform.
 _**Syntax**_  
 ```
 typedef enum {
-	SDO_SI_START,  
-	SDO_SI_GET_DSI_COUNT,  
-	SDO_SI_SET_PSI,  
-    SDO_SI_GET_DSI,  
-    SDO_SI_SET_OSI,  
-	SDO_SI_END,  
+    SDO_SI_START,
+    SDO_SI_GET_DSI_COUNT,
+    SDO_SI_SET_PSI,
+    SDO_SI_GET_DSI,
+    SDO_SI_SET_OSI,
+    SDO_SI_END,
     SDO_SI_FAILURE
 } sdoSdkSiType;
 ```
@@ -134,8 +134,8 @@ This type contains a key name string and associated value string. Both items are
 _**Syntax**_  
 ```
 typedef struct sdoSdkSiKeyValue {
-    char    *key;
-    char    *value;
+    char *key;
+    char *value;
 } sdoSdkSiKeyValue;
 ```
 _**Members**_  
@@ -153,9 +153,11 @@ This callback function is invoked in the context of the executing onboarding pro
 _**Syntax**_  
 
 ```
-typedef int (*sdoSdkServiceInfoCB)(sdoSdkSiType     type, 
-                                   int              *count, 
-                                   sdoSdkSiKeyValue *si);
+typedef int (*sdoSdkServiceInfoCB)(
+    sdoSdkSiType     type,
+    int              *count,
+    sdoSdkSiKeyValue *si
+);
 ```  
   
 _**Parameters**_  
@@ -182,8 +184,8 @@ This structure describes a Service Information module that implements module fun
 _**Syntax**_  
 ```
 typedef struct {
-                char                moduleName[16];
-                sdoSdkServiceInfoCB serviceInfoCallback;
+    char                moduleName[16];
+    sdoSdkServiceInfoCB serviceInfoCallback;
 } sdoSdkServiceInfoModule;
 ```
 _**Members**_  
@@ -198,15 +200,17 @@ This type is a pointer to a callback function that is used to process errors dur
 
 _**Syntax**_  
 ```
-typedef int (*sdoSdkErrorCB)(sdoSdkStatus   type,
-                            sdoSdkError     errorCode);
+typedef int (*sdoSdkErrorCB)(
+    sdoSdkStatus type,
+    sdoSdkError  errorCode
+);
 ```  
   
 _**Parameters**_  
 
 **type**  
 This value specifies the type of error that occurred. It will be one of the following values (other `sdoSdkStatus` values are not used here):  
-* `SDO_ERROR`: This indicates an unrecoverable error occurred. The SDK will continue with protocol restart for these types of errors but it is unlikely that the operation will succeed. It is advisable to abort the operation and retry at a later time.  
+* `SDO_ERROR`: This indicates an unrecoverable error occurred. The SDK will continue with protocol restart for these types of errors but it is unlikely that the operation will succeed. It is advisable to abort the operation and retry later.  
 * `SDO_WARNING`: This indicates that a transient error occurred. The SDK will continue with protocol restart, which might fix the problem. It is advisable that the Application allows the restart to take place.  
 **errorCode**  
 This value indicates details of the error that occurred. See description in SDO SDK Error Values.  
@@ -216,7 +220,7 @@ _**Return Value**_
 The return value could be one of the following constants (***Note:*** These values are constants that are defined in the SDO SDK header file):
 
 * `SDO_SUCCESS`: Indicates that the error was handled and the SDK should continue with its recovery or restart as required.  
-* `SDO_ABORT`: This causes the SDK to terminate protocol processing and return to the caller (such as, the `sdoSdkRun()` API returns). The Application can re-invoke this API at a later time to re-initiate the SDO onboarding process.  
+* `SDO_ABORT`: This causes the SDK to terminate protocol processing and return to the caller (such as, the `sdoSdkRun()` API returns). The Application can re-invoke this API later to re-initiate the SDO onboarding process.
 
 
 ## SDK API Functions  
@@ -230,17 +234,20 @@ The Application must invoke this API before any other APIs since this API initia
 _**Syntax**_  
 ```
 sdoSdkStatus sdoSdkInit(
-	sdoSdkErrorCB       *errorHandlingCallback,
-	uint32_t            numModules,
-	sdoSdkModuleInfo    *moduleInformation,
+    sdoSdkErrorCB    *errorHandlingCallback,
+    uint32_t          numModules,
+    sdoSdkModuleInfo *moduleInformation,
 );
 ```  
 
-_**Parameters**_	
+_**Parameters**_ 	
 
 **errorHandlingCallback**  
+
 This is the Application’s error handling function and will be called by the SDK when an error is encountered. This value can be `NULL` in which case, errors will not be reported to the Application, and the SDK will take the appropriate recovery and/or restart action as required.  
+
 ***Note:*** Passing `NULL` might cause the SDK to remain in an infinite loop until the onboarding process completes successfully.  
+
 **numModules**  
 Number of Service Information modules contained in the following `moduleInformation` list parameter. If no Application-specific modules are available, this value should be zero.  
 **moduleInformation**  
@@ -262,7 +269,7 @@ This function returns a value of type sdoSdkDeviceStatus as described in SDO Dev
 
 ### Execute SDO SDK Onboarding Protocol
 The Application invokes this API to begin the onboarding process that is, TO1. The onboarding process has completed successfully when this function returns `SDO_SUCCESS`. If this API returns an error, the Application may retry the onboarding process by calling this API again immediately or after a sleep/reset cycle as determined by the use case.
-The SDK will invoke the Application error callback if an error occurs in this phase. Additionally, module-specific callbacks will be invoked when Service Information is received from the Owner Server during the course of the TO2 stage. These callbacks are invoked in the context of the callers thread and the callbacks must not call any SDK APIs since the SDK is not yet re-entrant. 
+The SDK will invoke the Application error callback if an error occurs in this phase. Additionally, module-specific callbacks will be invoked when Service Information is received from the Owner Server during the TO2 stage. These callbacks are invoked in the context of the callers thread and the callbacks must not call any SDK APIs since the SDK is not yet re-entrant. 
 
 _**Syntax**_  
 `sdoSdkStatus sdoSdkRun(void);`  
