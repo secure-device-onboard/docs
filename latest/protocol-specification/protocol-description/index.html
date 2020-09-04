@@ -2141,7 +2141,7 @@ JSON and transmitted.</p>
 <ol>
 <li>
 <p>The Device and Owner each choose random numbers (Owner: a, Device: b), and
-    encode these numbers into exchanged parameters A = ga mod p, and B = gb mod</p>
+    encode these numbers into exchanged parameters A = g<sup>a</sup> mod p, and B = g<sup>b</sup> mod p</p>
 <ol>
 <li>The values “p” and “g” are chosen from
     [[RFC3526]] , with sizes as follows:</li>
@@ -2375,8 +2375,8 @@ concatenation, and blen(x) length of x in bytes. The output of blen(x) is a
     the Secure Device Onboard Enablement team for details.</strong></p>
 </li>
 <li>
-<p>Shy is not used to compute the shared secret ShSe because it can be derived
-    from Shx and the curve equation. Hence it provides no additional entropy.</p>
+<p>Sh<sub>y</sub> is not used to compute the shared secret ShSe because it can be derived
+    from Sh<sub>x</sub> and the curve equation. Hence it provides no additional entropy.</p>
 </li>
 </ul>
 </div>
@@ -2413,8 +2413,8 @@ bits (see Table ‎3):</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The operation is HMAC-SHA-256[key, value], so the zero argument above
-indicates a HMAC with key of zero (0). Since HMAC keys are zero padded (See
-), this should be sufficient to generate a consistent HMAC operation.</p>
+indicates a HMAC with key of zero (0). Since HMAC keys are zero padded,
+this should be sufficient to generate a consistent HMAC operation.</p>
 </div>
 <p>The above strings are ASCII with no terminator character (that is, C ‘&bsol;000’
 terminator is not included).</p>

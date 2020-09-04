@@ -1558,12 +1558,7 @@ is used to indicate the name of the quantity and the JSON* type.</p>
 </code></pre>
 
         </td>
-            <td>See section <a href="../data-transmission-persistence/index.html#data-transmission-persistence">§</a>. The length is stored in hexadecimal format fully specified as 4 hex characters. A message longer than 0xFFFF bytes is stored as a 32-bit hexadecimal number fully specified as 8 hex characters.</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>Length((String containing hex),</td>
-            <td></td>
+            <td>See section <a href="../data-transmission-persistence/index.html#data-transmission-persistence">§</a>. The length is stored in hexadecimal format fully specified as 4 hex characters. A message longer than 0xFFFF bytes is stored as a 32-bit hexadecimal number fully specified as 8 hex characters. Implementations should store hex strings using upper case letters. Implementations should parse hex strings whether they have upper case or lower case letters in them. This message header need not be transmitted in some protocols.</td>
         </tr>
         <tr>
             <td>ProtocolVersion</td>
@@ -1627,8 +1622,8 @@ information:
             <td>
 
 <pre><code class="json">[
-    modBytes,          # size of group number
-    modba(ByteArray),  # group number as byte array
+    modBytes,          # Number of modulus bytes
+    modba(ByteArray),  # Modulus as byte array
     expBytes,          # Exponent bytes
     expba(ByteArray)   # Exponent as byte array
 ]
@@ -1652,7 +1647,7 @@ information:
 
 The group no identifies the specific Intel<sup>®</sup> EPID public key used to
 generate the signature. The actual key value is extracted from Intel<sup>®</sup> EPID artifacts are maintained by Intel.
-          /td>
+            </td>
         </tr>
         <tr>
             <td>SigInfo</td>
@@ -1771,12 +1766,12 @@ section <a href="index.html#device-attestation-signature-and-mechanism">§</a> .
         </tr>
         <tr>
             <td>Nonce</td>
-            <td>ByteArray\* (16 bytes)</td>
+            <td>ByteArray (16 bytes)</td>
             <td>128-bit Random number, intended to be used *only once*.</td>
         </tr>
         <tr>
             <td>GUID</td>
-            <td>ByteArray\* (16 bytes)</td>
+            <td>ByteArray (16 bytes)</td>
             <td>128-bit Random number used for identification. Typically 128 bits.</td>
         </tr>
         <tr>
@@ -3700,8 +3695,7 @@ for n in range(0,5):<br />
 1 4 a YQ==<br />
 2 4 ab YWI=<br />
 3 4 abc YWJj<br />
-4 8 abcd YWJjZA==<br />
-5 8 abcde YWJjZGU=&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+4 8 abcd YWJjZA==&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:6">
 <p>It is conceivable to specify a compressed data format, then define that it
