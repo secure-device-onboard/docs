@@ -1135,15 +1135,15 @@
 <p>This type is returned by all APIs and indicates whether the API call succeeded or failed.</p>
 <p><em><strong>Syntax</strong></em>  </p>
 <pre><code>typedef enum {
-    SDO_SUCCESS = 0,  
-    SDO_INVALID_PATH,  
-    SDO_CONFIG_NOT_FOUND,  
-    SDO_INVALID_STATE,  
-    SDO_RESALE_NOT_SUPPORTED,  
-    SDO_RESALE_NOT_READY,  
+    SDO_SUCCESS = 0,
+    SDO_INVALID_PATH,
+    SDO_CONFIG_NOT_FOUND,
+    SDO_INVALID_STATE,
+    SDO_RESALE_NOT_SUPPORTED,
+    SDO_RESALE_NOT_READY,
     SDO_WARNING,
-    SDO_ERROR
-SDO_ABORT
+    SDO_ERROR,
+    SDO_ABORT
 } sdoSdkStatus;
 </code></pre>
 
@@ -1170,10 +1170,10 @@ SDO_ABORT
 <p>This type indicates the current SDO protocol status of the device.</p>
 <p><em><strong>Syntax</strong></em>    </p>
 <pre><code>typedef enum {
-    SDO_STATE_PRE_DI = 2,  
-    SDO_STATE_PRE_TO1,  
-    SDO_STATE_IDLE,  
-    SDO_STATE_RESALE,  
+    SDO_STATE_PRE_DI = 2,
+    SDO_STATE_PRE_TO1,
+    SDO_STATE_IDLE,
+    SDO_STATE_RESALE,
     SDO_STATE_ERROR
 } sdoSdkDeviceStatus;
 </code></pre>
@@ -1193,10 +1193,10 @@ SDO_ABORT
 <p>This type is passed from the SDK to the Application when an error occurs and indicates details of the error. It is used by the error callback – see Error Handling Callback.  </p>
 <p><em><strong>Syntax</strong></em>  </p>
 <pre><code>typedef enum {
-    SDO_RV_TIMEOUT = 1,  
-    SDO_CONN_TIMEOUT,  
-    SDO_DI_ERROR,  
-    SDO_TO1_ERROR,  
+    SDO_RV_TIMEOUT = 1,
+    SDO_CONN_TIMEOUT,
+    SDO_DI_ERROR,
+    SDO_TO1_ERROR,
     SDO_TO2_ERROR
 } sdoSdkError;
 </code></pre>
@@ -1216,12 +1216,12 @@ SDO_ABORT
 <p>This type value indicates the type of function the module callback must perform. These values are used by the Service Information Module Callback function.  </p>
 <p><em><strong>Syntax</strong></em>  </p>
 <pre><code>typedef enum {
-    SDO_SI_START,  
-    SDO_SI_GET_DSI_COUNT,  
-    SDO_SI_SET_PSI,  
-    SDO_SI_GET_DSI,  
-    SDO_SI_SET_OSI,  
-    SDO_SI_END,  
+    SDO_SI_START,
+    SDO_SI_GET_DSI_COUNT,
+    SDO_SI_SET_PSI,
+    SDO_SI_GET_DSI,
+    SDO_SI_SET_OSI,
+    SDO_SI_END,
     SDO_SI_FAILURE
 } sdoSdkSiType;
 </code></pre>
@@ -1246,8 +1246,8 @@ SDO_ABORT
 <p>This type contains a key name string and associated value string. Both items are pointers to ASCII NULL terminated strings.   </p>
 <p><em><strong>Syntax</strong></em>  </p>
 <pre><code>typedef struct sdoSdkSiKeyValue {
-    char    *key;
-    char    *value;
+    char *key;
+    char *value;
 } sdoSdkSiKeyValue;
 </code></pre>
 
@@ -1260,9 +1260,11 @@ SDO_ABORT
 <p>This type is a pointer to a callback function that is used to process Owner Service Information messages received from the Owner Server for a specific Service Information module. See Service Information Module Description for how it is used.</p>
 <p>This callback function is invoked in the context of the executing onboarding protocol hence, although there is no fixed timeline, the module must complete execution in the shortest possible time.  </p>
 <p><em><strong>Syntax</strong></em>  </p>
-<pre><code>typedef int (*sdoSdkServiceInfoCB)(sdoSdkSiType     type, 
-                                   int              *count, 
-                                   sdoSdkSiKeyValue *si);
+<pre><code>typedef int (*sdoSdkServiceInfoCB)(
+    sdoSdkSiType     type,
+    int              *count,
+    sdoSdkSiKeyValue *si
+);
 </code></pre>
 
 <p><em><strong>Parameters</strong></em>  </p>
@@ -1283,8 +1285,8 @@ A pointer to a service info key-value pair of type <code>sdoSdkSiKeyValue</code>
 <p>This structure describes a Service Information module that implements module functionality as described Section 2.3 and Section 2.5. Supported modules are known to the Application ahead of time and each module must have one Service Information Module entry, which is passed to the SDK in the <code>sdoSdkInit()</code> API.  </p>
 <p><em><strong>Syntax</strong></em>  </p>
 <pre><code>typedef struct {
-                char                moduleName[16];
-                sdoSdkServiceInfoCB serviceInfoCallback;
+    char                moduleName[16];
+    sdoSdkServiceInfoCB serviceInfoCallback;
 } sdoSdkServiceInfoModule;
 </code></pre>
 
@@ -1296,16 +1298,18 @@ A pointer to a service info key-value pair of type <code>sdoSdkSiKeyValue</code>
 <h3 id="error-handling-callback">Error Handling Callback<a class="headerlink" href="#error-handling-callback" title="Permanent link">&para;</a></h3>
 <p>This type is a pointer to a callback function that is used to process errors during protocol execution. The Application can use information provided by this callback to perform application-specific operations. The Application can also control the execution of the protocol state machine by return different values as specified below.  </p>
 <p><em><strong>Syntax</strong></em>  </p>
-<pre><code>typedef int (*sdoSdkErrorCB)(sdoSdkStatus   type,
-                            sdoSdkError     errorCode);
+<pre><code>typedef int (*sdoSdkErrorCB)(
+    sdoSdkStatus type,
+    sdoSdkError  errorCode
+);
 </code></pre>
 
 <p><em><strong>Parameters</strong></em>  </p>
 <p><strong>type</strong><br />
 This value specifies the type of error that occurred. It will be one of the following values (other <code>sdoSdkStatus</code> values are not used here):<br />
-<em> <code>SDO_ERROR</code>: This indicates an unrecoverable error occurred. The SDK will continue with protocol restart for these types of errors but it is unlikely that the operation will succeed. It is advisable to abort the operation and retry later.
-* <code>SDO_WARNING</code>: This indicates that a transient error occurred. The SDK will continue with protocol restart, which might fix the problem. It is advisable that the Application allows the restart to take place.<br />
-</em><em>errorCode</em>*<br />
+<em> <code>SDO_ERROR</code>: This indicates an unrecoverable error occurred. The SDK will continue with protocol restart for these types of errors but it is unlikely that the operation will succeed. It is advisable to abort the operation and retry later.<br />
+</em> <code>SDO_WARNING</code>: This indicates that a transient error occurred. The SDK will continue with protocol restart, which might fix the problem. It is advisable that the Application allows the restart to take place.<br />
+<strong>errorCode</strong><br />
 This value indicates details of the error that occurred. See description in SDO SDK Error Values.  </p>
 <p><em><strong>Return Value</strong></em>  </p>
 <p>The return value could be one of the following constants (<strong><em>Note:</em></strong> These values are constants that are defined in the SDO SDK header file):</p>
@@ -1319,17 +1323,17 @@ This value indicates details of the error that occurred. See description in SDO 
 <p>The Application must invoke this API before any other APIs since this API initializes all internal data and state of the SDK.  </p>
 <p><em><strong>Syntax</strong></em>  </p>
 <pre><code>sdoSdkStatus sdoSdkInit(
-    sdoSdkErrorCB       *errorHandlingCallback,
-    uint32_t            numModules,
-    sdoSdkModuleInfo    *moduleInformation,
+    sdoSdkErrorCB    *errorHandlingCallback,
+    uint32_t          numModules,
+    sdoSdkModuleInfo *moduleInformation,
 );
 </code></pre>
 
 <p><em><strong>Parameters</strong></em>    </p>
-<p><strong>errorHandlingCallback*<em><br />
-This is the Application’s error handling function and will be called by the SDK when an error is encountered. This value can be <code>NULL</code> in which case, errors will not be reported to the Application, and the SDK will take the appropriate recovery and/or restart action as required.<br />
-</em></strong>Note:<strong><em> Passing <code>NULL</code> might cause the SDK to remain in an infinite loop until the onboarding process completes successfully.<br />
-</em>*numModules</strong><br />
+<p><strong>errorHandlingCallback</strong>  </p>
+<p>This is the Application’s error handling function and will be called by the SDK when an error is encountered. This value can be <code>NULL</code> in which case, errors will not be reported to the Application, and the SDK will take the appropriate recovery and/or restart action as required.  </p>
+<p><strong><em>Note:</em></strong> Passing <code>NULL</code> might cause the SDK to remain in an infinite loop until the onboarding process completes successfully.  </p>
+<p><strong>numModules</strong><br />
 Number of Service Information modules contained in the following <code>moduleInformation</code> list parameter. If no Application-specific modules are available, this value should be zero.<br />
 <strong>moduleInformation</strong><br />
 Service Module Information description for each available Service Information module as described in Service Information Module Description. If no Application-specific modules are available, this value should be <code>NULL</code>.  </p>
