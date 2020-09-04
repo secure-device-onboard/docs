@@ -60,13 +60,13 @@ mkdir -p /etc/systemd/system/docker.service.d
 2 . For HTTP proxy, create a file **_http-proxy.conf_** in the above created directory and add the following content to this file.
 ```
 [Service]
-Environment=”HTTP_PROXY=<Proxy IP/URL:Port>”
+Environment="HTTP_PROXY=<Proxy IP/URL:Port>"
 ```
 
 3 . For HTTPS proxy, create a file **_https-proxy.conf_** in the above created directory and add the following content to this file.
 ```
 [Service]
-Environment=”HTTPS_PROXY=<Proxy IP/URL:Port>”
+Environment="HTTPS_PROXY=<Proxy IP/URL:Port>"
 ```
 
 4 . Next, create a directory named **_.docker_** in the user home path (**~/**) and a create a file named **_config.json_** if not present, add the following content.
