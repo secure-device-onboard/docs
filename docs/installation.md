@@ -1,12 +1,6 @@
 
 # Installation Guide
-This document can be used as a quick start guide to setup the Dev Environment. Please review the system requirements listed below before moving forward with the SDO installation and deployment.
-## Table of Contents
-[1. System Requirements](#system-requirements)
-[2. Docker Installation](#docker-installation)
-[3. Docker-compose Installation](#docker-compose-installation)
-[4. Other Development Tools](#other-development-tools)
-[5. References](#references)
+This document can be used as a quick start guide to setup the development environment. Please review the system requirements listed below before moving forward with the SDO installation and deployment.
 
 ## System Requirements
 
@@ -52,21 +46,23 @@ sudo apt-get install docker-ce=5:18.09.9~3-0~ubuntu-bionic docker-ce-cli=5:18.09
 6 . To run the docker system behind a proxy server, the configuration is done by the following steps:
 
  1. Directory `docker.service.d` is to be created in systemd directory as shown below.
-
-    `mkdir -p /etc/systemd/system/docker.service.d`
+    ```
+    mkdir -p /etc/systemd/system/docker.service.d
+    ```
 
 2. For HTTP proxy, create a file **_http-proxy.conf_** in the above created directory and add the following content to this file.
-	```
-	[Service]
-	Environment=”HTTP_PROXY=<Proxy IP/URL:Port>”
-	```
+    ```
+    [Service]
+    Environment=”HTTP_PROXY=<Proxy IP/URL:Port>”
+    ```
+
 3. For HTTPS proxy, create a file **_https-proxy.conf_** in the above created directory and add the following content to this file.
 	```
 	[Service]
 	Environment=”HTTPS_PROXY=<Proxy IP/URL:Port>”
 	```
-4. Next, create a directory named **_.docker_** in the user home path (**~/**) and a create a file named **_config.json_** if not present, add the following content.
 
+4. Next, create a directory named **_.docker_** in the user home path (**~/**) and a create a file named **_config.json_** if not present, add the following content.
 	```
 	 { "proxies":
 		 { "default":
@@ -77,19 +73,22 @@ sudo apt-get install docker-ce=5:18.09.9~3-0~ubuntu-bionic docker-ce-cli=5:18.09
 		 }
 	}
 	```
-5. After configuring the above, the docker needs to be restarted.
 
+5. After configuring the above, the docker needs to be restarted.
 	```
 	sudo systemctl daemon-reload
 	sudo systemctl restart docker
 	```
-6. To ensure that the proxies are set successfully, run the following command
 
-	`sudo systemctl show --property Environment docker`
+6. To ensure that the proxies are set successfully, run the following command
+    ```
+    sudo systemctl show --property Environment docker
+    ```
 
 7 . Verify that Docker Engine is installed correctly by running the `hello-world` image.
-
-	 sudo docker run hello-world
+```
+sudo docker run hello-world
+```
 
 ## Docker-compose Installation
 To install a specific version of docker-compose (for example **_1.21.2_**) follow these steps:
@@ -107,24 +106,29 @@ sudo chmod +x /usr/bin/docker-compose
 ## Other Development Tools
 
 1 . To install OpenJDK*
-
-  `sudo apt install openjdk-11-jdk-headless`
+```
+sudo apt install openjdk-11-jdk-headless
+```
 
 2 . To install Maven*
-
-  `sudo apt install maven`
+```
+sudo apt install maven
+```
 
 3 . To set the correct system time
 
-  ```
-  sudo date -s "$(wget -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f5-8)Z"
-  ```
-  Ensure that the system time is correct, else you will receive the certificate expiration error.
+```
+sudo date -s "$(wget -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f5-8)Z"
+```
+
+Ensure that the system time is correct, else you will receive the certificate expiration error.
   
-  Change Google* domain according to your location.
+Change Google* domain according to your location.
 
 ## References
 
-[https://docs.docker.com/engine/install/ubuntu/#installation-methods](https://docs.docker.com/engine/install/ubuntu/#installation-methods)
-[https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
-[https://docs.docker.com/network/proxy/](https://docs.docker.com/network/proxy/)
+[Docker-installation-methods](https://docs.docker.com/engine/install/ubuntu/#installation-methods)
+
+[Docker-compose-installation](https://docs.docker.com/compose/install/)
+
+[Setting-proxy-for-docker](https://docs.docker.com/network/proxy/)
