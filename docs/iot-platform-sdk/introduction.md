@@ -52,7 +52,7 @@ This component is responsible for the actual onboarding of a device by running T
 
 **restimpl:** This module makes use of 'libops' module to execute TO2 for multiple SDO clients. It configures the 'libops' and provides implementations of a few interfaces that define the way data is provided to TO2 protocol endpoints. It wraps the TO2 protocol implementation of the 'libops' module, by creating separate REST endpoints for managing all incoming TO2 requests. It sends REST calls to OCS to get and store device-specific information, such as ownership voucher, service-info files, TO2 session information among others, then provides these as inputs to the TO2 protocol endpoints.
 
-**epid:** This module contains the Enhanced Privacy ID(EPID)-specific implementations that is used by the 'libops' module to handle EPID-based Secure Device Onboard clients. It contacts the EPID online services to validate Secure Device Onboard clients.
+**epid:** This module contains the Intel<sup>®</sup> Enhanced Privacy ID(Intel<sup>®</sup> EPID)-specific implementations that is used by the 'libops' module to handle EPID-based Secure Device Onboard clients. It contacts the EPID online services to validate Secure Device Onboard clients.
 
 **serviceinfo:** This module contains the service info interfaces and implementations to marshal these data. The interfaces must be implemented by the application that wishes to be able to transfer service info configuration data to the Secure Device Onboard clients.
 

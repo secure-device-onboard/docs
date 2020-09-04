@@ -83,7 +83,7 @@ Environment="HTTPS_PROXY=<Proxy IP/URL:Port>"
 }
 ```
 
-5 . After configuring the above, the docker needs to be restarted.
+5 . After configuring the above, the Docker* service needs to be restarted.
 ```
 sudo systemctl daemon-reload
 sudo systemctl restart docker
@@ -97,7 +97,7 @@ sudo systemctl show --property Environment docker
 ## Docker* Compose Installation
 To install a specific version of Docker\* Compose (for example **_1.21.2_**) follow these steps:
 
-1 . Download the specific version **(1.21.2)** of docker-compose.
+1 . Download the specific version **(1.21.2)** of Docker* Compose.
 ```
 sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose
 ```
