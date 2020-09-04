@@ -689,10 +689,10 @@
         
           <li class="md-nav__item">
   <a href="#step-1-modify-business-system-processes" class="md-nav__link">
-    Step 1: Modify business system processes
+    Step 1: Modify Business System Processes
   </a>
   
-    <nav class="md-nav" aria-label="Step 1: Modify business system processes">
+    <nav class="md-nav" aria-label="Step 1: Modify Business System Processes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1162,10 +1162,10 @@
         
           <li class="md-nav__item">
   <a href="#step-1-modify-business-system-processes" class="md-nav__link">
-    Step 1: Modify business system processes
+    Step 1: Modify Business System Processes
   </a>
   
-    <nav class="md-nav" aria-label="Step 1: Modify business system processes">
+    <nav class="md-nav" aria-label="Step 1: Modify Business System Processes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1344,7 +1344,7 @@ As a member of the supply chain, you are responsible for extending ownership vou
 <h3 id="step-2-deploy-database-and-toolkit">Step 2: Deploy Database and Toolkit<a class="headerlink" href="#step-2-deploy-database-and-toolkit" title="Permanent link">&para;</a></h3>
 <p>Install the SDO database and toolkit, see <a href="#database-and-toolkit-installation">Database and Toolkit Installation</a>. It is recommended to choose the key store file option unless there is a specified need to test with a secure key fob. </p>
 <h2 id="production-deployment">Production Deployment<a class="headerlink" href="#production-deployment" title="Permanent link">&para;</a></h2>
-<h3 id="step-1-modify-business-system-processes">Step 1: Modify business system processes<a class="headerlink" href="#step-1-modify-business-system-processes" title="Permanent link">&para;</a></h3>
+<h3 id="step-1-modify-business-system-processes">Step 1: Modify Business System Processes<a class="headerlink" href="#step-1-modify-business-system-processes" title="Permanent link">&para;</a></h3>
 <p>Your business system processes need to:  </p>
 <ul>
 <li>
@@ -1483,7 +1483,10 @@ An example if running directly:<br />
     spring.datasource.password=sdo
     sdo.keystore=file:///var/lib/tomcat8/webapps/ROOT/sdo.p12 
     sdo.keystore.password=123456</code>  </p>
-<p><strong><em>Note:</em></strong> The database user and password should match those configured in rt_config.sql. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The database user and password should match those configured in rt_config.sql. </p>
+</div>
 <ul>
 <li>datasource.url: be sure to use localhost rather than the IP address.  </li>
 <li>sdo.keystore: this is either the pathname to the software key store (jks) or to the public key cryptography standards (PKCS#11) library if using the secure key fob. Be sure to not use quotes around the value.  </li>
@@ -1500,7 +1503,7 @@ An example if running directly:<br />
 <ol>
 <li>Verify that the JDBC* string is correct.  </li>
 </ol>
-<p>An example is: jdbc:mariadb://localhost:3307/sdo. Be sure <strong>mariadb</strong> is included, the port is specified as <strong>3307</strong>, and the host name is correct.  </p>
+<p>An example is: jdbc:mariadb://localhost:3307/sdo. Be sure <strong>MariaDB</strong> is included, the port is specified as <strong>3307</strong>, and the host name is correct.  </p>
 <ol>
 <li>Verify that the database user and password are correct.  </li>
 </ol>

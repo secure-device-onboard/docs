@@ -57,7 +57,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rest-contracts-between-ocs-server-and-opsto0scheduler-client" class="md-skip">
+        <a href="#rest-contracts-between-ocsserver-and-opsto0schedulerclient" class="md-skip">
           Skip to content
         </a>
       
@@ -523,15 +523,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rest-contracts-between-ocs-server-and-opsto0scheduler-client" class="md-nav__link">
-    Rest Contracts between OCS (server) and OPS/To0Scheduler (client)
+  <a href="#rest-contracts-between-ocsserver-and-opsto0schedulerclient" class="md-nav__link">
+    Rest Contracts between OCS(Server) and OPS/To0Scheduler(Client)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#rest-contracts-between-to0scheduler-server-and-ocs-client" class="md-nav__link">
-    Rest Contracts between To0Scheduler (server) and OCS (client)
+  <a href="#rest-contracts-between-to0schedulerserver-and-ocsclient" class="md-nav__link">
+    Rest Contracts between To0Scheduler(Server) and OCS(Client)
   </a>
   
 </li>
@@ -1013,15 +1013,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rest-contracts-between-ocs-server-and-opsto0scheduler-client" class="md-nav__link">
-    Rest Contracts between OCS (server) and OPS/To0Scheduler (client)
+  <a href="#rest-contracts-between-ocsserver-and-opsto0schedulerclient" class="md-nav__link">
+    Rest Contracts between OCS(Server) and OPS/To0Scheduler(Client)
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#rest-contracts-between-to0scheduler-server-and-ocs-client" class="md-nav__link">
-    Rest Contracts between To0Scheduler (server) and OCS (client)
+  <a href="#rest-contracts-between-to0schedulerserver-and-ocsclient" class="md-nav__link">
+    Rest Contracts between To0Scheduler(Server) and OCS(Client)
   </a>
   
 </li>
@@ -1162,8 +1162,8 @@
 <p class="admonition-title">Note</p>
 <p>The implementation of the pre-defined contracts can be backed by non-REST interfaces as well. However, this would invlove updates to both OPS and To0Scheduler to facilitate communication with the newly defined interface at OCS. Such a change would involve, but is not limited to, updates to existing class <code>RestClient.java</code> at both OPS and To0Scheduler.</p>
 </div>
-<h2 id="rest-contracts-between-ocs-server-and-opsto0scheduler-client">Rest Contracts between OCS (server) and OPS/To0Scheduler (client)<a class="headerlink" href="#rest-contracts-between-ocs-server-and-opsto0scheduler-client" title="Permanent link">&para;</a></h2>
-<p>Following are the pre-defined REST API specifications for all the resource paths that must be implemented and exposed by an OCS implementation. Both, OPS and To0Scheduler make requests to the OCS implementation, as clients, using this format.</p>
+<h2 id="rest-contracts-between-ocsserver-and-opsto0schedulerclient">Rest Contracts between OCS(Server) and OPS/To0Scheduler(Client)<a class="headerlink" href="#rest-contracts-between-ocsserver-and-opsto0schedulerclient" title="Permanent link">&para;</a></h2>
+<p>The following are the pre-defined REST API specifications for all the resource paths that must be implemented and exposed by an OCS implementation. Both, OPS and To0Scheduler make requests to the OCS implementation, as clients, using this format.</p>
 <table>
 <thead>
 <tr>
@@ -1324,7 +1324,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="rest-contracts-between-to0scheduler-server-and-ocs-client">Rest Contracts between To0Scheduler (server) and OCS (client)<a class="headerlink" href="#rest-contracts-between-to0scheduler-server-and-ocs-client" title="Permanent link">&para;</a></h2>
+<h2 id="rest-contracts-between-to0schedulerserver-and-ocsclient">Rest Contracts between To0Scheduler(Server) and OCS(Client)<a class="headerlink" href="#rest-contracts-between-to0schedulerserver-and-ocsclient" title="Permanent link">&para;</a></h2>
 <p>An OCS implementation must, also, act as a client to trigger TO0 for set of devices, by making the following request to To0Scheduler. To0Scheduler accepts the request from OCS to initiate TO0 for the list of devices.</p>
 <table>
 <thead>
@@ -1347,7 +1347,7 @@
 </tbody>
 </table>
 <h2 id="message-types">Message Types<a class="headerlink" href="#message-types" title="Permanent link">&para;</a></h2>
-<p>Following is a list of message types that are sent in the message body of each request/response. Each message type follows the standard JSON* schema. Statements after '#' inside the JavaScript Object Notation (JSON), represents the purpose of the field.</p>
+<p>Following is a list of message types that are sent in the message body of each request/response. Each message type follows the standard JSON* schema. Statements after '#' inside the JavaScript* Object Notation (JSON), represents the purpose of the field.</p>
 <h3 id="devicestate">DeviceState<a class="headerlink" href="#devicestate" title="Permanent link">&para;</a></h3>
 <p>This JSON* structure represents the state information of the device.</p>
 <p><em>Message Body:</em></p>
