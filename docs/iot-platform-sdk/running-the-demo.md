@@ -404,8 +404,8 @@ The above directory contains several subdirectories, each representing a device,
 {
   "module"   : "Module name",
   "msg"      : "Service-info type" # One of filedesc, exec, write,
-  "valueLen" : "Length"       # Length of the file to be transferred,
-  "valueId"  : "ID"            # An opaque-id representing a resource (in this case, file) that contains the actual service-info value,
+  "valueLen" : "Length"            # Length of the file to be transferred,
+  "valueId"  : "ID"                # An opaque-id representing a resource (in this case, file) that contains the actual service-info value,
   "enc"      : "Encoding type"     # Encoding to be used. One of either base64, or, ascii
 }
 ```
