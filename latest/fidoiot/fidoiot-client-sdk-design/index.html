@@ -11,7 +11,7 @@
         <meta name="description" content="Documentation for Secure Device Onboard Project">
       
       
-        <link rel="canonical" href="https://secure-device-onboard.github.io/docs/protocol-specification/credential-reuse-protocol/">
+        <link rel="canonical" href="https://secure-device-onboard.github.io/docs/fidoiot/fidoiot-client-sdk-design/">
       
       
         <meta name="author" content="Secure Device Onboard Contributers">
@@ -21,7 +21,7 @@
     
     
       
-        <title>Credential Reuse Protocol - Secure Device Onboard</title>
+        <title>FIDOIOT Client Design - Secure Device Onboard</title>
       
     
     
@@ -57,7 +57,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#credential-reuse-protocol" class="md-skip">
+        <a href="#introduction" class="md-skip">
           Skip to content
         </a>
       
@@ -84,7 +84,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Credential Reuse Protocol
+              FIDOIOT Client Design
             
           </span>
         </div>
@@ -157,7 +157,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../../fidoiot/fidoiot-introduction/" class="md-tabs__link">
+        <a href="../fidoiot-introduction/" class="md-tabs__link md-tabs__link--active">
           FIDOIOT
         </a>
       
@@ -248,7 +248,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../introduction/" class="md-tabs__link md-tabs__link--active">
+        <a href="../../protocol-specification/introduction/" class="md-tabs__link">
           Protocol Specification
         </a>
       
@@ -382,10 +382,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       FIDOIOT
@@ -405,7 +407,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../fidoiot/fidoiot-introduction/" title="Introduction" class="md-nav__link">
+    <a href="../fidoiot-introduction/" title="Introduction" class="md-nav__link">
       Introduction
     </a>
   </li>
@@ -415,11 +417,100 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../fidoiot/fidoiot-client-sdk-design/" title="FIDOIOT Client Design" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        FIDOIOT Client Design
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="FIDOIOT Client Design" class="md-nav__link md-nav__link--active">
       FIDOIOT Client Design
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fidoiot-design" class="md-nav__link">
+    FIDOIOT Design
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changes-to-be-made-in-client-sdk" class="md-nav__link">
+    Changes to be Made in Client SDK
+  </a>
+  
+    <nav class="md-nav" aria-label="Changes to be Made in Client SDK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cbor-cose-hal-library-a1" class="md-nav__link">
+    CBOR – COSE HAL Library (A1)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protocol-message-layer-a2" class="md-nav__link">
+    Protocol Message Layer (A2)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serviceinfo-message-handling-a3" class="md-nav__link">
+    ServiceInfo Message Handling (A3)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-implementation-cbor-format-a4" class="md-nav__link">
+    Storage Implementation - CBOR Format (A4)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fido-message-handling" class="md-nav__link">
+    Fido Message Handling
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -732,12 +823,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
     
     <label class="md-nav__link" for="nav-9">
       Protocol Specification
@@ -757,7 +846,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../introduction/" title="Introduction" class="md-nav__link">
+    <a href="../../protocol-specification/introduction/" title="Introduction" class="md-nav__link">
       Introduction
     </a>
   </li>
@@ -769,7 +858,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../protocol-description/" title="Protocol Description" class="md-nav__link">
+    <a href="../../protocol-specification/protocol-description/" title="Protocol Description" class="md-nav__link">
       Protocol Description
     </a>
   </li>
@@ -781,7 +870,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../protocol-data-types/" title="Protocol Data Types" class="md-nav__link">
+    <a href="../../protocol-specification/protocol-data-types/" title="Protocol Data Types" class="md-nav__link">
       Protocol Data Types
     </a>
   </li>
@@ -793,7 +882,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../data-transmission-persistence/" title="Data Transmission & Persistence" class="md-nav__link">
+    <a href="../../protocol-specification/data-transmission-persistence/" title="Data Transmission & Persistence" class="md-nav__link">
       Data Transmission & Persistence
     </a>
   </li>
@@ -805,7 +894,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../detailed-protocol-description/" title="Detailed Protocol Description" class="md-nav__link">
+    <a href="../../protocol-specification/detailed-protocol-description/" title="Detailed Protocol Description" class="md-nav__link">
       Detailed Protocol Description
     </a>
   </li>
@@ -817,7 +906,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../resale-protocol/" title="Resale Protocol" class="md-nav__link">
+    <a href="../../protocol-specification/resale-protocol/" title="Resale Protocol" class="md-nav__link">
       Resale Protocol
     </a>
   </li>
@@ -827,20 +916,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" title="Credential Reuse Protocol" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../protocol-specification/credential-reuse-protocol/" title="Credential Reuse Protocol" class="md-nav__link">
       Credential Reuse Protocol
     </a>
-    
   </li>
 
         
@@ -850,7 +930,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../appendix-b-device-provisioning-with-ecdsa/" title="Appendix B - Device Provisioning with ECDSA" class="md-nav__link">
+    <a href="../../protocol-specification/appendix-b-device-provisioning-with-ecdsa/" title="Appendix B - Device Provisioning with ECDSA" class="md-nav__link">
       Appendix B - Device Provisioning with ECDSA
     </a>
   </li>
@@ -862,7 +942,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../appendix-c-secure-device-onboard-1-1-crypto-upgrade/" title="Appendix C - Secure Device Onboard 1.1 Crypto Upgrade" class="md-nav__link">
+    <a href="../../protocol-specification/appendix-c-secure-device-onboard-1-1-crypto-upgrade/" title="Appendix C - Secure Device Onboard 1.1 Crypto Upgrade" class="md-nav__link">
       Appendix C - Secure Device Onboard 1.1 Crypto Upgrade
     </a>
   </li>
@@ -887,8 +967,76 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
-    
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fidoiot-design" class="md-nav__link">
+    FIDOIOT Design
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changes-to-be-made-in-client-sdk" class="md-nav__link">
+    Changes to be Made in Client SDK
+  </a>
+  
+    <nav class="md-nav" aria-label="Changes to be Made in Client SDK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cbor-cose-hal-library-a1" class="md-nav__link">
+    CBOR – COSE HAL Library (A1)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protocol-message-layer-a2" class="md-nav__link">
+    Protocol Message Layer (A2)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serviceinfo-message-handling-a3" class="md-nav__link">
+    ServiceInfo Message Handling (A3)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storage-implementation-cbor-format-a4" class="md-nav__link">
+    Storage Implementation - CBOR Format (A4)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fido-message-handling" class="md-nav__link">
+    Fido Message Handling
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -904,60 +1052,47 @@
                   
                 
                 
-                <h1 id="credential-reuse-protocol">Credential Reuse Protocol<a class="headerlink" href="#credential-reuse-protocol" title="Permanent link">&para;</a></h1>
-<p>Credential Reuse protocol allows devices to reuse the Ownership Credential
-across multiple onboardings. The intended use case for this protocol is to
-support demos and testing scenarios where the onboarding can be run repeatedly
-and quickly without having to change the Ownership Voucher or resetting the
-system after each onboarding. Since credential reuse can permit the previous
-Owner unlimited access to the device, it is NOT recommended for use in the
-normal device supply chain.</p>
-<p>Credential reuse is selected by the Owner, and accepted or rejected by the
-device. We anticipate that new devices will always allow credential reuse, but
-some legacy devices do not support it. However, we can envision devices for high
-security applications which might reject credential reuse.</p>
-<p>In normal credential use, the Owner changes the Ownership Credential in
-TO2.SetupDevice, which also creates a new Ownership Voucher. At the end of a
-successful TO2 protocol, the device deactivates Secure Device Onboard and its state needs to
-be changed to ReadyN using the Resale protocol in order to reactivate onboarding
-process on next boot. The next onboarding uses the new Ownership Voucher.</p>
-<p>For credential reuse, the TO2 protocol supports a special case which indicates
-to the device not to change the Ownership Credential in TO2.SetupDevice. The
-device still runs the complete TO2 protocol to the end but does not deactivate
-Secure Device Onboard at the end of the protocol.</p>
-<p>The Credential Reuse protocol is as follows:</p>
-<p>In TO2.SetupDevice:</p>
-<ul>
-<li>
-<p><strong>If</strong> TO2.SetupDevice.noh.bo.g3 == TO2.ProveOPHdr.bo.oh.g # GUID same as
-    previous,</p>
-<p><strong>and</strong> TO2.SetupDevice.noh.bo.r3[0] == TO2.ProveOPHdr.bo.oh.r # RendezvousInfo same as previous,</p>
-<p><strong>and</strong> TO2.SetupDevice.pk == Owner’s current public key # public key in the last entry of Ownership Voucher,</p>
-<p><strong>and</strong> TO2.SetupDevice.sig is a valid signature</p>
-</li>
-<li>
-<p><strong>Then</strong></p>
-<ul>
-<li>
-<p>Device does not update the Ownership Credential,</p>
-</li>
-<li>
-<p><strong>and</strong> Device does not internally change the HMAC,</p>
-</li>
-<li>
-<p><strong>and</strong> in TO2.Done message, devices responds with TO2.Done.hmac equal
-    to the ASCII string “=” (i.e., hmac.length = 1 and value = 0x3d;
-    hmac.hashtype = 0).</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>Note that an HMAC with one byte (hmac.length=1) is not a legal HMAC. The special
-value for TO2.Done.hmac is used to indicate to the Owner that device supports
-Credential Reuse protocol, and that the HMAC is not changed.</p>
-<p>Devices which do not support credential reuse generate a new HMAC and return its
-value, a valid HMAC, in TO2.Done.hmac. The Owner can differentiate whether the
-device supports Credential Reuse based on the HMAC value.</p>
+                  <h1>FIDOIOT Client Design</h1>
+                
+                <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>This document describes the changes required in the Secure Device Onboard Client Software Development Kit (SDK) to support the new <a href="https://fidoalliance.org/specs/fidoiot/FIDO-IoT-spec-v1.0-wd-20200730.html">FIDO IOT draft specification</a>.</p>
+<p>The SDO Client SDK is a portable C Code implementation of the Secure Device Onboarding (SDO) protocols, cryptographic operations, and associated functions required to support microcontroller (MCU) devices. The SDK is written in C since it is the language of choice for programming MCU devices. While the SDK is developed and tested on Linux, the core components of the SDK are isolated from Linux specifics via an abstraction layer. Well-known open source implementations of cryptographic libraries are used for crypto operations.</p>
+<p>The reader is expected to be familiar with MCUs in general – their SW &amp; HW characteristics, how they are used, typical applications, their lifecycle, etc.</p>
+<h2 id="fidoiot-design">FIDOIOT Design<a class="headerlink" href="#fidoiot-design" title="Permanent link">&para;</a></h2>
+<p>The design is divided into different blocks of FIDOIOT-specific implementation.  This document does not specify API-level design, but rather specifies the block-level and call-level design of the FIDOIOT design. The existing REST/JSON based protocols currently implemented in the Client SDK are replaced by the CBOR-based protocols described in the FIOD IOT draft specification.  Please refer to the FIDO IOT draft specification for complete details of the new draft protocols.</p>
+<p>Figure 1.   Basic Block Diagram
+<img alt="Basic Block Diagram" src="../img/Slide3.PNG" /></p>
+<h2 id="changes-to-be-made-in-client-sdk">Changes to be Made in Client SDK<a class="headerlink" href="#changes-to-be-made-in-client-sdk" title="Permanent link">&para;</a></h2>
+<p>There are a few blocks and implementations to be either fully rewritten or modified to make the Client SDK compatible with the FIDO IOT draft  specification. Those changes are described in the following sections:</p>
+<h3 id="cbor-cose-hal-library-a1">CBOR – COSE HAL Library (A1)<a class="headerlink" href="#cbor-cose-hal-library-a1" title="Permanent link">&para;</a></h3>
+<p>This block implements the following functionality:</p>
+<ol>
+<li>CBOR Encode API – Uses the TinyCBOR library calls directly to encode data provided from upper layer to create CBOR data stream.  Data is provided back to SDO library to be sent using network layer.</li>
+<li>CBOR Decode API – Uses TinyCBOR library calls directly to decode received CBOR encoded data from servers.  Library calls may be used recursively.</li>
+<li>CBOR COSE APIs – Implements the COSE API requirement using the Crypto HAL API calls as well as using TinyCBOR APIs calls. Refer to the FIDO IOT draft specification for further details on API requirements.</li>
+</ol>
+<p>Documentation for the TinyCBOR library can be found <a href="https://intel.github.io/tinycbor/current/">here</a>.  </p>
+<p>Source code for the TinyCBOR library can be found <a href="https://github.com/intel/tinycbor">here</a>.</p>
+<h3 id="protocol-message-layer-a2">Protocol Message Layer (A2)<a class="headerlink" href="#protocol-message-layer-a2" title="Permanent link">&para;</a></h3>
+<p>This layer must be adapted to the new FIDO IOT implementation. Each message API must be revisited and re-implemented as required to comply with the FIDO IOT message structure. This layer will extensively use CBOR-COSE HAL layer.</p>
+<h3 id="serviceinfo-message-handling-a3">ServiceInfo Message Handling (A3)<a class="headerlink" href="#serviceinfo-message-handling-a3" title="Permanent link">&para;</a></h3>
+<p>The FIDO IOT draft specification requires changes to the handling of ServiceInfo messages. Handling of service info is done almost similar to previous specification; however, the repeat transmit, acknowledgement, and DSI messages require full implementation in the SDO library. Unlike the current implementation, service message must be part of the SDO library rather than a separate module.</p>
+<h3 id="storage-implementation-cbor-format-a4">Storage Implementation - CBOR Format (A4)<a class="headerlink" href="#storage-implementation-cbor-format-a4" title="Permanent link">&para;</a></h3>
+<p>Currently, all manufacturer information and device secrets are stored in persistent storage in JSON format. The new FIDO IOT draft specification uses CBOR as the data encoding format, and so all data stored in persistent  storage must be done using CBOR encoding. This will reduce confusion and discourage the user from using multiple data storage formats.</p>
+<p>All file save and load APIs must be rewritten using CBOR-COSE APIs to replace JSON encoding and decoding.</p>
+<h3 id="fido-message-handling">Fido Message Handling<a class="headerlink" href="#fido-message-handling" title="Permanent link">&para;</a></h3>
+<p>The following is the detailed design for handling FIDO CBOR messages in the Client SDK implementation. </p>
+<p>Figure 2. FIDO IOT Message Handling
+<img alt="FIDO IOT Message Handling" src="../img/Slide4.PNG" /></p>
+<ol>
+<li>CBOR–COSE HAL API Library will be used to decode and encode messages.</li>
+<li>Crypto HAL calls will be reutilized. If additional Crypto HAL APIs are required by CDDL they can be added as part of Crypto HAL layers.</li>
+</ol>
+<p>Figure 3. FIDO IOT Transmit Message Flowchart
+<img alt="FIDO IOT Transmit Message Flowchart" src="../img/Slide5.PNG" /></p>
+<p>Figure 4. FIDO IOT Receive Message Flowchart
+<img alt="FIDO IOT Receive Message Flowchart" src="../img/Slide6.PNG" /></p>
+<p>Further Client SDK porting details can be found <a href="https://github.com/secure-device-onboard/docs/blob/master/docs/client-sdk/client-sdk-porting-guide.md">here</a>. </p>
                 
               
               
@@ -976,7 +1111,7 @@ device supports Credential Reuse based on the HMAC value.</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../resale-protocol/" title="Resale Protocol" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../fidoiot-introduction/" title="Introduction" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -985,19 +1120,19 @@ device supports Credential Reuse based on the HMAC value.</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Resale Protocol
+                Introduction
               </div>
             </div>
           </a>
         
         
-          <a href="../appendix-b-device-provisioning-with-ecdsa/" title="Appendix B - Device Provisioning with ECDSA" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../client-sdk/client-sdk-reference-guide/" title="Introduction" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Appendix B - Device Provisioning with ECDSA
+                Introduction
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
