@@ -1469,7 +1469,7 @@ The module is expected to process the key-value pair and return a result indicat
 <tbody>
 <tr>
 <td>Software</td>
-<td>·      Linux* Ubuntu* 18.04 using   OpenSSL* 1.1.1g <br/>·      JDK11  <br/> ·      SDO release binaries package (for running test servers) <br/>     o The root directory of extracted binary package is referred to as <sdo_sdk_binaries> in subsequent sections. <br/>   ·      SDO Client SDK alpha-release binary package <br/>   o The root directory of extracted binary package is referred to as &lt; SDOClientSDK&gt; in subsequent sections. <br/>  ·      SDO Client SDK alpha-release sources package <br/>  o The root directory of extracted source code is referred to as &lt; SDOClientSDK&gt; in subsequent sections. <br/>  ·      Apache Maven* (for building sample Java* based test owner   service)   <br/>    Additional Ubuntu* 18.04  prerequisites can be found in the   <releases source>/SDOClientSDK/README.md</td>
+<td>·      Linux* Ubuntu* 20.04 using   OpenSSL* 1.1.1g <br/>·      JDK11  <br/> ·      SDO release binaries package (for running test servers) <br/>     o The root directory of extracted binary package is referred to as <sdo_sdk_binaries> in subsequent sections. <br/>   ·      SDO Client SDK alpha-release binary package <br/>   o The root directory of extracted binary package is referred to as &lt; SDOClientSDK&gt; in subsequent sections. <br/>  ·      SDO Client SDK alpha-release sources package <br/>  o The root directory of extracted source code is referred to as &lt; SDOClientSDK&gt; in subsequent sections. <br/>  ·      Apache Maven* (for building sample Java* based test owner   service)   <br/>    Additional Ubuntu* 20.04  prerequisites can be found in the   <releases source>/SDOClientSDK/README.md</td>
 </tr>
 <tr>
 <td>Safestring   library</td>
@@ -1491,8 +1491,8 @@ The module is expected to process the key-value pair and return a result indicat
 <p><em><strong>For ECDSA (P-384) based device-attestation method:</strong></em>  </p>
 <p>For ECDSA384, place the ECDSA P-384 private Key with the name ecdsa384privkey.dat in the following
 location: <code>data/ecdsa384privkey.data</code></p>
-<p>Follow <a href="https://github.com/secure-device-onboard/all-in-one-demo/blob/master/README.md">All-in-one Demo README</a> to start the SDO Manufacturer, Rendezvous, and Owner Service: PRI Owner Service and PRI Rendezvous Service.</p>
-<pre><code>To run SDO ARM Cortex-M4 or Cortex-A7 based devices, follow the detailed steps (including flashing and device preparation) mentioned in the [README](https://github.com/secure-device-onboard/client-sdk/blob/master/README.md) document.
+<p>Follow <a href="https://github.com/secure-device-onboard/all-in-one-demo/blob/1.10-rel/README.md">All-in-one Demo README</a> to start the SDO Manufacturer, Rendezvous, and Owner Service: PRI Owner Service and PRI Rendezvous Service.</p>
+<pre><code>To run SDO ARM Cortex-M4 or Cortex-A7 based devices, follow the detailed steps (including flashing and device preparation) mentioned in the [README](https://github.com/secure-device-onboard/client-sdk/blob/1.10-rel/README.md) document.
 </code></pre>
 <p><em><strong>Terminal #1: Start All-in-one Demo</strong></em>  </p>
 <h4 id="device-initialization">Device Initialization<a class="headerlink" href="#device-initialization" title="Permanent link">&para;</a></h4>
@@ -1523,13 +1523,13 @@ $ ./linux-client
 <p>This step successfully onboards the device. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>To run SDO ARM Cortex-M4 or Cortex-A7 based devices, follow the detailed steps (including flashing and device preparation) mentioned in the <a href="https://github.com/secure-device-onboard/client-sdk/blob/master/README.md">README</a> document.</p>
+<p>To run SDO ARM Cortex-M4 or Cortex-A7 based devices, follow the detailed steps (including flashing and device preparation) mentioned in the <a href="https://github.com/secure-device-onboard/client-sdk/blob/1.10-rel/README.md">README</a> document.</p>
 </div>
 <h3 id="build-the-source">Build the Source<a class="headerlink" href="#build-the-source" title="Permanent link">&para;</a></h3>
 <p>Follow these steps to build the source package:  </p>
 <ol>
 <li>Make sure you have completed the pre-requisites. Download source code from <a href="https://github.com/secure-device-onboard/client-sdk">Github repository</a>.</li>
-<li>Follow the instructions provided in the <a href="https://github.com/secure-device-onboard/client-sdk/blob/master/README.md">README</a> to build the source code by setting the necessary environment variables.</li>
+<li>Follow the instructions provided in the <a href="https://github.com/secure-device-onboard/client-sdk/blob/1.10-rel/README.md">README</a> to build the source code by setting the necessary environment variables.</li>
 <li>The SDO Client binary is generated in build/ folder. Ensure to copy them to the root folder before proceeding with the next steps.</li>
 <li>Run the SCT, IOT platform SDK and RV servers.</li>
 <li>Complete Device Initialization </li>
