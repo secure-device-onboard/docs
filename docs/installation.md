@@ -6,7 +6,7 @@ This document can be used as a quick start guide to setup the development enviro
 
 | Component | Recommended |
 |------- |------|
-| Operating System | Ubuntu\* 18.04 / Windows\* 10 |
+| Operating System | Ubuntu\* 20.04 / Windows\* 10 |
 | Docker* Engine | 18.09 |
 | Docker* Compose | 1.21.2 |
 | Maven* | 3.5.4 |
@@ -93,6 +93,11 @@ sudo systemctl restart docker
 ```
 sudo systemctl show --property Environment docker
 ```
+7 . SDO Docker* FAQs
+
+  1. Docker* Time Synchronization Issue while building Ubuntu* 20 docker image from an Ubuntu* 18 machine. [Refer](https://github.com/secure-device-onboard/all-in-one-demo/issues/62)
+
+  2. Failure in device onboarding due to the inaccessibility of internet (while running Docker* behind a proxy network). [Refer](https://github.com/secure-device-onboard/all-in-one-demo/issues/63)
 
 ## Docker* Compose Installation
 To install a specific version of Docker\* Compose (for example **_1.21.2_**) follow these steps:
