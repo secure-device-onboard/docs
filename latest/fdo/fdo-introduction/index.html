@@ -11,7 +11,7 @@
         <meta name="description" content="Documentation for Secure Device Onboard Project">
       
       
-        <link rel="canonical" href="https://secure-device-onboard.github.io/docs/fidoiot/fidoiot-introduction/">
+        <link rel="canonical" href="https://secure-device-onboard.github.io/docs/fdo/fdo-introduction/">
       
       
         <meta name="author" content="Secure Device Onboard Contributers">
@@ -153,7 +153,7 @@
     <li class="md-tabs__item">
       
         <a href="./" class="md-tabs__link md-tabs__link--active">
-          FIDOIOT
+          FIDO Device Onboard
         </a>
       
     </li>
@@ -385,13 +385,13 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
-      FIDOIOT
+      FIDO Device Onboard
       <span class="md-nav__icon md-icon"></span>
     </label>
-    <nav class="md-nav" aria-label="FIDOIOT" data-md-level="1">
+    <nav class="md-nav" aria-label="FIDO Device Onboard" data-md-level="1">
       <label class="md-nav__title" for="nav-2">
         <span class="md-nav__icon md-icon"></span>
-        FIDOIOT
+        FIDO Device Onboard
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -421,8 +421,68 @@
 
 
   <li class="md-nav__item">
-    <a href="../fidoiot-client-sdk-design/" title="FIDOIOT Client Design" class="md-nav__link">
-      FIDOIOT Client Design
+    <a href="../fdo-protocol-specification/" title="Protocol Specification" class="md-nav__link">
+      Protocol Specification
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fdo-protocol-reference-implementation-introduction/" title="Protocol Reference Implementation" class="md-nav__link">
+      Protocol Reference Implementation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fdo-client-sdk-design/" title="FDO Client SDK Design" class="md-nav__link">
+      FDO Client SDK Design
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fdo-client-sdk-reference-guide/" title="FDO Client SDK Introduction" class="md-nav__link">
+      FDO Client SDK Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fdo-client-sdk-api-reference/" title="FDO Client SDK API Reference" class="md-nav__link">
+      FDO Client SDK API Reference
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fdo-client-sdk-porting-guide/" title="FDO Client SDK Porting Guide" class="md-nav__link">
+      FDO Client SDK Porting Guide
     </a>
   </li>
 
@@ -884,9 +944,9 @@
                 
                   <h1>Introduction</h1>
                 
-                <p>The SDO project is developing an implementation of the FIDO IOT device onboarding specification currently under development by the FIDO Alliance.  A <a href="https://fidoalliance.org/specs/fidoiot/FIDO-IoT-spec-v1.0-wd-20200730.html">specification working draft</a> was released in August 2020.  </p>
-<p>The <a href="https://github.com/secure-device-onboard/pri-fidoiot">PRI-FIDOIOT</a> component has been added to the LF Edge Secure Device Onboard project.  It is a reference implementation of the specification working draft, and also implements the service modules required to exercise the complete system: Device, Manufacturer, Rendezvous Server, and Owner.  See the <a href="https://github.com/secure-device-onboard/pri-fidoiot/blob/master/README.md">readme</a> in the PRI-FIDOIOT project repository for details on the implementation and how to get it set up and running.  See the <a href="https://github.com/secure-device-onboard/release-fidoiot/releases">release notes</a> for PRI-FIDOIOT 0.3 for a summary of features and capabilities implemented (or not) in the 0.3 release.</p>
-<p>The Client SDK - FIDOIOT component will soon be added to the SDO project.  It will be based on the current SDO Client SDK.  A <a href="../fidoiot-client-sdk-design/">design document</a> outlining the changes required to support the new FIDO protocols for devices as described in the current draft has been added to the SDO documentation.  Comments are welcome and can be submitted via the SDO documentation GitHub repository.</p>
+                <p>The FDO project is developing an implementation of the <a href="https://fidoalliance.org/specs/FDO/fido-device-onboard-v1.0-ps-20210323/">FIDO Device Onboarding specification</a> by the FIDO Alliance.</p>
+<p>The <a href="https://github.com/secure-device-onboard/pri-fidoiot">FDO PRI</a> component has been added to the LF Edge Secure Device Onboard project.  It is a reference implementation of the specification working draft, and also implements the service modules required to exercise the complete system: Device, Manufacturer, Rendezvous Server, and Owner.  See the <a href="https://github.com/secure-device-onboard/pri-fidoiot/blob/master/README.md">readme</a> in the PRI-FIDOIOT project repository for details on the implementation and how to get it set up and running.  See the <a href="https://github.com/secure-device-onboard/release-fidoiot/releases">release notes</a> for PRI-FIDOIOT 0.3 for a summary of features and capabilities implemented (or not) in the 0.3 release.</p>
+<p>The <a href="https://github.com/secure-device-onboard/client-sdk-fidoiot">FDO Client SDK</a> component has been added to teh LF Edge Secure Device Onboard project. A <a href="../fdo-client-sdk-design/">design document</a> outlining the changes required to support the new FIDO Device Onboard protocol for devices has also been added to the FDO documentation.  Comments are welcome and can be submitted via the FDO documentation GitHub repository.</p>
                 
               
               
@@ -920,13 +980,13 @@
           </a>
         
         
-          <a href="../fidoiot-client-sdk-design/" title="FIDOIOT Client Design" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../fdo-protocol-specification/" title="Protocol Specification" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                FIDOIOT Client Design
+                Protocol Specification
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
