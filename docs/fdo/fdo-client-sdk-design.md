@@ -8,7 +8,7 @@ The reader is expected to be familiar with MCUs in general – their SW & HW cha
 
 ## FDO Client SDK Design
 
-The design is divided into different blocks of FDO specific implementation.  This document does not specify API-level design, but rather specifies the block-level and call-level design of the FDO design. The existing REST/JSON based protocols currently implemented in the Client SDK are replaced by the CBOR-based protocols described in the FIDO IOT draft specification.  Please refer to the FDO specification for complete details of the new draft protocols.
+The design is divided into different blocks of FDO specific implementation.  This document does not specify API-level design, but rather specifies the block-level and call-level design of the FDO design. The existing REST/JSON based protocols currently implemented in the Client SDK are replaced by the CBOR-based protocols described in the FIDO Device Onboard Proposed Standard.  Please refer to the FDO specification for complete details of the new draft protocols.
 
 Figure 1.	Basic Block Diagram
 ![Basic Block Diagram](img/Slide3.PNG)
