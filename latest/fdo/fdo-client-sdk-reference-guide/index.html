@@ -1407,7 +1407,7 @@
 <h2 id="client-sdk-overview">Client SDK Overview<a class="headerlink" href="#client-sdk-overview" title="Permanent link">&para;</a></h2>
 <p>Like any SDK, the Client SDK is expected to be embedded within a custom implementation that provides overall device functionality while using the SDK to perform FDO-based device onboarding. The SDK will be statically linked to an application that invokes SDK APIs to trigger onboarding functionality. This implementation is referred to as the ‘Application’ in this document.</p>
 <p>Figure 1.   FDO Client Block Diagram</p>
-<p><img alt="FDO Client Block Diagram" src="img/1-Intel FDO Client Block Diagram.JPG" /></p>
+<p><img alt="FDO Client Block Diagram" src="../img/1-Intel%20FDO%20Client%20Block%20Diagram.JPG" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>FDO is an acronym for FIDO Device Onboard.  </p>
@@ -1475,7 +1475,7 @@ The following section details the interactions between the Application, Client S
 <p><img alt="FDO Client Block Diagram" src="../img/3-Service%20Info%20Exchanges%20between%20Device%20and%20Owner%20Server.JPG" /></p>
 <p>As shown in the diagram, PSI is ‘global’ to all modules and occurs once between the device and Owner Server. DSI and OSI are module specific.</p>
 <h4 id="module-initialization">Module Initialization<a class="headerlink" href="#module-initialization" title="Permanent link">&para;</a></h4>
-<p>For each registered module, the SDK initializes the module by call its callback with the <code>FDO_SI_START</code> type. The module is expected to prepare to receive PSI, DSI, and OSI calls after initialization.</p>
+<p>For each registered module, the SDK initializes the module by calling its callback with the <code>FDO_SI_START</code> type. The module is expected to prepare to receive PSI, DSI, and OSI calls after initialization.</p>
 <p>If an error occurs after a module has been initialized, during the remainder of TO2 protocol execution and the Application is restarted, the SDK will again call this API to initialize each registered module. The module must be prepared for multiple such calls due to the SDK’s retry-based approach to error recovery.</p>
 <h4 id="pre-service-info-psi">Pre-Service Info (PSI)<a class="headerlink" href="#pre-service-info-psi" title="Permanent link">&para;</a></h4>
 <p>The intent of PSI is described in the FDO Protocol specification. Basically, PSI provides the Owner Server with a way to inform a module what to expect during the next two service info sequences (such as, DSI and OSI). The module should use this information to prepare itself for the subsequent exchanges.</p>
@@ -1591,7 +1591,7 @@ $ ./linux-client
 <li>Make sure you have completed the pre-requisites. Download source code from <a href="https://github.com/secure-device-onboard/client-sdk">Github repository</a>.</li>
 <li>Follow the instructions provided in the <a href="https://github.com/secure-device-onboard/client-sdk/blob/1.10-rel/README.md">README</a> to build the source code by setting the necessary environment variables.</li>
 <li>The FDO Client binary is generated in build/ folder. Ensure to copy them to the root folder before proceeding with the next steps.</li>
-<li>Run the SCT, IOT platform SDK and RV servers.</li>
+<li>Run the Manufacturer, Owner and RV servers.</li>
 <li>Complete Device Initialization </li>
 <li>Complete Device Onboarding</li>
 </ol>
