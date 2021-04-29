@@ -537,22 +537,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#service-information-key-value-pair" class="md-nav__link">
-    Service Information Key Value Pair
+  <a href="#owner-serviceinfo-module-callback" class="md-nav__link">
+    Owner ServiceInfo Module Callback
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#service-information-module-callback" class="md-nav__link">
-    Service Information Module Callback
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#service-information-module-description" class="md-nav__link">
-    Service Information Module Description
+  <a href="#serviceinfo-module-description" class="md-nav__link">
+    ServiceInfo Module Description
   </a>
   
 </li>
@@ -601,6 +594,33 @@
           <li class="md-nav__item">
   <a href="#prepare-the-fdo-sdk-for-resale" class="md-nav__link">
     Prepare the FDO SDK for Resale
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fdo-concise-binary-object-representation-cbor-encoderdecoder-apis" class="md-nav__link">
+    FDO Concise Binary Object Representation (CBOR) encoder/decoder APIs
+  </a>
+  
+    <nav class="md-nav" aria-label="FDO Concise Binary Object Representation (CBOR) encoder/decoder APIs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fdo-writer-cbor-encoder" class="md-nav__link">
+    FDO Writer (CBOR Encoder)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fdo-reader-decoder-structure" class="md-nav__link">
+    FDO Reader (Decoder structure)
   </a>
   
 </li>
@@ -1145,22 +1165,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#service-information-key-value-pair" class="md-nav__link">
-    Service Information Key Value Pair
+  <a href="#owner-serviceinfo-module-callback" class="md-nav__link">
+    Owner ServiceInfo Module Callback
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#service-information-module-callback" class="md-nav__link">
-    Service Information Module Callback
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#service-information-module-description" class="md-nav__link">
-    Service Information Module Description
+  <a href="#serviceinfo-module-description" class="md-nav__link">
+    ServiceInfo Module Description
   </a>
   
 </li>
@@ -1218,6 +1231,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#fdo-concise-binary-object-representation-cbor-encoderdecoder-apis" class="md-nav__link">
+    FDO Concise Binary Object Representation (CBOR) encoder/decoder APIs
+  </a>
+  
+    <nav class="md-nav" aria-label="FDO Concise Binary Object Representation (CBOR) encoder/decoder APIs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fdo-writer-cbor-encoder" class="md-nav__link">
+    FDO Writer (CBOR Encoder)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fdo-reader-decoder-structure" class="md-nav__link">
+    FDO Reader (Decoder structure)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1242,7 +1282,7 @@
 <p>These structures are defined in the FDO Client SDK header file and used by various SDK APIs.</p>
 <h3 id="generic-api-return-status">Generic API Return Status<a class="headerlink" href="#generic-api-return-status" title="Permanent link">&para;</a></h3>
 <p>This type is returned by all APIs and indicates whether the API call succeeded or failed.</p>
-<p><em><strong>Syntax</strong></em>  </p>
+<p><em><strong>Syntax</strong></em></p>
 <pre><code>typedef enum {
     FDO_SUCCESS = 0,
     FDO_INVALID_PATH,
@@ -1255,28 +1295,56 @@
     FDO_ABORT
 } fdoSdkStatus;
 </code></pre>
-<p><em><strong>Members</strong></em>  </p>
-<p><strong>FDO_SUCCESS</strong><br />
-        The API call succeeded.<br />
-<strong>FDO_INVALID_PATH</strong><br />
-        A path or address specified was not found or not accessible.<br />
-<strong>FDO_CONFIG_NOT_FOUND</strong><br />
-        An expected configuration file was not found or not accessible.<br />
-<strong>FDO_INVALID_STATE</strong><br />
-        The SDK is in an invalid state to perform the requested operation.<br />
-<strong>FDO_RESALE_NOT_SUPPORTED</strong><br />
-        This configuration of the SDK does not support the Resale Protocol.<br />
-<strong>FDO_RESALE_NOT_READY</strong><br />
-        The SDK is not in a state to execute the Resale Protocol. This error will occur when the Resale API (fdoSdkResale) is called when device ownership transfer has not yet completed successfully.<br />
-<strong>FDO_WARNING</strong><br />
-        This value is used in the SDK error callback to notify the Application that a transient failure occurred. See Error Handling Callback for details.<br />
-<strong>FDO_ERROR</strong><br />
-        The API call did not succeed. We might extend this later (TBD) to allow returning of specific error types as positive values (for example, memory allocation failure, communications failure, and so on). <br />
-<strong>FDO_ABORT</strong><br />
-        This value is returned by the error callback function to prevent the SDK from continuing the transfer of ownership protocol if an error occurred. Details are provided in Error Handling Callback.  </p>
+<p><em><strong>Members</strong></em></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>FDO_SUCCESS</strong></td>
+<td>The API call succeeded.</td>
+</tr>
+<tr>
+<td><strong>FDO_INVALID_PATH</strong></td>
+<td>A path or address specified was not found or not accessible.</td>
+</tr>
+<tr>
+<td><strong>FDO_CONFIG_NOT_FOUND</strong></td>
+<td>An expected configuration file was not found or not accessible.</td>
+</tr>
+<tr>
+<td><strong>FDO_INVALID_STATE</strong></td>
+<td>The SDK is in an invalid state to perform the requested operation.</td>
+</tr>
+<tr>
+<td><strong>FDO_RESALE_NOT_SUPPORTED</strong></td>
+<td>This configuration of the SDK does not support the Resale Protocol.</td>
+</tr>
+<tr>
+<td><strong>FDO_RESALE_NOT_READY</strong></td>
+<td>The SDK is not in a state to execute the Resale Protocol. This error will occur when the Resale API (fdoSdkResale) is called when device ownership transfer has not yet completed successfully.</td>
+</tr>
+<tr>
+<td><strong>FDO_WARNING</strong></td>
+<td>This value is used in the SDK error callback to notify the Application that a transient failure occurred. See Error Handling Callback for details.</td>
+</tr>
+<tr>
+<td><strong>FDO_ERROR</strong></td>
+<td>The API call did not succeed. We might extend this later (TBD) to allow returning of specific error types as positive values (for example, memory allocation failure, communications failure, and so on).</td>
+</tr>
+<tr>
+<td><strong>FDO_ABORT</strong></td>
+<td>This value is returned by the error callback function to prevent the SDK from continuing the transfer of ownership protocol if an error occurred. Details are provided in Error Handling Callback.</td>
+</tr>
+</tbody>
+</table>
 <h3 id="fdo-device-status">FDO Device Status<a class="headerlink" href="#fdo-device-status" title="Permanent link">&para;</a></h3>
 <p>This type indicates the current FDO protocol status of the device.</p>
-<p><em><strong>Syntax</strong></em>    </p>
+<p><em><strong>Syntax</strong></em></p>
 <pre><code>typedef enum {
     FDO_STATE_PRE_DI = 2,
     FDO_STATE_PRE_TO1,
@@ -1285,20 +1353,40 @@
     FDO_STATE_ERROR
 } fdoSdkDeviceStatus;
 </code></pre>
-<p><em><strong>Members</strong></em>  </p>
-<p><strong>FDO_STATE_PRE_DI</strong><br />
-        The SDK is in the pre-Device Initialization state. It is ready to run the DI protocol which can be initiated by calling the <code>fdoSdkRun()</code> API.<br />
-<strong>FDO_STATE_PRE_TO1</strong><br />
-        The SDK has completed the DI stage and is ready for Device onboarding. The SDK will run the TO1 protocol if the <code>fdoSdkRun()</code> API is called.<br />
-<strong>FDO_STATE_IDLE</strong><br />
-        The SDK has completed ownership transfer and is in the idle state. Calling <code>fdoSdkRun()</code> will have no effect. The Application may only call the <code>fdoSdkResale()</code> API to initiate the Resale protocol at his point.<br />
-<strong>FDO_STATE_RESALE</strong><br />
-        The SDK has is now ready for resale. Calling <code>fdoSdkRun()</code> will run the TO1 &amp; TO2 protocols, to carryout onboarding to the new (post-resale) device owner.<br />
-<strong>FDO_STATE_ERROR</strong><br />
-        This API failed due to an internal error.  </p>
+<p><em><strong>Members</strong></em></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>FDO_STATE_PRE_DI</strong></td>
+<td>The SDK is in the pre-Device Initialization state. It is ready to run the DI protocol which can be initiated by calling the <code>fdoSdkRun()</code> API.</td>
+</tr>
+<tr>
+<td><strong>FDO_STATE_PRE_TO1</strong></td>
+<td>The SDK has completed the DI stage and is ready for Device onboarding. The SDK will run the TO1 protocol if the <code>fdoSdkRun()</code> API is called.</td>
+</tr>
+<tr>
+<td><strong>FDO_STATE_IDLE</strong></td>
+<td>The SDK has completed ownership transfer and is in the idle state. Calling <code>fdoSdkRun()</code> will have no effect. The Application may only call the <code>fdoSdkResale()</code> API to initiate the Resale protocol at his point.</td>
+</tr>
+<tr>
+<td><strong>FDO_STATE_RESALE</strong></td>
+<td>The SDK has is now ready for resale. Calling <code>fdoSdkRun()</code> will run the TO1 &amp; TO2 protocols, to carryout onboarding to the new (post-resale) device owner.</td>
+</tr>
+<tr>
+<td><strong>FDO_STATE_ERROR</strong></td>
+<td>This API failed due to an internal error.</td>
+</tr>
+</tbody>
+</table>
 <h3 id="fdo-sdk-error-values">FDO SDK Error Values<a class="headerlink" href="#fdo-sdk-error-values" title="Permanent link">&para;</a></h3>
-<p>This type is passed from the SDK to the Application when an error occurs and indicates details of the error. It is used by the error callback – see Error Handling Callback.  </p>
-<p><em><strong>Syntax</strong></em>  </p>
+<p>This type is passed from the SDK to the Application when an error occurs and indicates details of the error. It is used by the error callback – see Error Handling Callback.</p>
+<p><em><strong>Syntax</strong></em></p>
 <pre><code>typedef enum {
     FDO_RV_TIMEOUT = 1,
     FDO_CONN_TIMEOUT,
@@ -1307,158 +1395,396 @@
     FDO_TO2_ERROR
 } fdoSdkError;
 </code></pre>
-<p><em><strong>Members</strong></em>  </p>
-<p><strong>FDO_RV_TIMEOUT</strong><br />
-        A timeout occurred when trying to contact the Rendezvous Server.<br />
-<strong>FDO_CONN_TIMEOUT</strong><br />
-        A connection to either the Rendezvous or Owner Server timed out.<br />
-<strong>FDO_DI_ERROR</strong><br />
-        A generic error occurred during the DI stage.<br />
-<strong>FDO_TO1_ERROR</strong><br />
-        A generic error occurred during the TO1 protocol stage.<br />
-<strong>FDO_TO2_ERROR</strong><br />
-        A generic error occurred during the TO2 protocol stage.  </p>
+<p><em><strong>Members</strong></em></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>FDO_RV_TIMEOUT</strong></td>
+<td>A timeout occurred when trying to contact the Rendezvous Server.</td>
+</tr>
+<tr>
+<td><strong>FDO_CONN_TIMEOUT</strong></td>
+<td>A connection to either the Rendezvous or Owner Server timed out.</td>
+</tr>
+<tr>
+<td><strong>FDO_DI_ERROR</strong></td>
+<td>A generic error occurred during the DI stage.</td>
+</tr>
+<tr>
+<td><strong>FDO_TO1_ERROR</strong></td>
+<td>A generic error occurred during the TO1 protocol stage.</td>
+</tr>
+<tr>
+<td><strong>FDO_TO2_ERROR</strong></td>
+<td>A generic error occurred during the TO2 protocol stage.</td>
+</tr>
+</tbody>
+</table>
 <h3 id="fdo-service-callback-type">FDO Service Callback Type<a class="headerlink" href="#fdo-service-callback-type" title="Permanent link">&para;</a></h3>
-<p>This type value indicates the type of function the module callback must perform. These values are used by the Service Information Module Callback function.  </p>
-<p><em><strong>Syntax</strong></em>  </p>
+<p>This type value indicates the type of function the module callback must perform. These values are used by the ServiceInfo Module Callback function.</p>
+<p><em><strong>Syntax</strong></em></p>
 <pre><code>typedef enum {
     FDO_SI_START,
-    FDO_SI_GET_DSI_COUNT,
-    FDO_SI_SET_PSI,
     FDO_SI_GET_DSI,
     FDO_SI_SET_OSI,
     FDO_SI_END,
     FDO_SI_FAILURE
-} fdoSdkSiType;
+} fdo_sdk_si_type;
 </code></pre>
-<p><em><strong>Members</strong></em>  </p>
-<p>Below are the parameters of the Service Information Module Callback function described in Service Information Module Callback function.  </p>
-<p><strong>FDO_SI_START</strong><br />
-        This value indicates that the SDK is starting Service Info rounds. The module may perform pre-preparation operations at this time. The count and si parameters will be NULL.<br />
-<strong>FDO_SI_SET_PSI</strong><br />
-        This value indicates that the SDK is returning a pre-service information (PSI) key-value pair that was received from the server to the module. The <code>si.key</code> contains the received key name and is a <code>NULL</code> terminated ASCII string. The <code>si.value</code> parameter contains the PSI value and is assumed to be a <code>NULL</code> terminated string. If no value was received, this value will by <code>NULL</code>. The <code>count</code> will contain the ‘index’ of the invocation, starting from 0 and incrementing on each subsequent call. If the module needs to retain the contents of the <code>si.key</code> or <code>si.value</code> parameters after the call returns, it must make an internal, local copy.<br />
-<strong>FDO_SI_GET_DSI_COUNT</strong><br />
-        This value indicates that the SDK is requesting the module to return the total number of Device Service Info (DSI) strings it needs to send to the Owner Server. The maximum size of a string is 1,200 bytes. Strings larger than 1,200 bytes need to be split across multiple strings and this count must be factored into the total number of DSI strings for the module. On receiving this call, the module must place the number of DSI strings the module will report into the <code>*count</code> parameter. The <code>si</code> pointer will be <code>NULL</code>.<br />
-<strong>FDO_SI_GET_DSI</strong><br />
-        This value indicates that the SDK is requesting the module to return a particular Device Service Info string. The count parameter contains the index of the DSI value requested. It will progress from zero to the value returned by the response to the <code>FDO_SI_GET_DSI_COUNT</code> callback minus 1. A module must use this value to track where in the DSI list it currently is. The module must set prepare two <code>NULL</code> terminated strings – one for the DSI key and another for the DSI value. The <code>si.key</code> and <code>si.value</code> pointers must point at these strings before returning from the callback. The memory allocated for si.key and si.value must remain valid (that is, not be freed) until the next time this callback is invoked – the service info callback sequence will end with <code>FDO_SI_END or FDO_SI_ERROR</code>.<br />
-<strong>FDO_SI_SET_OSI</strong><br />
-        This value indicates that the SDK is providing a valid Owner Service Info (OSI) key-value pair to the module and it must process the provide OSI information. The count parameter is a progressively increasing index value of the provided OSI. The <code>si.key</code> will contain the key value and the <code>si.value</code> will contain the value of the string. Both are valid, <code>NULL</code> terminated strings. The value might be Base 64 encoded binary data. This encoding is module-dependent and should be indicated by the <code>si.key</code> contents.<br />
-<strong>FDO_SI_END</strong><br />
-        This value indicates that the SDK has completed all Service Info rounds and the module can perform cleanup or final operations if required (like saving a file to disk, and so on) The <code>count</code> and the <code>si</code> parameters will be <code>NULL</code>.<br />
-<strong>FDO_SI_FAILURE</strong><br />
-        This value indicates that an error occurred and the SDK is aborting or abandoning this Service Info round. The module must ignore all the information it received thus far (if any) and reset to its pre-Service Info state. The <code>count</code> and <code>si</code> parameters will be NULL.  </p>
-<h3 id="service-information-key-value-pair">Service Information Key Value Pair<a class="headerlink" href="#service-information-key-value-pair" title="Permanent link">&para;</a></h3>
-<p>This type contains a key name string and associated value string. Both items are pointers to ASCII NULL terminated strings.   </p>
-<p><em><strong>Syntax</strong></em>  </p>
-<pre><code>typedef struct fdoSdkSiKeyValue {
-    char *key;
-    char *value;
-} fdoSdkSiKeyValue;
-</code></pre>
-<p><em><strong>Members</strong></em>  </p>
-<p><strong>key</strong><br />
-<code>NULL</code> terminated string containing the Key Name.<br />
-<strong>value</strong><br />
-<code>NULL</code> terminated string containing the Value associated with the Key Name. Binary values must be encoded in Base-64 format.  </p>
-<h3 id="service-information-module-callback">Service Information Module Callback<a class="headerlink" href="#service-information-module-callback" title="Permanent link">&para;</a></h3>
-<p>This type is a pointer to a callback function that is used to process Owner Service Information messages received from the Owner Server for a specific Service Information module. See Service Information Module Description for how it is used.</p>
-<p>This callback function is invoked in the context of the executing onboarding protocol hence, although there is no fixed timeline, the module must complete execution in the shortest possible time.  </p>
-<p><em><strong>Syntax</strong></em>  </p>
-<pre><code>typedef int (*fdoSdkServiceInfoCB)(
-    fdoSdkSiType     type,
-    int              *count,
-    fdoSdkSiKeyValue *si
+<p><em><strong>Members</strong></em></p>
+<p>Below are the parameters of the ServiceInfo Module Callback function described in ServiceInfo Module Callback function.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>FDO_SI_START</strong></td>
+<td>This value indicates that the SDK is starting Service Info rounds. The module may perform pre-preparation operations at this time. The count and si parameters will be NULL.</td>
+</tr>
+<tr>
+<td><strong>FDO_SI_GET_DSI</strong></td>
+<td>This is a legacy value that shall be removed in a future release.</td>
+</tr>
+<tr>
+<td><strong>FDO_SI_SET_OSI</strong></td>
+<td>This value indicates that the SDK is providing a valid Owner Service Info key-value pair to the module and it must process the provide Owner ServiceInfo information. The count parameter is a progressively increasing index value of the provided Owner ServiceInfo.</td>
+</tr>
+<tr>
+<td><strong>FDO_SI_END</strong></td>
+<td>This value indicates that the SDK has completed all Service Info rounds and the module can perform cleanup or final operations if required (like saving a file to disk, and so on).</td>
+</tr>
+<tr>
+<td><strong>FDO_SI_FAILURE</strong></td>
+<td>This value indicates that an error occurred and the SDK is aborting or abandoning this Service Info round. The module must ignore all the information it received thus far (if any) and reset to its initial state.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="owner-serviceinfo-module-callback">Owner ServiceInfo Module Callback<a class="headerlink" href="#owner-serviceinfo-module-callback" title="Permanent link">&para;</a></h3>
+<p>This type is a pointer to a callback function that is used to process Owner ServiceInfo messages received from the Owner Server for a specific ServiceInfo module.</p>
+<p>It takes a pointer to the structure <code>fdor_t</code> whose internal buffer contains the entire message as received in TO2.OwnerServiceInfo (Type 69) with the current position set to the ServiceInfoVal, as well as the ServiceInfoKey (module message). The module must read the ServiceInfoVal from <code>fdor_t</code>, process it as per the ServiceInfoKey, and advance the <code>fdor_t</code> internal buffer to the next valid CBOR entry (currently being done internally in few methods). The module must treat the received <code>fdor_t</code> as a read-only structure, and must never modify it, excpet advancing to the next CBOR entry.</p>
+<p>This callback function is invoked in the context of the executing onboarding protocol hence, although there is no fixed timeline, the module must complete execution in the shortest possible time.</p>
+<p><em><strong>Syntax</strong></em></p>
+<pre><code>typedef int (*fdo_sdk_owner_service_infoCB)(
+    fdo_sdk_si_type  type,
+    fdor_t           *fdor,
+    char             *module_message
 );
 </code></pre>
-<p><em><strong>Parameters</strong></em>  </p>
-<p><strong>type</strong><br />
-This indicates the type of the callback as specified in the FDO Service Callback Type section.<br />
-<strong>count</strong><br />
-An integer pointer that is used for multiple purposes. In the case of <code>FDO_SI_GET_DSI_COUNT</code>, the module must return the number of DSI entries it will send. For <code>FDO_SET_PSI, FDO_SI_GET_DSI</code> and <code>FDO_SI_SET_OSI</code>, it contains an index value into the PSI, DSI, and OSI lists respectively.<br />
-<strong>si</strong><br />
-A pointer to a service info key-value pair of type <code>fdoSdkSiKeyValue</code> that contains a key and its corresponding value, both of which are <code>NULL</code> terminated strings.</p>
-<p><em><strong>Return Value</strong></em>  </p>
-<p>The return value could be one of the following:  </p>
-<ul>
-<li><code>FDO_SI_CONTENT_ERROR</code>: Indicates that the module could not process the Service Information due to invalid content of either the key or value. An error will cause the onboarding protocol to fail and be retried.  </li>
-<li><code>FDO_SI_INTERNAL_ERROR</code>: Indicates that the module could not process the Service Information due to an internal error. An error will cause the onboarding protocol to fail and be retried.  </li>
-<li><code>FDO_SI_SUCCESS</code>: Indicates that the module was able to successfully process the Service Information (or ignored it successfully).</li>
-</ul>
-<h3 id="service-information-module-description">Service Information Module Description<a class="headerlink" href="#service-information-module-description" title="Permanent link">&para;</a></h3>
-<p>This structure describes a Service Information module that implements module functionality as described Section 2.3 and Section 2.5. Supported modules are known to the Application ahead of time and each module must have one Service Information Module entry, which is passed to the SDK in the <code>fdoSdkInit()</code> API.  </p>
-<p><em><strong>Syntax</strong></em>  </p>
+<p><em><strong>Parameters</strong></em></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>type</strong></td>
+<td>This indicates the type of the callback as specified in the FDO Service Callback Type section.</td>
+</tr>
+<tr>
+<td><strong>fdor</strong></td>
+<td>A pointer to <code>fdor_t</code>, currently pointing to the ServiceInfoVal to be processed.</td>
+</tr>
+<tr>
+<td><strong>module_message</strong></td>
+<td>A pointer to value of ServiceInfoKey representing the module message.</td>
+</tr>
+</tbody>
+</table>
+<p><em><strong>Return Value</strong></em></p>
+<p>The return value could be one of the following:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>FDO_SI_CONTENT_ERROR</strong></td>
+<td>Indicates that the module could not process the ServiceInfo due to invalid content of either the key or value. An error will cause the onboarding protocol to fail and be retried.</td>
+</tr>
+<tr>
+<td><strong>FDO_SI_INTERNAL_ERROR</strong></td>
+<td>Indicates that the module could not process the ServiceInfo due to an internal error. An error will cause the onboarding protocol to fail and be retried.</td>
+</tr>
+<tr>
+<td><strong>FDO_SI_SUCCESS</strong></td>
+<td>Indicates that the module was able to successfully process the ServiceInfo (or ignored it successfully).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="serviceinfo-module-description">ServiceInfo Module Description<a class="headerlink" href="#serviceinfo-module-description" title="Permanent link">&para;</a></h3>
+<p>This structure describes a ServiceInfo module that implements module functionality. Supported modules are known to the Application ahead of time and each module must have one ServiceInfo Module entry, which is passed to the SDK in the <code>fdoSdkInit()</code> API.</p>
+<p><em><strong>Syntax</strong></em></p>
 <pre><code>typedef struct {
+    bool                active;
     char                moduleName[16];
-    fdoSdkServiceInfoCB serviceInfoCallback;
+    fdo_sdk_owner_service_infoCB serviceInfoCallback;
 } fdoSdkServiceInfoModule;
 </code></pre>
-<p><em><strong>Members</strong></em>  </p>
-<p><strong>moduleName</strong><br />
-        The symbolic name of the Service Information Module. This should be a NULL terminated string, no larger than 15 characters.<br />
-<strong>serviceInfoCallback</strong><br />
-        This callback function will be invoked by the SDK to obtain Device Service Info from the module as well as pass Pre-Service Info and Owner Service Info to the module. This callback will be executed in the context of the onboarding protocol. See Service Information Module Callback.  </p>
+<p><em><strong>Members</strong></em></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>active</strong></td>
+<td>A bool value denoting whether the ServiceInfo module is currently active(true) or inactive(false). This value is maintained by the SDK and should not be tampered with by the module during ServiceInfo processing.</td>
+</tr>
+<tr>
+<td><strong>moduleName</strong></td>
+<td>The symbolic name of the ServiceInfo Module. This should be a NULL terminated string, no larger than 15 characters.</td>
+</tr>
+<tr>
+<td><strong>serviceInfoCallback</strong></td>
+<td>This callback function will be invoked by the SDK to obtain Device Service Info from the module as well as pass Pre-Service Info and Owner Service Info to the module. This callback will be executed in the context of the onboarding protocol. See ServiceInfo Module Callback.</td>
+</tr>
+</tbody>
+</table>
 <h3 id="error-handling-callback">Error Handling Callback<a class="headerlink" href="#error-handling-callback" title="Permanent link">&para;</a></h3>
-<p>This type is a pointer to a callback function that is used to process errors during protocol execution. The Application can use information provided by this callback to perform application-specific operations. The Application can also control the execution of the protocol state machine by return different values as specified below.  </p>
-<p><em><strong>Syntax</strong></em>  </p>
+<p>This type is a pointer to a callback function that is used to process errors during protocol execution. The Application can use information provided by this callback to perform application-specific operations. The Application can also control the execution of the protocol state machine by return different values as specified below.</p>
+<p><em><strong>Syntax</strong></em></p>
 <pre><code>typedef int (*fdoSdkErrorCB)(
     fdoSdkStatus type,
     fdoSdkError  errorCode
 );
 </code></pre>
-<p><em><strong>Parameters</strong></em>  </p>
-<p><strong>type</strong><br />
-This value specifies the type of error that occurred. It will be one of the following values (other <code>fdoSdkStatus</code> values are not used here):<br />
-<em> <code>FDO_ERROR</code>: This indicates that an unrecoverable error occurred. The SDK will continue with protocol restart for these types of errors but it is unlikely that the operation will succeed. It is advisable to abort the operation and retry later.<br />
-</em> <code>FDO_WARNING</code>: This indicates that a transient error occurred. The SDK will continue with protocol restart, which might fix the problem. It is advisable that the Application allows the restart to take place.<br />
-<strong>errorCode</strong><br />
-This value indicates details of the error that occurred. See description in FDO SDK Error Values.  </p>
-<p><em><strong>Return Value</strong></em>  </p>
-<p>The return value could be one of the following constants (<strong><em>Note:</em></strong> These values are constants that are defined in the FDO SDK header file):</p>
-<ul>
-<li><code>FDO_SUCCESS</code>: Indicates that the error was handled and the SDK should continue with its recovery or restart as required.  </li>
-<li><code>FDO_ABORT</code>: This causes the SDK to terminate protocol processing and return to the caller (such as, the <code>fdoSdkRun()</code> API returns). The Application can re-invoke this API later to re-initiate the FDO onboarding process.</li>
-</ul>
+<p><em><strong>Parameters</strong></em></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>type</strong></td>
+<td>This value specifies the type of error that occurred. It will be one of the following values (other <code>fdoSdkStatus</code> values are not used here): <br> * <code>FDO_ERROR</code>: This indicates an unrecoverable error occurred. The SDK will continue with protocol restart for these types of errors but it is unlikely that the operation will succeed. It is advisable to abort the operation and retry later. <br> * <code>FDO_WARNING</code>: This indicates that a transient error occurred. The SDK will continue with protocol restart, which might fix the problem. It is advisable that the Application allows the restart to take place.</td>
+</tr>
+<tr>
+<td><strong>errorCode</strong></td>
+<td>This value indicates details of the error that occurred. See description in FDO SDK Error Values.</td>
+</tr>
+</tbody>
+</table>
+<p><em><strong>Return Value</strong></em></p>
+<p>The return value could be one of the following constants.</p>
+<p><strong><em>NOTE</em></strong>: These values are constants that are defined in the FDO SDK header file.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>FDO_SUCCESS</strong></td>
+<td>Indicates that the error was handled and the SDK should continue with its recovery or restart as required.</td>
+</tr>
+<tr>
+<td><strong>FDO_ABORT</strong></td>
+<td>This causes the SDK to terminate protocol processing and return to the caller (such as, the <code>fdoSdkRun()</code> API returns). The Application can re-invoke this API later to re-initiate the FDO onboarding process.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="sdk-api-functions">SDK API Functions<a class="headerlink" href="#sdk-api-functions" title="Permanent link">&para;</a></h2>
 <p>The following functions are provided by the SDK and defined in the SDK API header file.</p>
 <h3 id="initialize-fdo-sdk">Initialize FDO SDK<a class="headerlink" href="#initialize-fdo-sdk" title="Permanent link">&para;</a></h3>
-<p>The Application must invoke this API before any other APIs since this API initializes all internal data and state of the SDK.  </p>
-<p><em><strong>Syntax</strong></em>  </p>
+<p>The Application must invoke this API before any other APIs since this API initializes all internal data and state of the SDK.</p>
+<p><em><strong>Syntax</strong></em></p>
 <pre><code>fdoSdkStatus fdoSdkInit(
     fdoSdkErrorCB    *errorHandlingCallback,
     uint32_t          numModules,
     fdoSdkModuleInfo *moduleInformation,
 );
 </code></pre>
-<p><em><strong>Parameters</strong></em>    </p>
-<p><strong>errorHandlingCallback</strong>  </p>
-<p>This is the Application’s error handling function and will be called by the SDK when an error is encountered. This value can be <code>NULL</code> in which case, errors will not be reported to the Application, and the SDK will take the appropriate recovery and/or restart action as required.  </p>
-<p><strong><em>Note:</em></strong> Passing <code>NULL</code> might cause the SDK to remain in an infinite loop until the onboarding process completes successfully.  </p>
-<p><strong>numModules</strong><br />
-Number of Service Information modules contained in the following <code>moduleInformation</code> list parameter. If no Application-specific modules are available, this value should be zero.<br />
-<strong>moduleInformation</strong><br />
-Service Module Information description for each available Service Information module as described in Service Information Module Description. If no Application-specific modules are available, this value should be <code>NULL</code>.  </p>
-<p><em><strong>Return Value</strong></em>  </p>
-<p>This function returns success or an error code as defined in Generic API Return Status.
- </p>
+<p><em><strong>Parameters</strong></em></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>errorHandlingCallback</strong></td>
+<td>This is the Application’s error handling function and will be called by the SDK when an error is encountered. This value can be <code>NULL</code> in which case, errors will not be reported to the Application, and the SDK will take the appropriate recovery and/or restart action as required. <br> <strong><em>NOTE</em></strong>: Passing <code>NULL</code> might cause the SDK to remain in an infinite loop until the onboarding process completes successfully.</td>
+</tr>
+<tr>
+<td><strong>numModules</strong></td>
+<td>Number of ServiceInfo modules contained in the following <code>moduleInformation</code> list parameter. If no Application-specific modules are available, this value should be zero.</td>
+</tr>
+<tr>
+<td><strong>moduleInformation</strong></td>
+<td>Service Module Information description for each available ServiceInfo module as described in ServiceInfo Module Description. If no Application-specific modules are available, this value should be <code>NULL</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><em><strong>Return Value</strong></em></p>
+<p>This function returns success or an error code as defined in Generic API Return Status.</p>
 <h3 id="get-current-fdo-sdk-status">Get Current FDO SDK Status<a class="headerlink" href="#get-current-fdo-sdk-status" title="Permanent link">&para;</a></h3>
-<p>This function returns the current state of the FDO SDK. It may only be called after the SDK has been initialized using the <code>fdoSdkInit()</code> API.  </p>
-<p><em><strong>Syntax</strong></em><br />
-<code>fdoSdkDeviceState fdoSdkGetStatus(void);</code>  </p>
-<p><em><strong>Return Value</strong></em>    </p>
-<p>This function returns a value of type fdoSdkDeviceStatus as described in FDO Device Status.</p>
+<p>This function returns the current state of the FDO SDK. It may only be called after the SDK has been initialized using the <code>fdoSdkInit()</code> API.</p>
+<p><em><strong>Syntax</strong></em></p>
+<pre><code>fdoSdkDeviceState fdoSdkGetStatus(void);
+</code></pre>
+<p><em><strong>Return Value</strong></em></p>
+<p>This function returns a value of type <code>fdoSdkDeviceStatus</code> as described in FDO Device Status.</p>
 <h3 id="execute-fdo-sdk-onboarding-protocol">Execute FDO SDK Onboarding Protocol<a class="headerlink" href="#execute-fdo-sdk-onboarding-protocol" title="Permanent link">&para;</a></h3>
 <p>The Application invokes this API to begin the onboarding process that is, TO1. The onboarding process has completed successfully when this function returns <code>FDO_SUCCESS</code>. If this API returns an error, the Application may retry the onboarding process by calling this API again immediately or after a sleep/reset cycle as determined by the use case.
-The SDK will invoke the Application error callback if an error occurs in this phase. Additionally, module-specific callbacks will be invoked when Service Information is received from the Owner Server during the TO2 stage. These callbacks are invoked in the context of the callers thread and the callbacks must not call any SDK APIs since the SDK is not yet re-entrant. </p>
-<p><em><strong>Syntax</strong></em><br />
-<code>fdoSdkStatus fdoSdkRun(void);</code>  </p>
-<p><em><strong>Return Value</strong></em>  </p>
+The SDK will invoke the Application error callback if an error occurs in this phase. Additionally, module-specific callbacks will be invoked when ServiceInfo is received from the Owner Server during the TO2 stage. These callbacks are invoked in the context of the callers thread and the callbacks must not call any SDK APIs since the SDK is not yet re-entrant.</p>
+<p><em><strong>Syntax</strong></em>
+<code>fdoSdkStatus fdoSdkRun(void);</code></p>
+<p><em><strong>Return Value</strong></em></p>
 <p>This function returns success or an error code as defined in Generic API Return Status.</p>
 <h3 id="prepare-the-fdo-sdk-for-resale">Prepare the FDO SDK for Resale<a class="headerlink" href="#prepare-the-fdo-sdk-for-resale" title="Permanent link">&para;</a></h3>
-<p>The Application invokes this API to prepare the device for resale. The SDK marks internal state to pre-TO1 and returns. After preparing the SDK for resale, a subsequent call to the <code>fdoSdkRun()</code> API will cause the SDK to perform the TO1 stage again, with new owner credentials that were updated at the end of the previous TO2 protocol stage.  </p>
-<p><em><strong>Syntax</strong></em>  <br />
-<code>fdoSdkStatus fdoSdkResale(void);</code>  </p>
-<p><em><strong>Return Value</strong></em>    </p>
-<p>This function returns success or an error code as defined in Generic API Return Status  </p>
+<p>The Application invokes this API to prepare the device for resale. The SDK marks internal state to pre-TO1 and returns. After preparing the SDK for resale, a subsequent call to the <code>fdoSdkRun()</code> API will cause the SDK to perform the TO1 stage again, with new owner credentials that were updated at the end of the previous TO2 protocol stage.</p>
+<p><em><strong>Syntax</strong></em></p>
+<pre><code>fdoSdkStatus fdoSdkResale(void);
+</code></pre>
+<p><em><strong>Return Value</strong></em></p>
+<p>This function returns success or an error code as defined in Generic API Return Status</p>
+<h2 id="fdo-concise-binary-object-representation-cbor-encoderdecoder-apis">FDO Concise Binary Object Representation (CBOR) encoder/decoder APIs<a class="headerlink" href="#fdo-concise-binary-object-representation-cbor-encoderdecoder-apis" title="Permanent link">&para;</a></h2>
+<p>Client SDK uses APIS provided in the header file <code>fdoblockio.h</code> to handle CBOR operations (encode/decode). The API implementations wraps and internally uses the APIs provided by Intel TinyCBOR* library. The structue for writer (encoder) and reader (decoder) are given below:</p>
+<h3 id="fdo-writer-cbor-encoder">FDO Writer (CBOR Encoder)<a class="headerlink" href="#fdo-writer-cbor-encoder" title="Permanent link">&para;</a></h3>
+<p>It is responsible for encoding the buffer inside <code>fdo_block_t</code> into CBOR-encoded stream. Internally, it uses wraps TinyCBOR's <code>CborEncoder</code> into a doubly-linked-list type structure, that is used to manage CBOR container-specific operations (CBOR map/array).</p>
+<p>The user must perform following operations in sequence to use the FDO Writer struct <code>fdow_t</code>:</p>
+<ul>
+<li>
+<p>Allocate memory for <code>fdow_t</code> structure</p>
+</li>
+<li>
+<p>Invoke <code>fdow_init()</code> to fill the allocated memory with 0's</p>
+</li>
+<li>
+<p>Invoke <code>fdo_block_alloc()</code> or <code>fdo_block_alloc_with_size()</code> to allocate memory for <code>fdow_t.b</code></p>
+</li>
+<li>
+<p>Invoke <code>fdow_encoder_init()</code> to initialize the TinyCBOR's <code>CborEncoder</code> with the previously allocated buffer <code>fdow_t.b</code>.</p>
+</li>
+</ul>
+<p><em><strong>Syntax</strong></em></p>
+<pre><code>typedef struct _FDOW_s {
+    fdo_block_t b;
+    int msg_type;
+    fdow_cbor_encoder_t *current;
+} fdow_t;
+
+typedef struct _FDOW_CBOR_ENCODER {
+    CborEncoder cbor_encoder;
+    struct _FDOW_CBOR_ENCODER *next;
+    struct _FDOW_CBOR_ENCODER *previous;
+} fdow_cbor_encoder_t;
+</code></pre>
+<p><em><strong>Members</strong></em></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>b</strong></td>
+<td>The <code>fdo_block_t</code> structure containing the buffer alogwith its size. The TinyCBOR* library uses this buffer to store the data that has been CBOR-encoded so far.</td>
+</tr>
+<tr>
+<td><strong>msg_type</strong></td>
+<td>FDO type (Type 1x/3x/6x/255)</td>
+</tr>
+<tr>
+<td><strong>current</strong></td>
+<td>A <code>fdow_cbor_encoder_t</code> structure that resembles a doubly-linked-list, containing TinyCBOR's CborEncoder.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fdo-reader-decoder-structure">FDO Reader (Decoder structure)<a class="headerlink" href="#fdo-reader-decoder-structure" title="Permanent link">&para;</a></h3>
+<p>It is responsible for decoding the CBOR-encoded buffer inside <code>fdo_block_t</code> into binary stream. Internally, it wraps TinyCBOR's <code>CborValue</code> into a doubly-linked-list type structure, that is used to manage CBOR container-specific operations (CBOR map/array).</p>
+<p>The user must perform following operations in sequence to use the FDO Reader struct <code>fdor_t</code>:</p>
+<ul>
+<li>
+<p>Allocate memory for <code>fdor_t</code> structure</p>
+</li>
+<li>
+<p>Invoke <code>fdor_init()</code> to fill the allocated memory with 0's</p>
+</li>
+<li>
+<p>Invoke <code>fdo_block_alloc()</code> or <code>fdo_block_alloc_with_size()</code> to allocate memory for <code>fdor_t.b</code></p>
+</li>
+<li>
+<p>Copy the CBOR-encoded stream into the previously allocated <code>fdor_t.b</code></p>
+</li>
+<li>
+<p>Invoke <code>fdor_parser_init()</code> to initialize the TinyCBOR's <code>CBORParser</code> with the previously allocated buffer <code>fdor_t.b</code>.</p>
+</li>
+</ul>
+<p><em><strong>Syntax</strong></em></p>
+<pre><code>typedef struct _FDOR_s {
+    fdo_block_t b;
+    int msg_type;
+    bool have_block;
+    CborParser cbor_parser;
+    fdor_cbor_decoder_t *current;
+} fdor_t;
+
+typedef struct _FDOR_CBOR_DECODER {
+    CborValue cbor_value;
+    struct _FDOR_CBOR_DECODER *next;
+    struct _FDOR_CBOR_DECODER *previous;
+} fdor_cbor_decoder_t;
+</code></pre>
+<p><em><strong>Members</strong></em></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>b</strong></td>
+<td>The <code>fdo_block_t</code> structure containing the buffer alogwith its size. The TinyCBOR* library reads the CBOR-encoded stream from this buffer and decodes them into binary stream.</td>
+</tr>
+<tr>
+<td><strong>msg_type</strong></td>
+<td>FDO type (Type 1x/3x/6x/255)</td>
+</tr>
+<tr>
+<td><strong>have_block</strong></td>
+<td>A bool value that represents whether the structure contains data to be decoded. Generally, used by protocol, before decoding is started.</td>
+</tr>
+<tr>
+<td><strong>cbor_parser</strong></td>
+<td>CborParser from the TinyCBOR* library.</td>
+</tr>
+<tr>
+<td><strong>current</strong></td>
+<td>The <code>fdow_cbor_decoder_t</code> structure that resembles a doubly-linked-list, containing TinyCBOR's CborValue.</td>
+</tr>
+</tbody>
+</table>
                 
               
               
