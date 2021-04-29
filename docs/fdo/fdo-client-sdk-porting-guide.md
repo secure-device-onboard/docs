@@ -8,15 +8,15 @@ This document provides a guide to porting the Client SDK to new platforms.
 The Client SDK reference solution is comprised of 3 layers:
 
 1. **Application**: The reference application which triggers the Device Initialization and Ownership Transfer State Machine.
-2. **Library**: The Device Initialization and Ownership Transfer Protocol implementation for FIDO Device Onboarding.
+2. **Library**: The Device Initialization and Ownership Transfer Protocol implementation for FIDO Device Onboard Proposed Standard.
 3. **Platform**: Platform-specific implementation.
 
 The Platform layer is itself comprised of three modules: Crypto, Network, and Storage:
 
 1. **Crypto**: Implementation of Cryptographic requirements of Ownership Transfer Protocol. This also abstracts the “Platform” specific crypto methods from the “Library”. So, the crypto implementation is divided into:
 
-    * Library: specific implementation: There is no impact of adding new platform
-    * Platform: Specific implementation: The impact of adding new platform is detailed in Crypto Subsystem API section below.
+    * Library specific implementation: There is no impact of adding new platform
+    * Platform specific implementation: The impact of adding new platform is detailed in Crypto Subsystem API section below.
 
 2. **Network**: Implementation of Networking. This abstracts the “Platform” specific networking functionality from “Library”. The impact of adding new platform is detailed in the Network Subsystem API section below.
 3. **Storage**: Implementation of Secure Storage. This abstracts the “Platform” specific storage methods from “Library”. The impact of adding new platform is detailed in the Storage Subsystem API section below.
@@ -156,12 +156,8 @@ Client SDK uses the location defined by the below flags to connect to Manufactur
 ##### MAX_SERVICEINFO_SZ_FILE
 Client SDK uses the value contained in the file path as defined by this flag, to decide the maximum ServiceInfo size the Device can process. The value must lie between 1300 and 8192 (both inclusive). If the set value is less than 1300, the value would default to 1300. Similarly, if the value is greater than 8192, the value would default to 8192.
 
-* **MANUFACTURER_IP:** This is the manufacturer IP address to be used for performing Device Initialization.
-* **MANUFACTURER_DN:** This is the manufacturer Domain Name used to resolve to the IP address. This is used if the MANUFACTURER_IP is not given.
-* **MANUFACTURER_PORT:** This is the manufacturer server port, where the Device Initialization protocol is waiting for the device. By default, the port is 8039 if this blob is not created, otherwise, the port is used from this blob.
-
 ##### ECDSA_PRIVKEY
-This define specifies the ECDSA private key to be used as a device identity. Two options are possible:
+This specifies the ECDSA private key to be used as a device identity. Two options are possible:
 
 * The key could be pre-created like the reference application.
 * If the device supports secure storage, then the key can be generated within the device and stored using secure storage APIs
@@ -172,13 +168,16 @@ This define specifies the ECDSA private key to be used as a device identity. Two
 ##### FDO_CRED_(SECURE/MFG)
 These defines are used internally by Client SDK:
 
-* **FDO_CRED_SECURE:** This define specifies the location of the device secret. This blob is Authenticated Encrypted in the reference solution.
-* **FDO_CRED_MFG:** This define specifies the location of Manufacturer data. This blob is stored with Authenticated information.
+  * **FDO_CRED_SECURE:** This define specifies the location of the device secret. This blob is Authenticated Encrypted in the reference solution.
+
+  * **FDO_CRED_MFG:** This define specifies the location of Manufacturer data. This blob is stored with Authenticated information.
 
 #### extension.cmake (erstwhile crypto.conf)
+
 This cmake file consists mostly of build configuration from crypto.conf but is not limited to it.
 
 ##### Supported Configurations
+
 The following content is retained from crypto.conf for readability.
 
 ```
@@ -194,18 +193,19 @@ SUPPORTED_PK_ENC = ecdsa
 ### AES mode for secure channel
 SUPPORTED_AES_MODE = cbc ctr
 ```
-* **SUPPORTED_KEX:** This specifies the key exchange algorithms implemented to create a secure channel between Device and Owner in Ownership Transfer Protocol.
+
+  * **SUPPORTED_KEX:** This specifies the key exchange algorithms implemented to create a secure channel between Device and Owner in Ownership Transfer Protocol.
 
     * ecdhxxx: Based on Elliptic Curve Diffie Hellman
 
-* **SUPPORTED_DA:** This specifies the supported Device Attestation algorithms which device uses to prove its identity to Rendezvous Server and Owner.
+  * **SUPPORTED_DA:** This specifies the supported Device Attestation algorithms which device uses to prove its identity to Rendezvous Server and Owner.
 
     !!! note
         tpm20_ecdsa256 isn’t a separate algorithm, it uses ecdsa256 as Device Attestation, but uses TPM2.0 to generate keys and store data
 
-* **SUPPORTED_PK_ENC:** This specifies the Public Key Encoding which Device supports to authenticate the Owner
+  * **SUPPORTED_PK_ENC:** This specifies the Public Key Encoding which Device supports to authenticate the Owner
 
-* **SUPPORTED_AES_MODE:** This specifies the AES mode of encryption supported by device. The device supports CBC and CTR.
+  * **SUPPORTED_AES_MODE:** This specifies the AES mode of encryption supported by device. The device supports CBC and CTR.
 
 ##### Auto Configuration
 A selection of higher crypto for Device Attestation automatically configures Key Exchange to use higher crypto.
@@ -226,11 +226,11 @@ elseif(DA MATCHES ecdsa384)
 #### fdo_sdk_error
 ```
 typedef enum {
-        FDO_RV_TIMEOUT = 1,
-        FDO_CONN_TIMEOUT,
-        FDO_DI_ERROR,
-        FDO_TO1_ERROR,
-        FDO_TO2_ERROR
+    FDO_RV_TIMEOUT = 1,
+    FDO_CONN_TIMEOUT,
+    FDO_DI_ERROR,
+    FDO_TO1_ERROR,
+    FDO_TO2_ERROR
 } fdo_sdk_error;
 ```
 The usage of this enum is detailed in fdo_sdk_init()
@@ -238,15 +238,15 @@ The usage of this enum is detailed in fdo_sdk_init()
 #### fdo_sdk_status
 ```
 typedef enum {
-        FDO_SUCCESS,
-        FDO_INVALID_PATH,
-        FDO_CONFIG_NOT_FOUND,
-        FDO_INVALID_STATE,
-        FDO_RESALE_NOT_SUPPORTED,
-        FDO_RESALE_NOT_READY,
-        FDO_WARNING,
-        FDO_ERROR,
-        FDO_ABORT
+    FDO_SUCCESS,
+    FDO_INVALID_PATH,
+    FDO_CONFIG_NOT_FOUND,
+    FDO_INVALID_STATE,
+    FDO_RESALE_NOT_SUPPORTED,
+    FDO_RESALE_NOT_READY,
+    FDO_WARNING,
+    FDO_ERROR,
+    FDO_ABORT
 } fdo_sdk_status;
 ```
 The usage of this enum is detailed in `fdo_sdk_init()`
@@ -254,11 +254,11 @@ The usage of this enum is detailed in `fdo_sdk_init()`
 #### fdo_sdk_device_state
 ```
 typedef enum {
-        FDO_STATE_PRE_DI = 2,
-        FDO_STATE_PRE_TO1,
-        FDO_STATE_IDLE,
-        FDO_STATE_RESALE,
-        FDO_STATE_ERROR
+    FDO_STATE_PRE_DI = 2,
+    FDO_STATE_PRE_TO1,
+    FDO_STATE_IDLE,
+    FDO_STATE_RESALE,
+    FDO_STATE_ERROR
 } fdo_sdk_device_state;
 ```
 The usage of this enum is detailed in `fdo_sdk_get_status()`
@@ -274,6 +274,7 @@ fdo_sdk_status fdo_sdk_init(fdo_sdk_errorCB error_handling_callback,
 typedef int (*fdo_sdk_errorCB)(fdo_sdk_status type, fdo_sdk_error error_code);
 ```
 *Description*
+
 This function initializes the Client SDK data structures. It allows the application to control the error handling of the Client SDK state machine by setting error_handling_callback. Client SDK calls error_handling_callback to propagate the error_code(fdo_sdk_error) back to the application with Client SDK internal status fdo_sdk_status(fdo_sdk_status). The application may handle the error and return the appropriate action to be taken by Client SDK further.
 
 !!! note
@@ -282,58 +283,79 @@ This function initializes the Client SDK data structures. It allows the applicat
 The Client SDK allows the owner to download the required Device Management System agents via Service Info mechanism; the num_modules and module_information registers the Service Info modules with the Client SDK.
 
 *Parameters*
+
 `error_handling_callback:` It is of type fdo_sdk_errorCB
+
 `num_modules:` number of Service Info modules to register.
+
 `module_information:` Array of Service Info modules registration information
 
 *Return Value*
+
 `FDO_SUCCESS` for success.
+
 Greater than `FDO_SUCCESS` for failure (refer fdo_sdk_status)
 
 #### fdo_sdk_run()
 `fdo_sdk_status fdo_sdk_run(void);`
 
 *Description*
+
 This function triggers either the Device Initialize state machine or Ownership Transfer Protocol state machine depending on the device status stored in Normal.blob.
 
 !!! note
     The reference application first successful executions performs Device Initialization. The second execution begins to perform Ownership Transfer Protocol.
 
 *Parameters*
+
 None
 
 *Return Value*
+
 `FDO_SUCCESS` for success.
+
 Greater than `FDO_SUCCESS` for failure (refer fdo_sdk_status)
 
 #### fdo_sdk_resale()
 `fdo_sdk_status fdo_sdk_resale(void);`
 
 *Description*
+
 This function triggers the device resale.
 
 *Parameters*
+
 None
 
 *Return Value*
+
 `FDO_SUCCESS` for success.
+
 Greater than `FDO_SUCCESS` for failure (refer fdo_sdk_status)
 
 #### fdo_sdk_get_status()
 `fdo_sdk_device_state fdo_sdk_get_status(void);`
 
 *Description*
+
 This function returns the current state of the device.
 
 *Parameters*
+
 None
 
 *Return Value*
+
 Please refer fdo_sdk_status:
+
 `FDO_STATE_PRE_DI:` Device is ready for DI
+
 `FDO_STATE_PRE_TO1:` Device is ready for Ownership transfer
+
 `FDO_STATE_IDLE:` Device's ownership transfer done
+
 `FDO_STATE_RESALE:` Device is ready for ownership transfer
+
 `FDO_STATE_ERROR:` Error in getting device status
 
 ## Crypto Subsystem API
@@ -391,32 +413,40 @@ The usage is detailed in `crypto_hal_get_device_csr()`.
 `int32_t crypto_init(void)`
 
 *Description*
+
 This function initializes and enables the crypto services to be used by Client SDK.
 
 !!! note
     This function may require a change in implementation for porting to a custom platform. For guidance in assessing the secure random number generation requirements for your device, refer to the Client SDK Security Implications document.
 
 *Parameters*
+
 None
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 #### crypto_close()
 `int32_t crypto_close(void)`
 
 *Description*
+
 This function tears down any initialization done to enable crypto services to Client SDK.
 
 !!! note
     This function may require a change in implementation for porting to custom platform, as it tears down the initialization done in `crypto_init()`. Also, the crypto tear down could be different for custom platforms.
 
 *Parameters*
+
 None
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 ### Random Number Functions
@@ -425,49 +455,62 @@ None
 `int random_init(void)`
 
 *Description*
+
 This function initializes the random number generator functionality.
 
 !!! note
     This function may require a change in implementation for porting to a custom platform. For guidance in assessing the secure random number generation requirements for your device, refer to the Client SDK Security Implications document.
 
 *Parameters*
+
 None
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 #### random_close()
 `int random_close(void)`
 
-**Description**
+*Description*
+
 This function releases the random number context. After this call, the random number cannot be retrieved from a call to `crypto_hal_random_bytes()`
 
 !!! note
     This function may require a change in implementation for porting to custom platform, as it tears down the initialization done to setup random number generator which may be different in custom platform
 
-**Parameters**
+*Parameters*
+
 None
 
-**Return Value**
+*Return Value*
+
 `0` for success
+
 `-1` for failure
 
 #### crypto_hal_random_bytes()
 `int32_t crypto_hal_random_bytes(uint8_t *random_buffer, size_t num_bytes)`
 
 *Description*
+
 This function fills the random_buffer with random number of size num_bytes.
 
 !!! note
     This function may not require a change in implementation for porting to custom platform, as the reference implementation uses standard mbedTLS/openSSL APIs
 
-**Parameters**
+*Parameters*
+
 `random_buffer:` pointer to memory to receive random number
+
 `num_bytes:` size of memory pointed by random_buffer indicating the bytes of random number requested.
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 ### Message Digest and MAC Functions
@@ -479,20 +522,28 @@ int32_t crypto_hal_hash(uint8_t hash_type, const uint8_t *buffer,
                          size_t output_length)
 ```
 *Description*
+
 This function hashes the contents of the memory pointed to by buffer of size `buffer_length` with `hash_type` algorithm and fills the memory pointed to by `output` of size `output_length` with generated hash.
 
 !!! note
     This function may not require a change in implementation for porting to custom platform, as the reference implementation uses standard mbedTLS/openSSL APIs
 
 *Parameters*
+
 `hash_type:` This function must support all the hash algorithms identifiers mentioned in FDO_CRYPTO_HASH_TYPE except FDO_CRYPTO_HASH_TYPE_SHA_512 (optional). Client SDK uses FDO_CRYPTO_HASH_TYPE_USED to decide at compile time which hash_type to use - either FDO_CRYPTO_HASH_TYPE_SHA_256 or FDO_CRYPTO_HASH_TYPE_SHA_384.
+
 `buffer:` a valid pointer to a memory containing data to be hashed
+
 `buffer_length:` size of memory pointed to by buffer
+
 output: a valid pointer to a memory which will be filled by hash
+
 `output_length:` size of the memory pointed to by output. It must be able to contain the generated Hash.
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 #### crypto_hal_hmac()
@@ -503,20 +554,28 @@ int32_t crypto_hal_hmac(uint8_t hmac_type, const uint8_t *buffer,
                         size_t key_length)
 ```
 *Description*
+
 This function HMACs the contents of the memory pointed to by buffer of size `buffer_length` using `key` of size `key_length`, with `hmac_type` algorithm and fills the memory pointed to by `output` of size `output_length` with generated HMAC.
 
 !!! note
     This function may not require a change in implementation for porting to custom platform, as the reference implementation uses standard mbedTLS/openSSL APIs
 
 *Parameters*
+
 `hmac_type`: This function must support all the HMAC algorithms identifiers mentioned in FDO_CRYPTO_HMAC_TYPE except FDO_CRYPTO_HMAC_TYPE_SHA_512 (optional).  Client SDK uses FDO_CRYPTO_HMAC_TYPE_USED to decide at compile time which hmac_type to use - either FDO_CRYPTO_HMAC_TYPE_SHA_256 or FDO_CRYPTO_HMAC_TYPE_SHA_384.
+
 `buffer:` a valid pointer to a memory containing data to be HMACed.
+
 `buffer_length:` size of memory pointed to by buffer
+
 `output:` a valid pointer to a memory which will be filled by HMACed data.
+
 `output_length:` size of the memory pointed to by output. It must be able to contain the generated HMAC.
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 ### Asymmetric Functions
@@ -533,25 +592,38 @@ int32_t crypto_hal_sig_verify(uint8_t key_encoding, uint8_t key_algorithm,
                               uint32_t key_param2Length)
 ```
 *Description*
+
 This function verifies the ECDSA or RSA signature pointed by `message_signature` of size `message_length` on the data pointed by `message` of size `message_length` with the key material `key_param1` and `key_param2` interpreted according to `key_encoding`.
 
 !!! note
     This function may not require a change in implementation for porting to custom platform, as the reference implementation uses standard mbedTLS/openSSL APIs
 
 *Parameters*
+
 `key_encoding:` FDO_CRYPTO_PUB_KEY_ENCODING_X509 encoding is used for ECDSA and FDO_CRYPTO_PUB_KEY_ENCODING_RSA_MOD_EXP is used for RSA. Please refer FDO_CRYPTO_PUB_KEY_ENCODING
+
 `key_algorithm:` FDO_CRYPTO_PUB_KEY_ALGO_(ECDSAp256/ECDSAp384) is used for ECDSA and FDO_CRYPTO_PUB_KEY_ALGO_RSA for RSA. Please refer FDO_CRYPTO_PUB_KEY_ALGO
+
 `message:` data over which the sign verification needs to be performed.
+
 `message_length:` size of the message
+
 `message_signature:` signature over the message sent by the signing entity
+
 `signature_length:` size of the message_signature
+
 `key_param1:` either ECDSA key or RSA Modulus
+
 `key_param1Length:` size of the key in key_param1
+
 `key_param2:` NULL for ECDSA or Public Exponent for RSA
+
 `key_param2Length:` size of the key in key_param2
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 #### crypto_hal_ecdsa_sign()
@@ -560,23 +632,32 @@ int32_t crypto_hal_ecdsa_sign(const uint8_t *message, size_t message_len,
                        unsigned char *signature, size_t *signature_len)
 ```
 *Description*
+
 This function signs the `message` of size `message_len` and fills the signed data in `signature` of size `signature_len`.
 
 * Algorithm is based on the compile time flags ECDSA256_DA and ECDSA384_DA.
+
 * Signing Key is loaded from filesystem stored at location ECDSA_PRIVKEY.
+
 * Signature Length is allocated by Client SDK based on internal define ECDSA_SIGNATURE_MAX_LEN.
 
 !!! note
     This function may not require a change in implementation for porting to custom platform, as the reference implementation uses standard mbedTLS/openSSL APIs
 
 *Parameters*
+
 `message:` The message over which sign is to be calculated.
+
 `message_length:` size of the message
+
 `signature:` The buffer to fill signature with.
+
 `signature_len:` size of the signature
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 ### Symmetric Cipher Functions
@@ -590,22 +671,34 @@ int32_t crypto_hal_aes_encrypt(const uint8_t *clear_text,
                                uint32_t key_length)
 ```
 *Description*
+
 This function encrypts the `clear_text` of size `clear_text_length` with the AES algorithm using `key` of size `key_length` and fills the `cipher_text` with encrypted content of size `cipher_length`.
 
 !!! note
     This function may not require a change in implementation for porting to custom platform, as the reference implementation uses standard mbedTLS/openSSL APIs
 
 *Parameters*
+
 `clear_text:` pointer to the buffer containing text to be encrypted
+
 `clear_text_length:` size of clear_text
+
 `cipher_text:` pointer to the empty buffer to be filled after encrypting clear_text
+
 `cipher_length:` size of buffer pointed by cipher_text. This is IN/OUT parameter and gets filled with size of expected encrypted buffer in case cipher_text is passed as NULL with all other parameters as valid.
+
 `block_size:` is 16 in case of AES CBC encrypt
-iv: Initialization Vector of size 16 bytes. Counter management is to be done by the caller for AES CTR mode.
+
+`iv`: Initialization Vector of size 16 bytes. Counter management is to be done by the caller for AES CTR mode.
+
 `key:` AES symmetric key
+
 `key_length:` size of the key
-**Return Value**
+
+*Return Value*
+
 `0` for success
+
 `-1` for failure
 
 #### crypto_hal_aes_decrypt()
@@ -617,23 +710,34 @@ int32_t crypto_hal_aes_decrypt(uint8_t *clear_text, uint32_t *clear_text_length,
                                uint32_t key_length)
 ```
 *Description*
+
 This function decrypts the `cipher_text` of size `cipher_length` with the AES algorithm using `key` of size `key_length` and fills the `clear_text` with unencrypted content of length `clear_text_length`.
 
 !!! note
     This function may not require a change in implementation for porting to custom platform, as the reference implementation uses standard mbedTLS/openSSL APIs
 
 *Parameters*
+
 `clear_text:` pointer to the empty buffer to be filled with unencrypted text
+
 `clear_text_length:` size of clear_text. This is IN/OUT parameter and gets filled with size of expected unencrypted buffer in case clear_text is passed as NULL with all other parameters as valid.
+
 `cipher_text:` pointer to the buffer containing text to be decrypted.
-cipher_length:` size of cipher_text.
+
+`cipher_length:` size of cipher_text.
+
 `block_size:` is 16 in case of AES CBC encrypt
+
 `iv:` Initialization Vector of size 16 bytes. Counter management is to be done by the caller for AES CTR mode.
+
 `key:` AES symmetric key
+
 `key_length:` size of the key
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 ### Certificate Signing Request
@@ -643,19 +747,23 @@ cipher_length:` size of cipher_text.
 int32_t crypto_hal_get_device_csr(fdo_byte_array_t **csr);
 ```
 *Description*
+
 This function fills the Client SDK byte array `csr` with the Certificate Signing Request (CSR) data.
 
 !!! note
     This function may not require a change in implementation for porting to custom platform, as the reference implementation uses the standard mbedTLS/openSSL APIs
 
 *Parameters*
+
 `csr:` FDO byte array. Please refer fdo_byte_array_t. The usage of the structure is as below:
-- byte_sz: size of the buffer in bytes pointed by bytes
-- bytes: pointer to a stream of bytes
+  - byte_sz: size of the buffer in bytes pointed by bytes
+  - bytes: pointer to a stream of bytes
 This array is allocated by using fdo_byte_array_alloc(size_of_buffer) function.
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 ### Key Exchange Functions
@@ -665,10 +773,11 @@ This array is allocated by using fdo_byte_array_alloc(size_of_buffer) function.
 int32_t crypto_hal_kex_init(void **context)
 ```
 *Description*
+
 Client SDK uses ECDH algorithm to perform key exchange for creating a secure channel between Device and Owner. The configurations are mentioned in Crypto Configuration. The Device is considered as entity B in Key Exchange and the Owner is considered as entity A.
 
 **ECDH:** This function creates an ECDH key pair. It then appends a random number with the public part of the generated key pair to generate a stream of bytes known as Device Random as mentioned below.
-`ByteArray[blen(Qx), Qx, blen(Qy), Qy, blen(DeviceRandom), Random Number]  `
+`ByteArray[blen(Qx), Qx, blen(Qy), Qy, blen(DeviceRandom), Random Number]`
 
 The random number as mentioned above is of size 16 bytes (ECDH256) or 48 bytes (ECDH384).
 In the later part of Client SDK execution, this buffer is retrieved using `crypto_hal_get_device_random()` and sent to the owner for generating the shared secret.
@@ -677,26 +786,33 @@ In the later part of Client SDK execution, this buffer is retrieved using `crypt
     This function may not require a change in implementation for porting to custom platform, as the reference implementation uses standard mbedTLS/openSSL APIs
 
 *Parameters*
+
 `context:` a valid pointer to store the key exchange context.
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 #### crypto_hal_kex_close()
-`int32_t crypto_hal_kex_close(void **context)`
+`int32_t crypto_hal_kex_close(void \*\*context)`
 
 *Description*
+
 This function tears down the key exchange context created by `crypto_hal_kex_init()`.
 
 !!! note
     This function may not require a change in implementation for porting to custom platform, as the reference implementation uses standard mbedTLS/openSSL APIs
 
 *Parameters*
+
 `context:` a valid pointer of key exchange context.
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 #### crypto_hal_get_device_random()
@@ -705,6 +821,7 @@ int32_t crypto_hal_get_device_random(void *context, uint8_t *dev_rand_value,
                                      uint32_t *dev_rand_length)
 ```
 *Description*
+
 This function fills the buffer pointed to by dev_rand_value of size dev_rand_length with the Device Random Value. The Device Random value is generated differently for different algorithms. Currently, only `ECDH` algorithm is supported in this release.
 
 **ECDH:** The buffer generated in `crypto_hal_kex_init()` is the Device Random.
@@ -713,12 +830,17 @@ This function fills the buffer pointed to by dev_rand_value of size dev_rand_len
     This function may not require a change in implementation for porting to custom platform, as the reference implementation uses standard mbedTLS/openSSL APIs or internal data structures which can be reused.
 
 *Parameters*
+
 `context:` a valid pointer of key exchange context.
+
 `dev_rand_value:` A valid pointer to an empty buffer. If this parameter is passed as NULL, then this function returns the size of the Device Random in dev_rand_length.
+
 `dev_rand_length:` The size of the buffer pointed by dev_rand_value.
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 #### crypto_hal_set_peer_random()
@@ -728,10 +850,11 @@ int32_t crypto_hal_set_peer_random(void *context,
                                    uint32_t peer_rand_length)
 ```
 *Description*
+
 This function updates the key exchange context with `peer_rand_value` of size `peer_rand_length`. This function uses this information to generate shared secret. Currently, only `ECDH` algorithm is supported in this release.
 
 **ECDH:** The Owner sends the data in a similar buffer layout as device sends it. Please see `crypto_hal_kex_init()` for the device Key Exchange buffer layout.
-`ByteArray[blen(Ax), Ax, blen(Ay), Ay, blen(OwnerRandom), OwnerRandom] `
+`ByteArray[blen(Ax), Ax, blen(Ay), Ay, blen(OwnerRandom), OwnerRandom]`
 
 This function fills the point Qp with the Owner Information and generates an ECDH key pair. The shared secret is generated as:
 `Shx ||DeviceRandom||OwnerRandom`
@@ -740,12 +863,17 @@ This function fills the point Qp with the Owner Information and generates an ECD
     This function may not require a change in implementation for porting to custom platform, as the reference implementation uses standard mbedTLS/openSSL APIs
 
 *Parameters*
+
 `context:` a valid pointer of key exchange context.
+
 `peer_rand_value:` a valid pointer to Owner data for generating shared secret.
+
 `peer_rand_length:` The size of the buffer pointed by peer_rand_value.
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 #### crypto_hal_get_secret()
@@ -754,18 +882,24 @@ int32_t crypto_hal_get_secret(void *context, uint8_t *secret,
                               uint32_t *secret_length)
 ```
 *Description*
+
 This function returns the shared secret created as part of key exchange protocol by `crypto_hal_set_peer_random()`.
 
 !!! note
     This function may not require a change in implementation for porting to custom platform, as the reference implementation uses the internal structure members which gets filled in Key Exchange protocol.
 
 *Parameters*
+
 `context:` a valid pointer of key exchange context.
+
 `secret:` A valid pointer to an empty buffer. If this parameter is passed as NULL, then this function returns the size of the secret in secret_length.
+
 `secret_length:` The size of the buffer pointed by secret.
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 ## Network Subsystem API
@@ -798,7 +932,7 @@ typedef struct {
 } fdo_ip_address_t;
 ```
 #### fdo_con_handle
-fdo_con_handle is specific to the underlying network library. In software distributions supporting POSIX, fdo_con_handle can be int or any implementation specific datatype. For Client SDK, this is opaque data type, and it will not use its internal members.
+`fdo_con_handle` is specific to the underlying network library. In software distributions supporting POSIX, fdo_con_handle can be int or any implementation specific datatype. For Client SDK, this is opaque data type, and it will not use its internal members.
 
 ### Connection Management Functions
 
@@ -807,6 +941,7 @@ fdo_con_handle is specific to the underlying network library. In software distri
 int32_t fdo_con_setup(char *medium, char **params, uint32_t count)
 ```
 *Description*
+
 This function sets up the connection identified by `medium` based on the `count` number of `params`. It is expected that this call will block until the interface has been established and is stable.
 It may be called multiple times, and if in subsequent calls to this function, the medium value changes, the existing connection must be terminated, and a new connection must be created on new medium. If the medium is the same as used in existing connection, this function must continue to retain the previous setup connection.
 
@@ -825,12 +960,17 @@ wifi|Connect to the WiFi SSID and password specified by params. |params[0] = SSI
     This function may not require a change in implementation for porting to custom platform, as the reference implementation initializes REST context which is used to communicate with Manufacturer/Rendezvous/Owner Server
 
 *Parameters*
+
 `medium:` Refer above table
+
 `params:` NULL or an array of NULL terminated ASCII strings required to connect to medium.
+
 `count:` 0 or number of NULL terminated ASCII strings in params
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 #### fdo_con_teardown()
@@ -839,16 +979,20 @@ int32_t fdo_con_teardown(void)
 
 ```
 *Description*
+
 This function shuts down the connection established by the function described in `fdo_con_setup()`
 
 !!! note
     This function may not require a change in implementation for porting to custom platform, as the reference implementation tears down the REST context created in `fdo_con_setup()`
 
 *Parameters*
+
 None
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 #### fdo_con_dns_lookup()
@@ -857,21 +1001,28 @@ int32_t fdo_con_dns_lookup(const char *url, fdo_ip_address_t **ip_list,
                            uint32_t *ip_list_size)
 ```
 *Description*
+
 This function perform a DNS lookup for the specified host identified by the `url` and return a list of IP addresses in the `ip_list`.
 
 !!! note
     This function may require a minimal change in implementation for porting to custom platform, as the reference implementation relies on Linux libraries to perform Domain Name resolution.
 
 *Parameters*
+
 `url:` NULL terminated string like “192.168.0.1” or “example@noname.com”
+
 `ip_list:` Refer fdo_ip_address_t for the structure declaration. The usage of this structure is as follows:
-- `length:` The value should be 4 for IPv4 and 16 for IPv6 addresses
-- `addr:` specifies the IP address in network byte order
+
+  - `length:` The value should be 4 for IPv4 and 16 for IPv6 addresses
+
+  - `addr:` specifies the IP address in network byte order
 
 `ip_list_size:` specifies the number of IP addresses in the ip_list.
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 #### fdo_con_connect()
@@ -880,18 +1031,24 @@ fdo_con_handle fdo_con_connect(fdo_ip_address_t *addr, uint16_t port,
                                void **ssl)
 ```
 *Description*
+
 This function connects to the IP address specified in addr on the given port. If the ssl pointer is non-NULL, enable SSL on the opened socket.
 
 !!! note
     This function may require a minimal change in implementation for porting to custom platform, as the reference implementation relies on Linux libraries to connect to the server.
 
 *Parameters*
+
 `addr:` server IP address. Please refer `fdo_con_dns_lookup()`
+
 `port:` server port to connect to
+
 `ssl:` NULL or valid pointer to receive the ssl context in case ssl is enabled
 
 *Return Value*
-Connection handle for success. Please refer fdo_con_handle.
+
+Connection handle for success. Please refer `fdo_con_handle`.
+
 `-1` for failure
 
 #### fdo_con_disconnect()
@@ -899,17 +1056,22 @@ Connection handle for success. Please refer fdo_con_handle.
 int32_t fdo_con_disconnect(fdo_con_handle handle, void *ssl)
 ```
 *Description*
+
 This function terminates the connection associated with handle.
 
 !!! note
     This function may require a minimal change in implementation for porting to custom platform, as the reference implementation relies on Linux libraries to disconnect from the server.
 
 *Parameters*
+
 `handle:` Valid connection handle. Please refer to `fdo_con_connect()`
+
 `ssl:` NULL or valid pointer in case, SSL connection was established. Please refer to `fdo_con_connect()`
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 ### Connection Data Management Functions
@@ -922,20 +1084,28 @@ int32_t fdo_con_recv_msg_header(fdo_con_handle handle,
                                 void *ssl)
 ```
 *Description*
+
 This function receives the message header on the specified connection handle and returns `protocol_version`, `message_type` and `msglen`. It will block until a message is available.
 
 !!! note
     This function may require a minimal change in implementation for porting to custom platform, as the reference implementation relies on Linux* libraries to receive data from the server.
 
 *Parameters*
+
 `handle:` Connection handle. Please refer to `fdo_con_connect()`
+
 `protocol_version:` Incoming protocol version. Client SDK supports 113
+
 `message_type:` set to FDO_TYPE_ERROR in case of error. Please refer FDO_TYPE_ERROR
+
 `msglen:` Length of incoming message body
+
 `ssl:` valid SSL context in case SSL is enabled. Please refer s`do_con_connect()`
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 #### fdo_con_recv_msg_body()
@@ -944,19 +1114,26 @@ int32_t fdo_con_recv_msg_body(fdo_con_handle handle, uint8_t *buf,
                               size_t length, void *ssl)
 ```
 *Description*
+
 This function receives the message body on the connection specified by `handle` in the provided memory pointed to by `buf` of size `length`. The message received corresponds to the message header received in the immediate preceding call to `fdo_con_recv_msg_header()`. This function blocks unless the specified length of data is received.
 
 !!! note
     This function may require a minimal change in implementation for porting to custom platform, as the reference implementation relies on Linux* libraries to receive data from the server.
 
 *Parameters*
+
 `handle:` Connection handle. Please refer to `fdo_con_connect()`
+
 `buf:` pointer to the empty buffer for receiving the message
+
 `length:` size of buf and equal to returned from fdo_con_recv_msg_header().
+
 `ssl:` valid SSL context in case SSL is enabled. Please refer to `fdo_con_connect()`
 
 *Return Value*
+
 Number of bytes for success
+
 `-1` for failure
 
 #### fdo_con_send_message()
@@ -966,21 +1143,30 @@ int32_t fdo_con_send_message(fdo_con_handle handle, uint32_t protocol_version,
                              size_t length, void *ssl)
 ```
 *Description*
+
 This function sends the data pointed by `buf` of size `length` over the connection specified by `handle` with `protocol_version` and `message_type` as metadata.
 
 !!! note
     This function may require a minimal change in implementation for porting to custom platform, as the reference implementation relies on Linux libraries to send data to the server.
 
 *Parameters*
+
 `handle:` Connection handle. Please refer to `fdo_con_connect()`
+
 `protocol_version:` Client SDK supports 113
+
 `message_type:` Client SDK state machine specific. To be used as is
+
 `buf:` pointer to the buffer containing the message to be sent
+
 `length:` size of buf
+
 `ssl:` valid SSL context in case SSL is enabled. Please refer to `fdo_con_connect()`
 
 *Return Value*
+
 `0` for success
+
 `-1` for failure
 
 ### Network Generic Functions
@@ -990,30 +1176,36 @@ This function sends the data pointed by `buf` of size `length` over the connecti
 uint32_t fdo_net_to_host_long(uint32_t value)
 ```
 *Description*
+
 This function converts the `value` from network byte order to host byte order.
 
 !!! note
     This function may require a change in implementation for porting to custom platform, as the reference implementation to perform the functionality.
 
 *Parameters*
+
 value: unsigned integer of size 4 bytes in network byte order
 
 *Return Value*
+
 Unsigned integer of size 4 bytes converted to host byte order
 
 #### fdo_host_to_net_long()
 `uint32_t fdo_host_to_net_long(uint32_t value)`
 
 *Description*
+
 This function converts the `value` from host byte order to network byte order.
 
 !!! note
     This function may require a change in implementation for porting to custom platform, as the reference implementation to perform the functionality.
 
 *Parameters*
+
 `value:` unsigned integer of size 4 bytes in host byte order
 
 *Return Value*
+
 Unsigned integer of size 4 bytes converted to network byte order
 
 #### fdo_printable_to_net()
@@ -1021,18 +1213,24 @@ Unsigned integer of size 4 bytes converted to network byte order
 int32_t fdo_printable_to_net(const char *src, void *addr)
 ```
 *Description*
+
 This function converts the IP address in ASCII string pointed to by `src` to network byte order and stores the result in `addr`.
 
 !!! note
     This function may require a change in implementation for porting to custom platform, as the reference implementation to perform the functionality.
 
 *Parameters*
+
 `src:` points to a character string containing an IPv4 network address in dotted-decimal format
+
 `addr:` output buffer to receive IPV4 network address in network byte order
 
 *Return Value*
+
 `1` for success
+
 `-1` for failure
+
 `0` if input format is invalid
 
 ### Legacy Functions
@@ -1042,15 +1240,18 @@ This function converts the IP address in ASCII string pointed to by `src` to net
 const char *get_device_model(void)
 ```
 *Description*
+
 This function either statically or dynamically generates a device model string.
 
 !!! note
     This function may require a change in implementation for porting to custom platform, as the reference implementation returns a hard-coded string.
 
 *Parameters*
+
 None
 
 *Return Value*
+
 NULL terminated ASCII string
 
 #### get_device_serial_number()
@@ -1058,15 +1259,18 @@ NULL terminated ASCII string
 const char *get_device_serial_number(void)
 ```
 *Description*
+
 This function either statically or dynamically generates a device serial number string.
 
 !!! note
     This function may require a change in implementation for porting to custom platform, as the reference implementation returns a hard-coded string.
 
 *Parameters*
+
 None
 
 *Return Value*
+
 NULL terminated ASCII string
 
 #### fdo_random()
@@ -1074,15 +1278,18 @@ NULL terminated ASCII string
 int fdo_random(void)
 ```
 *Description*
+
 This function generates a random number
 
 !!! note
     This function may require a change in implementation for porting to custom platform, as the reference implementation uses Linux libraries to perform the functionality.
 
 *Parameters*
+
 None
 
 *Return Value*
+
 A random number
 
 #### fdo_sleep()
@@ -1090,12 +1297,14 @@ A random number
 void fdo_sleep(int sec)
 ```
 *Description*
+
 This function introduces the delay for `sec` number of seconds
 
 !!! note
     This function may require a change in implementation for porting to custom platform, as the reference implementation uses Linux libraries to perform the functionality.
 
 ## Storage Subsystem API
+
 Storage is a platform offering which enables Client SDK to store the credentials, state of the Client device on the storage medium. The required functionality by the Client SDK is abstracted via a set of APIs declared in file "storage/include/storage_al.h".
 
 !!! note
@@ -1104,6 +1313,7 @@ Storage is a platform offering which enables Client SDK to store the credentials
 ### Constants
 
 #### fdo_sdk_blob_flags
+
 This enum defines the supported storage hierarchy by the API
 ```
 typedef enum {
@@ -1131,19 +1341,26 @@ int32_t fdo_blob_read(const char *blob_name, fdo_sdk_blob_flags flags,
                       uint8_t *buffer, uint32_t length)
 ```
 *Description*
+
 This function reads the data into the `buffer` of size `length` from the blob identified by `blob_name` whose storage properties match with the `flags`. Before reading the data from blob into the `buffer`, it is recommended to use `fdo_blob_size()` to allocate the exact length of `buffer`.
 
 !!! note
     This function may require a change in implementation for porting to a custom platform. For guidance in assessing the secure storage requirements for your device, refer to the Client SDK Security Implications document.
 
 *Parameters*
+
 `blob_name:` NULL terminated string identifying the existing blob
+
 `flags:`  Please refer fdo_sdk_blob_flags
+
 `buffer:` empty buffer to read the blob data
+
 `length:` size of buffer
 
 *Return Value*
+
 Number of bytes read for success
+
 `-1` for failure
 
 #### fdo_blob_write()
@@ -1152,19 +1369,26 @@ int32_t fdo_blob_write(const char *blob_name, fdo_sdk_blob_flags flags,
                        const uint8_t *buffer, uint32_t length)
 ```
 *Description*
+
 This function writes the data from `buffer` of size `length` to the blob identified by `blob_name` whose storage properties are identified with the `flags`. This function must create the blob if it doesn’t exist, otherwise, overwrite the blob.
 
 !!! note
     This function may require a change in implementation for porting to a custom platform. For guidance in assessing the secure storage requirements for your device, refer to the Client SDK Security Implications document.
 
 *Parameters*
+
 `blob_name:` NULL terminated string identifying the blob to be created
+
 `flags:`  Please refer fdo_sdk_blob_flags
+
 `buffer:` data to be stored in the blob
+
 `length:` size of the data to be stored into the blob
 
 *Return Value*
+
 Number of bytes written for success
+
 `-1` for failure
 
 #### fdo_blob_size()
@@ -1179,10 +1403,15 @@ This function returns the size of blob identified by `blob_name` whose storage p
     This function may require a change in implementation for porting to a custom platform. For guidance in assessing the secure storage requirements for your device, refer to the Client SDK Security Implications document.
 
 *Parameters*
+
 `blob_name:` NULL terminated string identifying the existing blob
+
 `flags:`  Please refer fdo_sdk_blob_flags
 
 *Return Value*
+
 Blob size for success
+
 `0` if the blob doesn’t exist
+
 `-1` for failure
