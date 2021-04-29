@@ -4,7 +4,7 @@ that can be performed on a given FDO device. Module key-value pairs are exchange
 and it’s owning Device Management Service. It is up to the owning management service and the
 device to interpret the key-value pairs in accordance with the module specification.
 
-## fdo_sys module definition
+## fdo_sys Module Definition
 The system module defines basic onboarding operations such as downloading content and executing
 commands. The following table describes key-value pairs for the system module.
 
@@ -16,7 +16,7 @@ commands. The following table describes key-value pairs for the system module.
 | fdo_sys:filedesc | CBOR String | Describes a path to a file that will be used in subsequent file operations. |
 | fdo_sys:write | CBOR BSTR | Appends a block of data to the current file description. |
 
-### fdo_sys:exec message
+### fdo_sys:exec Message
 
 The fdo_sys:exec commands performs a system call on the device. The value of this command is a
 CBOR Array of string values. The first string in the array is the command to execute and the
@@ -25,37 +25,37 @@ remaining strings are the arguments to the command. It is expected that it would
 
 | | |
 |-|-|
-| JSON (readable description) | ["/bin/sh","startup.sh"] |
+| JSON* (readable description) | ["/bin/sh","startup.sh"] |
 | CBOR | `82` # array(2) <br> `67` # text(7) <br> `2F62696E2F7368` # "/bin/sh" <br> `6A` # text(10) <br> `737461727475702E7368` # "startup.sh"|
 | C example | execvp(“/bin/sh”,(char* []) {“shartup.sh”}) |
 
-### fdo_sys:filedesc message
+### fdo_sys:filedesc Message
 
-The fdo_sys:filedesc command describes the path to a file the will be used as a part of the
+The fdo_sys:filedesc command describes the path to a file that will be used as a part of the
 on-boarding process. A zero-length file is expected to exist on the local file system after this
-command is received. If the described file already exists it is truncated to zero length, otherwise
-a zero-length file is created. The permissions for the created file are set to read/write
+command is received. If the described file already exists, it is truncated to zero length, otherwise
+a zero-length file is created. The permissions for the created file is set to read/write
 for the user account the module is running under. File permissions can subsequently be modified with
 the fdo_sys:exec command if needed. If a path is not included as a part of the file name, the
 current working directory of the module is assumed. All subsequent fdo_sys:write operations will
-append to this file. If another sdo_sys.filedesc message is received then it replaces the current
+append to this file. If another sdo_sys.filedesc message is received, it then replaces the current
 and all subsequent fdo_sys:write messages will start appending to the new current filedesc.
 
-### fdo_sys:write message
+### fdo_sys:write Message
 Write an array of bytes to the end of the file described by the last fdo_sys:filedesc command.
 Since fdo_sys:filedesc creates a zero length file the first write will be at the beginning of the
 file and all subsequent writes will be at the end. If this message is sent without being preceded
-by sdo_sys.filedesc then an message `255: INVALID_MESSAGE_ERROR` will be thrown and TO2 will not
-complete. Once a fdo_sys:filedesc has been received, many fdo_sys:write messages can follow.
+by sdo_sys.filedesc then a message `255: INVALID_MESSAGE_ERROR` will be thrown and TO2 will not be
+completed. Once a fdo_sys:filedesc has been received, many fdo_sys:write messages can follow.
 
 ## Examples
 Below are examples of the fdo_sys messages encoded as CBOR. The JSON examples are just human
 readable definitions while the actual messages are always CBOR. The encoding includes the entire
 TO2.OwnerServiceInfo message include the isMore and isDone flags.
 
-Device should advertise its supports fdo_sys.
+Device should advertise it supports fdo_sys.
 
-***Note***: This example just includes the module list key value pairs and not all the required values for the devmod.
+***NOTE***: This example just includes the module list key value pairs and not all the required values for the devmod.
 
 ### DeviceServiceInfo (devmod)
 
