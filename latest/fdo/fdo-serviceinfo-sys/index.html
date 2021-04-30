@@ -519,29 +519,29 @@
       
         <li class="md-nav__item">
   <a href="#fdo_sys-module-definition" class="md-nav__link">
-    fdo_sys module definition
+    fdo_sys Module Definition
   </a>
   
-    <nav class="md-nav" aria-label="fdo_sys module definition">
+    <nav class="md-nav" aria-label="fdo_sys Module Definition">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#fdo_sysexec-message" class="md-nav__link">
-    fdo_sys:exec message
+    fdo_sys:exec Message
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#fdo_sysfiledesc-message" class="md-nav__link">
-    fdo_sys:filedesc message
+    fdo_sys:filedesc Message
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#fdo_syswrite-message" class="md-nav__link">
-    fdo_sys:write message
+    fdo_sys:write Message
   </a>
   
 </li>
@@ -1081,29 +1081,29 @@
       
         <li class="md-nav__item">
   <a href="#fdo_sys-module-definition" class="md-nav__link">
-    fdo_sys module definition
+    fdo_sys Module Definition
   </a>
   
-    <nav class="md-nav" aria-label="fdo_sys module definition">
+    <nav class="md-nav" aria-label="fdo_sys Module Definition">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#fdo_sysexec-message" class="md-nav__link">
-    fdo_sys:exec message
+    fdo_sys:exec Message
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#fdo_sysfiledesc-message" class="md-nav__link">
-    fdo_sys:filedesc message
+    fdo_sys:filedesc Message
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#fdo_syswrite-message" class="md-nav__link">
-    fdo_sys:write message
+    fdo_sys:write Message
   </a>
   
 </li>
@@ -1197,23 +1197,18 @@ for FDO capable devices. A module is a set of key-value pairs; they define the o
 that can be performed on a given FDO device. Module key-value pairs are exchanged between the device
 and it’s owning Device Management Service. It is up to the owning management service and the
 device to interpret the key-value pairs in accordance with the module specification.</p>
-<h2 id="fdo_sys-module-definition">fdo_sys module definition<a class="headerlink" href="#fdo_sys-module-definition" title="Permanent link">&para;</a></h2>
+<h2 id="fdo_sys-module-definition">fdo_sys Module Definition<a class="headerlink" href="#fdo_sys-module-definition" title="Permanent link">&para;</a></h2>
 <p>The system module defines basic onboarding operations such as downloading content and executing
 commands. The following table describes key-value pairs for the system module.</p>
 <table>
 <thead>
 <tr>
-<th></th>
-<th></th>
-<th></th>
+<th><strong>Key Name</strong></th>
+<th><strong>Value</strong></th>
+<th><strong>Meaning</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><strong>Key Name</strong></td>
-<td><strong>Value</strong></td>
-<td><strong>Meaning</strong></td>
-</tr>
 <tr>
 <td>fdo_sys:active</td>
 <td>CBOR Bool</td>
@@ -1221,8 +1216,8 @@ commands. The following table describes key-value pairs for the system module.</
 </tr>
 <tr>
 <td>fdo_sys:exec</td>
-<td>CBOR array of string command arguments.</td>
-<td>Performs a system call.</td>
+<td>CBOR Array of String values</td>
+<td>The command is put as array elements. The command performs a system call.</td>
 </tr>
 <tr>
 <td>fdo_sys:filedesc</td>
@@ -1236,9 +1231,9 @@ commands. The following table describes key-value pairs for the system module.</
 </tr>
 </tbody>
 </table>
-<h3 id="fdo_sysexec-message">fdo_sys:exec message<a class="headerlink" href="#fdo_sysexec-message" title="Permanent link">&para;</a></h3>
-<p>The fdo_sys:exec commands performs a system call on the device. The value of this command is a
-CBOR Array of string values. The first string in the array is the command to execute and the
+<h3 id="fdo_sysexec-message">fdo_sys:exec Message<a class="headerlink" href="#fdo_sysexec-message" title="Permanent link">&para;</a></h3>
+<p>The fdo_sys:exec command performs a system call on the device. The value of this command is a
+CBOR Array of String values. The first string in the array is the command to execute and the
 remaining strings are the arguments to the command. It is expected that it would use “exec”
 (system call) or similar API to execute the command on the device.</p>
 <table>
@@ -1250,7 +1245,7 @@ remaining strings are the arguments to the command. It is expected that it would
 </thead>
 <tbody>
 <tr>
-<td>JSON (readable description)</td>
+<td>JSON* (readable description)</td>
 <td>["/bin/sh","startup.sh"]</td>
 </tr>
 <tr>
@@ -1263,33 +1258,32 @@ remaining strings are the arguments to the command. It is expected that it would
 </tr>
 </tbody>
 </table>
-<h3 id="fdo_sysfiledesc-message">fdo_sys:filedesc message<a class="headerlink" href="#fdo_sysfiledesc-message" title="Permanent link">&para;</a></h3>
-<p>The fdo_sys:filedesc command describes the path to a file the will be used as a part of the
+<h3 id="fdo_sysfiledesc-message">fdo_sys:filedesc Message<a class="headerlink" href="#fdo_sysfiledesc-message" title="Permanent link">&para;</a></h3>
+<p>The fdo_sys:filedesc message describes the path to a file the will be used as a part of the
 on-boarding process. A zero-length file is expected to exist on the local file system after this
-command is received. If the described file already exists it is truncated to zero length, otherwise
-a zero-length file is created. The permissions for the created file are set to read/write
+command is received. If the described file already exists, it is truncated to zero length, otherwise
+a zero-length file is created. The permissions for the created file is set to read/write
 for the user account the module is running under. File permissions can subsequently be modified with
 the fdo_sys:exec command if needed. If a path is not included as a part of the file name, the
-current working directory of the module is assumed. All subsequent fdo_sys:write operations will
-append to this file. If another sdo_sys.filedesc message is received then it replaces the current
-and all subsequent fdo_sys:write messages will start appending to the new current filedesc.</p>
-<h3 id="fdo_syswrite-message">fdo_sys:write message<a class="headerlink" href="#fdo_syswrite-message" title="Permanent link">&para;</a></h3>
-<p>Write an array of bytes to the end of the file described by the last fdo_sys:filedesc command.
-Since fdo_sys:filedesc creates a zero length file the first write will be at the beginning of the
-file and all subsequent writes will be at the end. If this message is sent without being preceded
-by sdo_sys.filedesc then an message <code>255: INVALID_MESSAGE_ERROR</code> will be thrown and TO2 will not
-complete. Once a fdo_sys:filedesc has been received, many fdo_sys:write messages can follow.</p>
+file is created under current working directory of the module. All subsequent fdo_sys:write
+operations will append to this file. If another fdo_sys:filedesc message is received, all subsequent
+fdo_sys:write messages will start appending to the file specified by the fdo_sys:filedesc message.</p>
+<h3 id="fdo_syswrite-message">fdo_sys:write Message<a class="headerlink" href="#fdo_syswrite-message" title="Permanent link">&para;</a></h3>
+<p>The fdo_sys:write message provides an array of bytes that gets appended to the file described by
+the last fdo_sys:filedesc message. If this message is sent without being preceded by
+fdo_sys:filedesc, then an message <code>255: INVALID_MESSAGE_ERROR</code> will be thrown and TO2 will not be
+completed. Once a fdo_sys:filedesc message has been received, many fdo_sys:write messages can
+follow.</p>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <p>Below are examples of the fdo_sys messages encoded as CBOR. The JSON examples are just human
 readable definitions while the actual messages are always CBOR. The encoding includes the entire
 TO2.OwnerServiceInfo message include the isMore and isDone flags.</p>
-<p>Device should advertise its supports fdo_sys.</p>
-<p><strong><em>Note</em></strong>: This example just includes the module list key value pairs and not all the required values for the devmod.</p>
+<p>Device should advertise it supports fdo_sys.</p>
+<p><strong><em>NOTE</em></strong>: This example just includes the module list key value pairs and not all the required values for the devmod.</p>
 <h3 id="deviceserviceinfo-devmod">DeviceServiceInfo (devmod)<a class="headerlink" href="#deviceserviceinfo-devmod" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th></th>
 <th></th>
 <th></th>
 </tr>
@@ -1298,12 +1292,10 @@ TO2.OwnerServiceInfo message include the isMore and isDone flags.</p>
 <tr>
 <td>Diagnostic Notation (not used by protocol)</td>
 <td>[false, [[["devmod:active", "true"], ["devmod:nummodules", 1], ["devmod:modules", [1, 1, "fdo_sys"]]]]]</td>
-<td></td>
 </tr>
 <tr>
 <td>CBOR</td>
-<td>82<br>F4<br>81<br>83<br>82<br>6D<br>6465766D6F643A616374697665<br>64<br>74727565<br>82<br>71<br>6465766D6F643A6E756D6D6F64756C6573<br>01<br>82<br>6E<br>6465766D6F643A6D6F64756C6573<br>83<br>01<br>01<br>69<br>66646F5F7379732D31</td>
-<td>array(2) <br> primitive(20) <br> array(1) <br> array(3) <br> array(2) <br> text(13) <br> "devmod:active" <br> text(4) <br> "true" <br> array(2) <br> text(17) <br> "devmod:nummodules" <br> unsigned(1) <br> array(2) <br> text(14) <br> "devmod:modules" <br> array(3) <br> unsigned(1) <br> unsigned(1) <br> text(9) <br> "fdo_sys"</td>
+<td><code>82</code> # array(2) <br> <code>F4</code> # primitive(20) - IsMoreSeviceInfo <br> <code>81</code> # array(1) - ServiceInfo <br> <code>83</code> # array(3) - ServiceInfo Key-Value Array <br> <code>82</code> # array(2) - ServiceInfo Key-Value Pair 1 <br> <code>6D</code> # text(13) <br> <code>6465766D6F643A616374697665</code> # "devmod:active" <br> <code>64</code> # text(4) <br> <code>74727565</code> # "true" <br> <code>82</code> # array(2) - ServiceInfo Key-Value Pair 2 <br> <code>71</code> # text(17) <br> <code>6465766D6F643A6E756D6D6F64756C6573</code> # "devmod:nummodules" <br> <code>01</code> # unsigned(1) <br> <code>82</code> # array(2) - ServiceInfo Key-Value Pair 3 <br> <code>6E</code> # text(14) <br> <code>6465766D6F643A6D6F64756C6573</code> # "devmod:modules" <br> <code>83</code> # array(3) <br> <code>01</code> # unsigned(1) - Module Index <br> <code>01</code> # unsigned(1) - Number of modules <br> <code>67</code> # text(7) <br> <code>66646F5F737973</code> # "fdo_sys"</td>
 </tr>
 </tbody>
 </table>
@@ -1314,19 +1306,16 @@ TO2.OwnerServiceInfo message include the isMore and isDone flags.</p>
 <tr>
 <th></th>
 <th></th>
-<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Diagnostic Notation (not used by protocol)</td>
 <td>[true, false, [[["fdo_sys:active", true]]]]</td>
-<td></td>
 </tr>
 <tr>
 <td>CBOR</td>
-<td>83 <br> F5 <br> F4 <br> 81 <br> 81 <br> 82 <br> 6E <br> 66646F5F7379733A61637469766 <br> F5</td>
-<td>array(3)  <br> primitive(21) <br> primitive(20) <br> array(1) <br> array(1) <br> array(2) <br> text(14) <br> "fdo_sys:active" <br> primitive(21)</td>
+<td><code>83</code> # array(3) <br> <code>F5</code> # primitive(21) - IsMoreSeviceInfo <br> <code>F4</code> # primitive(20) - IsDone <br> <code>81</code> # array(1) - ServiceInfo <br> <code>81</code> # array(1) - ServiceInfo Key-Value Array <br> <code>82</code> # array(2) - ServiceInfo Key-Value Pair <br> <code>6E</code> # text(14) <br> <code>66646F5F7379733A616374697665</code> # "fdo_sys:active" <br> <code>F5</code> # primitive(21)</td>
 </tr>
 </tbody>
 </table>
@@ -1336,19 +1325,16 @@ TO2.OwnerServiceInfo message include the isMore and isDone flags.</p>
 <tr>
 <th></th>
 <th></th>
-<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Diagnostic Notation (not used by protocol)</td>
 <td>[true, false, [[["fdo_sys:filedesc", "startup.bat"]]]]</td>
-<td></td>
 </tr>
 <tr>
 <td>CBOR</td>
-<td>83 <br> F5 <br> F4 <br> 81 <br> 81 <br> 82 <br> 70 <br> 66646F5F7379733A66696C6564657363 <br> 6B <br> 737461727475702E626174</td>
-<td>array(3) <br> primitive(21) <br> primitive(20) <br> array(1) <br> array(1) <br> array(2) <br> text(16) <br> "fdo_sys:filedesc" <br> text(11) <br> "startup.bat"</td>
+<td><code>83</code> # array(3) <br> <code>F5</code> # primitive(21) - IsMoreSeviceInfo <br> <code>F4</code> # primitive(20) - IsDone <br> <code>81</code> # array(1) - ServiceInfo <br> <code>81</code> # array(1) - ServiceInfo Key-Value Array <br> <code>82</code> # array(2) - ServiceInfo Key-Value Pair <br> <code>70</code> # text(16) <br> <code>66646F5F7379733A66696C6564657363</code> # "fdo_sys:filedesc" <br> <code>6B</code> # text(11) <br> <code>737461727475702E626174</code> # "startup.bat"</td>
 </tr>
 </tbody>
 </table>
@@ -1358,19 +1344,16 @@ TO2.OwnerServiceInfo message include the isMore and isDone flags.</p>
 <tr>
 <th></th>
 <th></th>
-<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Diagnostic Notation (not used by protocol)</td>
 <td>[true, false, [[["fdo_sys:write", h'4045…']]]]</td>
-<td></td>
 </tr>
 <tr>
 <td>CBOR</td>
-<td>83 <br> F5 <br> F4 <br> 81 <br> 81 <br> 82 <br> 6D <br> 66646F5F7379733A7772697465 <br> 59 0116 <br> 4045..</td>
-<td>array(3) <br> primitive(21) <br> primitive(20) <br> array(1) <br> array(1) <br> array(2) <br> text(13) <br> "fdo_sys:write" <br> bytes(278) <br> rest of 278 byte file</td>
+<td><code>83</code> # array(3) <br> <code>F5</code> # primitive(21) - IsMoreSeviceInfo <br> <code>F4</code> # primitive(20) - IsDone <br> <code>81</code> # array(1) - ServiceInfo <br> <code>81</code> # array(1) - ServiceInfo Key-Value Array <br> <code>82</code> # array(2) - ServiceInfo Key-Value Pair <br> <code>6D</code> # text(13) <br> <code>66646F5F7379733A7772697465</code> # "fdo_sys:write" <br> <code>59 0116</code> # bytes(278) <br> <code>4045..</code> # "@E" -rest of 278 byte file</td>
 </tr>
 </tbody>
 </table>
@@ -1380,19 +1363,16 @@ TO2.OwnerServiceInfo message include the isMore and isDone flags.</p>
 <tr>
 <th></th>
 <th></th>
-<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Diagnostic Notation (not used by protocol)</td>
 <td>[false, true, [[["fdo_sys:exec", ["cmd", "/c", "startup.bat"]]]]</td>
-<td></td>
 </tr>
 <tr>
 <td>CBOR</td>
-<td>83 <br> F4 <br> F5 <br> 81 <br> 81 <br> 82 <br> 6C <br> 66646F5F7379733A65786563 <br> 83 <br> 63 <br> 636D64 <br> 62 <br> 2F63 <br> 6B <br> 737461727475702E626174</td>
-<td>array(3) <br> primitive(20) <br> primitive(21) <br> array(1) <br> array(1) <br> array(2) <br> text(12) <br> "fdo_sys:exec" <br> array(3) <br> text(3) <br> "cmd" <br> text(2) <br> "/c" <br> text(11) <br> "startup.bat"</td>
+<td><code>83</code> # array(3) <br> <code>F4</code> # primitive(20) - IsMoreSeviceInfo <br> <code>F5</code> # primitive(21) - IsDone <br> <code>81</code> # array(1) - ServiceInfo <br> <code>81</code> # array(1) - ServiceInfo Key-Value Array <br> <code>82</code> # array(2) - ServiceInfo Key-Value Pair <br> <code>6C</code> # text(12) <br> <code>66646F5F7379733A65786563</code> # "fdo_sys:exec" <br> <code>83</code> # array(3) <br> <code>63</code> # text(3) <br> <code>636D64</code> # "cmd" <br> <code>62</code> # text(2) <br> <code>2F63</code> # "/c" <br> <code>6B</code> # text(11) <br> <code>737461727475702E626174</code> # "startup.bat"</td>
 </tr>
 </tbody>
 </table>
