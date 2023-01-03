@@ -93,7 +93,7 @@ The Secure Device Onboard Reseller Tool is specifically designed so that it can 
 
 At-rest protection means private keys are protected on disk or in the database but held in clear text in memory to perform signing operations. Storing the key in a file system of a machine requires careful procedural controls to ensure that the entire machine is protected from physical and virtual access.  
 
-When backup procedures of the file system or database are in place, the same procedural controls shall be applied to the backup medium, especially when the medium is Internet accessible (for example, AWS* S3 buckets, Google Drive*). Backup of systems through cloud services (for example, Carbonite*, BackBlaze*) need additional considerations that might require case-by-case negotiations with the service provider. 
+When backup procedures of the file system or database are in place, the same procedural controls shall be applied to the backup medium, especially when the medium is Internet accessible (for example, AWS* S3 buckets, Google Drive*). Backup of systems through cloud services (for example, Carbonite*, BackBlaze*) needs additional considerations that might require case-by-case negotiations with the service provider.
 
 Memory isolation is therefore important to prevent leakage of keys across applications, containers, or virtual machines. 
 
@@ -113,7 +113,7 @@ To prevent private key exposure even at runtime, it is recommended to use hardwa
 
 A secure element that is physically affixed to the platform ties keys and the platform together and makes key theft visually evident since the platform will be missing. 
 
-Runtime environment (including the applications and UI) that is used to access the private key for signing operation shall be restricted to only trusted users and applications. It is highly recommended to log the usage of the key such that it can be audited later in time. 
+Runtime environment (including the applications and UI) that is used to access the private key for signing operation shall be restricted to only trusted users and applications. It is highly recommended to log the usage of the key such that it can be audited later. 
 
 Customers must take care, that such cryptographic hardware is only as secure as its deployment. Even a security token that can never export a private key can be exploited if it is physically stolen from the workplace. 
 
@@ -123,7 +123,7 @@ This chapter addresses the manufacturing of devices, such as gateways or hardwar
 
 ### Manufacturing Station 
 
-The execution of the device initialization handshake is a security sensitive operation. Due to the nature of the handshake process, trust must be provided through physical isolation such as running the manufacturing station environment on a dedicated system and connecting the device over a dedicated network.  
+The execution of the device initialization handshake is a security-sensitive operation. Due to the nature of the handshake process, trust must be provided through physical isolation such as running the manufacturing station environment on a dedicated system and connecting the device over a dedicated network.  
 
 This is also common best practice for other manufacturing operations such as initial flashing of the BIOS. 
 
